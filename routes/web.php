@@ -23,14 +23,15 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 // Private Routes
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/equipos', [App\Http\Controllers\HomeController::class, 'equipos'])->name('view.equipos');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('view.home');
     Route::get('/equipos', [App\Http\Controllers\HomeController::class, 'equipos'])->name('view.equipos');
     Route::get('/without/breadcrumbs', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 });
 Route::group(['middleware' => ['auth'], 'prefix' => 'api'], function () {
     Route::get('asesor', [App\Http\Controllers\AsesorController::class, 'list'])->name('asesor');
+    Route::put('asesor/{id}', [App\Http\Controllers\AsesorController::class, 'update'])->name('asesor.update');
     Route::get('equipos', [App\Http\Controllers\EquipoController::class, 'list'])->name('asesor');
+    Route::put('equipos/{id}', [App\Http\Controllers\EquipoController::class, 'update'])->name('asesor.update');
 });
 Route::fallback(function () {
     abort(404);

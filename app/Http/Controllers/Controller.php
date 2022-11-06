@@ -20,9 +20,9 @@ class Controller extends BaseController
         ]);
     }
 
-    protected function sendError($data, $message)
+    protected function sendError($data, $message, $status = 200)
     {
-        return response()->json([
+        return response('', $status)->json([
             "data" => $data,
             "status" => false,
             "message" => $message

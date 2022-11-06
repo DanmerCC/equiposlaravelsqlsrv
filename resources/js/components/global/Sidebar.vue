@@ -26,10 +26,22 @@
                     <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="https://adminlte.io/docs/3.0" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                        </a>
+
+                        <Alink url="/home">
+
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                            </a>
+                        </Alink>
+                    </li>
+                    <li class="nav-item">
+
+                        <Alink url="/equipos">
+
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Equipos</p>
+                            </a>
+                        </Alink>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -204,8 +216,13 @@
 </template>
 
 <script>
+import Alink from './ALink'
+import ALink from './ALink.vue'
 export default {
     name: "Sidebar",
-    props: ['user']
+    props: ['user', 'route'],
+    components: {
+        Alink
+    }
 }
 </script>

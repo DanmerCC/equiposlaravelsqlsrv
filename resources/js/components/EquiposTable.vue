@@ -33,12 +33,18 @@
                 <div class="row">
                     <asesor-selector
                         class="col-12"
-                        @input="asesorEditInfo.changed = $event"
+                        v-model="asesorEditInfo.changed"
                     ></asesor-selector>
                 </div>
             </template>
             <template #footer>
-                <button class="btn btn-primary">Guardar</button>
+                <button
+                    class="btn btn-primary"
+                    :disabled="asesorEditInfoDiferent"
+                    @click="updateAsesor()"
+                >
+                    Guardar
+                </button>
             </template>
         </modal-component>
     </span>
@@ -56,10 +62,22 @@ export default {
         EquiposForm,
         AsesorSelector
     },
+    computed: {
+        asesorEditInfoDiferent() {
+            if (this.asesorEditInfo == null) {
+                return false;
+            }
+            return (
+                this.asesorEditInfo.original.id ==
+                this.asesorEditInfo.changed.id
+            );
+        }
+    },
     data() {
         return {
             asesorEditInfo: null,
             newEquipoOBject: null,
+
             columns: [
                 {
                     name: "Asesor",
@@ -102,10 +120,21 @@ export default {
         };
     },
     methods: {
+        updateAsesor() {
+            axios
+                .put("/api/equipos/" + this.asesorEditInfo.row.id, {
+                    asesor_id: this.asesorEditInfo.changed.id
+                })
+                .then(({ data }) => {
+                    this.asesorEditInfo = null;
+                    this.loadData();
+                });
+        },
         editAsesor(equipo) {
             this.asesorEditInfo = {
                 original: Object.assign({}, equipo.asesor),
-                changed: equipo.asesor
+                changed: equipo.asesor,
+                row: equipo
             };
         },
         openNewModal() {
