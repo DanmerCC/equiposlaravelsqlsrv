@@ -6,13 +6,36 @@
                     Agregar
                 </button>
             </template>
+            <template #asesor.nombres="{item,row}">
+                <button @click="editAsesor(row)" class="btn btn-sm btn-info">
+                    {{ item }}
+                </button>
+            </template>
         </data-table>
         <modal-component
             v-if="newEquipoOBject != null"
             @close="newEquipoOBject = null"
         >
             <template #body>
-                <equipos-form></equipos-form>
+                <equipos-form
+                    @changes="newEquipoOBject = $event"
+                ></equipos-form>
+            </template>
+            <template #footer>
+                <button class="btn btn-primary">Guardar</button>
+            </template>
+        </modal-component>
+        <modal-component
+            v-if="asesorEditInfo != null"
+            @close="asesorEditInfo = null"
+        >
+            <template #body>
+                <div class="row">
+                    <asesor-selector
+                        class="col-12"
+                        @input="asesorEditInfo.changed = $event"
+                    ></asesor-selector>
+                </div>
             </template>
             <template #footer>
                 <button class="btn btn-primary">Guardar</button>
@@ -24,17 +47,24 @@
 <script>
 import { DataTable, ModalComponent } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
+import AsesorSelector from "./AsesorSelector.vue";
 
 export default {
     components: {
         DataTable,
         ModalComponent,
-        EquiposForm
+        EquiposForm,
+        AsesorSelector
     },
     data() {
         return {
+            asesorEditInfo: null,
             newEquipoOBject: null,
             columns: [
+                {
+                    name: "Asesor",
+                    value: "asesor.nombres"
+                },
                 {
                     name: "Serie",
                     value: "serie"
@@ -72,6 +102,12 @@ export default {
         };
     },
     methods: {
+        editAsesor(equipo) {
+            this.asesorEditInfo = {
+                original: Object.assign({}, equipo.asesor),
+                changed: equipo.asesor
+            };
+        },
         openNewModal() {
             this.newEquipoOBject = {};
         },

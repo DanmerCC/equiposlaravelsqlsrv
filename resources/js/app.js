@@ -8,7 +8,19 @@ import Register from "./components/auth/Register";
 import PasswordReset from "./components/auth/PasswordReset";
 import PasswordUpdate from "./components/auth/PasswordUpdate";
 import EquiposTable from "./components/EquiposTable";
-import { DataTable, Paginate, ModalComponent,Increaser,PreviewFile,CheckableItem,GroupCheckBox,DropDown,DropDownItem } from "@danmerccoscco/personal";
+import {
+    DataTable,
+    Paginate,
+    ModalComponent,
+    Increaser,
+    PreviewFile,
+    CheckableItem,
+    GroupCheckBox,
+    DropDown,
+    DropDownItem
+} from "@danmerccoscco/personal";
+import Bars from "./components/Bars";
+import "vue-select/dist/vue-select.css";
 require("./bootstrap");
 
 window.Vue = require("vue").default;
@@ -16,6 +28,7 @@ window.Vue = require("vue").default;
 const app = new Vue({
     el: "#app",
     components: {
+        Bars,
         Container,
         Navbar,
         Sidebar,
@@ -25,6 +38,6 @@ const app = new Vue({
         PasswordReset,
         PasswordUpdate,
         DataTable,
-        EquiposTable,
+        EquiposTable
     }
 });

@@ -26,6 +26,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@danmerccoscco/personal": "^2.7.1"
+        "@danmerccoscco/personal": "^2.7.1",
+        "chart.js": "^3.9.1",
+        "chartjs": "^0.3.24",
+        "vue-chartjs": "^4.1.2",
+        "vue-select": "^3.20.0"
     }
 }

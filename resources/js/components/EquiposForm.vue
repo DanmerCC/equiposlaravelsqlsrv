@@ -33,6 +33,7 @@
                     class="form-control"
                     :id="randomId + 'fecha_compra'"
                     placeholder="Fecha compra"
+                    @change="emitChanges()"
                 />
             </div>
         </div>
@@ -46,10 +47,10 @@
             <div class="col-sm-10">
                 <textarea
                     v-model="input_observacion"
-                    type="serie"
                     class="form-control"
                     :id="randomId + 'observacion'"
                     placeholder="Observacion"
+                    @change="emitChanges()"
                 />
             </div>
         </div>
@@ -93,9 +94,7 @@ export default {
             return Math.floor(Math.random() * max) + 1;
         },
         emitChanges() {
-            if (this.source == null) {
-                this.$emit("changes");
-            }
+            this.$emit("changes", this.inputValues);
         }
     },
     computed: {
@@ -120,7 +119,7 @@ export default {
     watch: {
         inputsText: {
             handler: function(newValue, oldValue) {
-                console.log(newValue);
+                this.emitChanges();
             },
             deep: true
         }
