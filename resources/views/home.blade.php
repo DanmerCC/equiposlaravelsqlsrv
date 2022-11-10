@@ -20,7 +20,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">Asignadas:</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>86 Laptops<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{ $asign }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <a class="small text-white stretched-link" href="Tabla_Asignados.php">></a>
                         <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
@@ -31,7 +31,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">Total: Call + Staff + Libres + Malogrados</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>108 Laptops<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{ $noAsign }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <a class="small text-white stretched-link" href="Tabla_Total.php">></a>
                         <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
@@ -44,16 +44,18 @@
             <li class="breadcrumb-item active">Contador de equipos asignados</li>
         </ol>
         <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Call Center:</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>59 Laptops<sup style="font-size: 20px"></sup></h3>
-                        <a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
-                        <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+            @for ($i = 0; $i < count($resumegrups); $i++)
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body"> {{ $resumegrups[$i]->grupo }} :</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <h3>{{ $resumegrups[$i]->total }} Laptops<sup style="font-size: 20px"></sup></h3>
+                            <a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
+                            <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endfor
 
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-warning text-white mb-4">

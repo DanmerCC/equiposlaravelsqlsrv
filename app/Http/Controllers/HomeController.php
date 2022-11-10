@@ -11,11 +11,15 @@ class HomeController extends Controller
     public function index()
     {
         $resumegrups = DB::table('equipos')->select('grupo', DB::raw('count(*) as total'))->groupBy('grupo')->get();
-        $noAsign = Equipo::whereNotNull('asesor_id');
-        $asign = Equipo::whereNull('asesor_id');
+        $noAsign = Equipo::whereNotNull('asesor_id')->count();
+        $asign = Equipo::whereNull('asesor_id')->count();
 
 
-        return view('home', ['data' => $resumegrups]);
+        return view('home', [
+            'resumegrups' => $resumegrups,
+            'noAsign' => $noAsign,
+            'asign' => $asign,
+        ]);
     }
     public function equipos()
     {
