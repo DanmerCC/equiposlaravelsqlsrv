@@ -25,9 +25,14 @@
                     </div>
                 </div>
             </template>
-            <template #asesor.nombres="{item,row}">
+            <template #asesor="{item,row}">
                 <button @click="editAsesor(row)" class="btn btn-sm btn-info">
-                    {{ item }}
+                    <span v-if="item == null">
+                        Sin Asignar
+                    </span>
+                    <span v-else>
+                        {{ item.nombres }}
+                    </span>
                 </button>
             </template>
         </data-table>
@@ -100,7 +105,7 @@ export default {
             columns: [
                 {
                     name: "Asesor",
-                    value: "asesor.nombres"
+                    value: "asesor"
                 },
                 {
                     name: "Serie",
@@ -162,11 +167,19 @@ export default {
                 });
         },
         editAsesor(equipo) {
-            this.asesorEditInfo = {
-                original: Object.assign({}, equipo.asesor),
-                changed: equipo.asesor,
-                row: equipo
-            };
+            if (equipo == null) {
+                this.asesorEditInfo = {
+                    original: {},
+                    changed: {},
+                    row: equipo
+                };
+            } else {
+                this.asesorEditInfo = {
+                    original: Object.assign({}, equipo.asesor),
+                    changed: equipo.asesor,
+                    row: equipo
+                };
+            }
         },
         openNewModal() {
             this.newEquipoOBject = {};

@@ -5099,6 +5099,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -5125,7 +5130,7 @@ __webpack_require__.r(__webpack_exports__);
       search: null,
       columns: [{
         name: "Asesor",
-        value: "asesor.nombres"
+        value: "asesor"
       }, {
         name: "Serie",
         value: "serie"
@@ -5177,11 +5182,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editAsesor: function editAsesor(equipo) {
-      this.asesorEditInfo = {
-        original: Object.assign({}, equipo.asesor),
-        changed: equipo.asesor,
-        row: equipo
-      };
+      if (equipo == null) {
+        this.asesorEditInfo = {
+          original: {},
+          changed: {},
+          row: equipo
+        };
+      } else {
+        this.asesorEditInfo = {
+          original: Object.assign({}, equipo.asesor),
+          changed: equipo.asesor,
+          row: equipo
+        };
+      }
     },
     openNewModal: function openNewModal() {
       this.newEquipoOBject = {};
@@ -57041,7 +57054,7 @@ var render = function() {
             proxy: true
           },
           {
-            key: "asesor.nombres",
+            key: "asesor",
             fn: function(ref) {
               var item = ref.item
               var row = ref.row
@@ -57057,9 +57070,19 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._v(
-                      "\n                " + _vm._s(item) + "\n            "
-                    )
+                    item == null
+                      ? _c("span", [
+                          _vm._v(
+                            "\n                    Sin Asignar\n                "
+                          )
+                        ])
+                      : _c("span", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.nombres) +
+                              "\n                "
+                          )
+                        ])
                   ]
                 )
               ]
