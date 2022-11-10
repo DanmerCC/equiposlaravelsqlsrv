@@ -5,6 +5,25 @@
                 <button class="btn btn-primary" @click="openNewModal()">
                     Agregar
                 </button>
+                <div class="float-right border border-primary">
+                    <div
+                        title="Buscar equipo"
+                        class="input-group input-group-sm"
+                        style="width: 300px;"
+                    >
+                        <input
+                            v-model="search"
+                            type="text"
+                            placeholder="Buscar por programa"
+                            class="form-control"
+                        />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </template>
             <template #asesor.nombres="{item,row}">
                 <button @click="editAsesor(row)" class="btn btn-sm btn-info">
@@ -77,7 +96,7 @@ export default {
         return {
             asesorEditInfo: null,
             newEquipoOBject: null,
-
+            search: null,
             columns: [
                 {
                     name: "Asesor",
@@ -106,6 +125,18 @@ export default {
                 {
                     name: "serie",
                     value: "serie"
+                },
+                {
+                    name: "procesador",
+                    value: "procesador"
+                },
+                {
+                    name: "memoria",
+                    value: "memoria"
+                },
+                {
+                    name: "disco_duro",
+                    value: "disco_duro"
                 },
                 {
                     name: "fecha_compra",
@@ -141,13 +172,24 @@ export default {
             this.newEquipoOBject = {};
         },
         loadData() {
-            axios.get("/api/equipos").then(({ data }) => {
+            let config = {
+                params: {}
+            };
+            if (this.search != null && this.search != "") {
+                config.params["search"] = this.search;
+            }
+            axios.get("/api/equipos", config).then(({ data }) => {
                 this.items = data.data.data;
             });
         }
     },
     mounted() {
         this.loadData();
+    },
+    watch: {
+        search(newVal) {
+            this.loadData();
+        }
     }
 };
 </script>

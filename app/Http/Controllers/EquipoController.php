@@ -9,7 +9,11 @@ class EquipoController extends Controller
 {
     function list(Request $request)
     {
-        return $this->sendResponse(Equipo::with('asesor')->paginate(), "Correctamente cargado");
+        $queryBase = Equipo::with('asesor');
+        if ($request->has('search') && $request->get('search') != '') {
+            $queryBase->search($request->get('search'));
+        }
+        return $this->sendResponse($queryBase->paginate(), "Correctamente cargado");
     }
 
     function update($id, Request $request)
@@ -28,7 +32,10 @@ class EquipoController extends Controller
             'color',
             'serie',
             'fecha_compra',
-            'observacion'
+            'observacion',
+            'procesador',
+            'memoria',
+            'disco_duro',
         ];
 
         $inputs = $request->only($allowed);

@@ -4963,6 +4963,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "grupo",
         label: "grupo",
         value: null
+      }, {
+        name: "procesador",
+        label: "procesador",
+        value: null
+      }, {
+        name: "memoria",
+        label: "memoria",
+        value: null
+      }, {
+        name: "disco_duro",
+        label: "disco_duro",
+        value: null
       }],
       randomId: this.generateRandomInteger(100)
     };
@@ -5068,6 +5080,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5091,6 +5122,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       asesorEditInfo: null,
       newEquipoOBject: null,
+      search: null,
       columns: [{
         name: "Asesor",
         value: "asesor.nombres"
@@ -5112,6 +5144,15 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "serie",
         value: "serie"
+      }, {
+        name: "procesador",
+        value: "procesador"
+      }, {
+        name: "memoria",
+        value: "memoria"
+      }, {
+        name: "disco_duro",
+        value: "disco_duro"
       }, {
         name: "fecha_compra",
         value: "fecha_compra"
@@ -5148,7 +5189,15 @@ __webpack_require__.r(__webpack_exports__);
     loadData: function loadData() {
       var _this2 = this;
 
-      axios.get("/api/equipos").then(function (_ref2) {
+      var config = {
+        params: {}
+      };
+
+      if (this.search != null && this.search != "") {
+        config.params["search"] = this.search;
+      }
+
+      axios.get("/api/equipos", config).then(function (_ref2) {
         var data = _ref2.data;
         _this2.items = data.data.data;
       });
@@ -5156,6 +5205,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.loadData();
+  },
+  watch: {
+    search: function search(newVal) {
+      this.loadData();
+    }
   }
 });
 
@@ -5865,71 +5919,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _ALink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ALink.vue */ "./resources/js/components/global/ALink.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -56994,6 +56983,58 @@ var render = function() {
                     }
                   },
                   [_vm._v("\n                Agregar\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "float-right border border-primary" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "input-group input-group-sm",
+                        staticStyle: { width: "300px" },
+                        attrs: { title: "Buscar equipo" }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.search,
+                              expression: "search"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Buscar por programa"
+                          },
+                          domProps: { value: _vm.search },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.search = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group-append" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-default",
+                              attrs: { type: "submit" }
+                            },
+                            [_c("i", { staticClass: "fas fa-search" })]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
                 )
               ]
             },
@@ -58219,11 +58260,24 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("Alink", { attrs: { url: "/graficos" } }, [
+                      _c("i", {
+                        staticClass: "nav-icon fas fa-tachometer-alt"
+                      }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Graficos")])
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
-                _vm._m(4),
-                _vm._v(" "),
-                _vm._m(5)
+                _vm._m(4)
               ]
             )
           ])
@@ -58340,177 +58394,6 @@ var staticRenderFns = [
                 _c("i", { staticClass: "far fa-circle nav-icon" }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Validation")])
-              ]
-            )
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-book" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                        Pages\n                        "),
-          _c("i", { staticClass: "fas fa-angle-left right" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "nav nav-treeview", staticStyle: { display: "none" } },
-        [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/invoice.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Invoice")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/profile.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Profile")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/e-commerce.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("E-commerce")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/projects.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Projects")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/project-add.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Project Add")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/project-edit.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Project Edit")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/project-detail.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Project Detail")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/contacts.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Contacts")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/faq.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("FAQ")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/examples/contact-us.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Contact us")])
               ]
             )
           ])

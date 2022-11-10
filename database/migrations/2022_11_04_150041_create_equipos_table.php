@@ -23,6 +23,10 @@ class CreateEquiposTable extends Migration
             $table->string('serie');
             $table->date('fecha_compra');
             $table->string('observacion');
+
+            $table->string('procesador')->nullable();
+            $table->string('memoria')->nullable();
+            $table->string('disco_duro')->nullable();
             $table->timestamps();
             $table->foreign('asesor_id')->references('id')->on('asesors');
         });

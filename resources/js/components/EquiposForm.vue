@@ -84,7 +84,10 @@ export default {
                 { name: "color", label: "Color", value: null },
                 { name: "modelo", label: "Modelo", value: null },
                 { name: "marca", label: "marca", value: null },
-                { name: "grupo", label: "grupo", value: null }
+                { name: "grupo", label: "grupo", value: null },
+                { name: "procesador", label: "procesador", value: null },
+                { name: "memoria", label: "memoria", value: null },
+                { name: "disco_duro", label: "disco_duro", value: null }
             ],
             randomId: this.generateRandomInteger(100)
         };

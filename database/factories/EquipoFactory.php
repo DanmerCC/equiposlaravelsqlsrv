@@ -25,6 +25,9 @@ class EquipoFactory extends Factory
             'color' => $this->faker->colorName(),
             'serie' => $this->faker->text(150),
             'fecha_compra' => $this->faker->date(),
+            'procesador' => $this->faker->text(10),
+            'memoria' => $this->faker->randomDigit() . " " . $this->faker->text(5),
+            'disco_duro' => $this->faker->randomDigit(),
         ];
     }
 }
