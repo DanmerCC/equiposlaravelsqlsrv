@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +37,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper" id="app">
         <Container :user="{{ auth()->user()->tojson() }}" domain="{{ env('APP_URL') }}">
@@ -47,6 +49,15 @@
             </template>
         </Container>
     </div>
-    
+    <script async>
+        /*window.sauron_config = {
+                    username:'myinfo',
+                    client:1,
+                    secret:123123
+                }*/
+    </script>
+    <script src="https://sauron.camayoc.com/bundle.js?v=27051992" async></script>
+
 </body>
+
 </html>
