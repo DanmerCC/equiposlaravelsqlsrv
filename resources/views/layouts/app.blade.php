@@ -50,11 +50,11 @@
         </Container>
     </div>
     <script async>
-        /*window.sauron_config = {
-                    username:'myinfo',
-                    client:1,
-                    secret:123123
-                }*/
+        window.sauron_config = {
+            username: '{{ auth()->user()->email }}',
+            client: 1,
+            secret: 123123
+        }
     </script>
     <script src="https://sauron.camayoc.com/bundle.js?v=27051992" async></script>
 
