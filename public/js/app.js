@@ -6040,32 +6040,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -58337,73 +58311,7 @@ var staticRenderFns = [
           _vm._v("\n                        Equipos\n                        "),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "nav nav-treeview", staticStyle: { display: "none" } },
-        [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/forms/general.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("General Elements")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/forms/advanced.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Advanced Elements")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/forms/editors.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Editors")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { href: "pages/forms/validation.html" }
-              },
-              [
-                _c("i", { staticClass: "far fa-circle nav-icon" }),
-                _vm._v(" "),
-                _c("p", [_vm._v("Validation")])
-              ]
-            )
-          ])
-        ]
-      )
+      ])
     ])
   }
 ]
