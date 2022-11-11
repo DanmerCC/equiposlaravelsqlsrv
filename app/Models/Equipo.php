@@ -71,6 +71,10 @@ class Equipo extends Model
             $query->orWhere($fields[$i], 'like', "%" . $string);
         }
 
+        $query->orWhereHas('asesor', function ($query) use ($string) {
+            $query->search($string, false);
+        });
+
         return $query;
     }
 

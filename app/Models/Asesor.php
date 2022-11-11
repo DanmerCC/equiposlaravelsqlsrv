@@ -10,9 +10,14 @@ class Asesor extends Model
 {
     use HasFactory;
 
-    function scopeSearch(Builder $query, $text)
+    function scopeSearch(Builder $query, $text, $and = true)
     {
-        $query->where('nombres', 'like', '%' . $text);
+        if ($and) {
+
+            $query->where('nombres', 'like', '%' . $text);
+        } else {
+            $query->orWhere('nombres', '');
+        }
         $query->orWhere('nombres',  'like', '%' . $text . '%');
         $query->orWhere('nombres',  'like', $text . '%');
 

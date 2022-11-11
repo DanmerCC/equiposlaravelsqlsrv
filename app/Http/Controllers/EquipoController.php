@@ -10,6 +10,7 @@ class EquipoController extends Controller
     function list(Request $request)
     {
         $queryBase = Equipo::with('asesor');
+
         if ($request->has('search') && $request->get('search') != '') {
             $queryBase->search($request->get('search'));
         }
