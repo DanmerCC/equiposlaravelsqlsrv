@@ -5292,6 +5292,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5301,19 +5336,19 @@ __webpack_require__.r(__webpack_exports__);
   name: "Login",
   data: function data() {
     return {
-      name: '',
-      email: '',
-      username: '',
-      password: '',
-      password_confirmation: '',
+      name: "",
+      email: "admin@admin.com",
+      username: "",
+      password: "password",
+      password_confirmation: "",
       success: false,
       failure: false,
-      message: '',
-      token: document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      message: "",
+      token: document.head.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       loading: false,
       errors: {
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       }
     };
   },
@@ -5335,13 +5370,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errors.email = null;
       this.errors.password = null;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/login', user).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", user).then(function (res) {
         _this.loading = false;
         _this.success = true;
         _this.message = "Successfully Logged in.";
         _this.failure = false;
         setTimeout(function () {
-          window.location.href = '/home';
+          window.location.href = "/home";
         }, 1000);
       })["catch"](function (err) {
         console.log(err.response);
@@ -57325,7 +57360,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Login")]
+                    [
+                      _vm._v(
+                        "\n                                Login\n                            "
+                      )
+                    ]
                   )
                 ])
               ])
