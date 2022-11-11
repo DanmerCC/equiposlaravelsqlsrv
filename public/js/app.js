@@ -6066,63 +6066,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -58339,11 +58282,7 @@ var render = function() {
                     ])
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._m(4)
+                )
               ]
             )
           ])
@@ -58463,108 +58402,6 @@ var staticRenderFns = [
               ]
             )
           ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-circle" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                        Level 1\n                        "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "nav nav-treeview", staticStyle: { display: "none" } },
-        [
-          _c("li", { staticClass: "nav-item" }, [
-            _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Level 2")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n                                Level 2\n                                "
-                ),
-                _c("i", { staticClass: "right fas fa-angle-left" })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "nav nav-treeview" }, [
-              _c("li", { staticClass: "nav-item" }, [
-                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "far fa-dot-circle nav-icon" }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Level 3")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "nav-item" }, [
-                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "far fa-dot-circle nav-icon" }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Level 3")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "nav-item" }, [
-                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "far fa-dot-circle nav-icon" }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Level 3")])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Level 2")])
-            ])
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item text-center mt-3" }, [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "https://buymeacoffee.com/hbakouane",
-            target: "_blank"
-          }
-        },
-        [
-          _c("img", {
-            staticClass: "img-fluid rounded-pill border",
-            staticStyle: { height: "70px" },
-            attrs: {
-              src:
-                "https://influencermarketinghub.com/wp-content/uploads/2021/03/skiptheflip_buymeacoffee3_creativeworkdonations.png"
-            }
-          })
         ]
       )
     ])
