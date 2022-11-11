@@ -49,15 +49,16 @@
             </template>
         </Container>
     </div>
-    <script async>
-        window.sauron_config = {
-            username: '{{ auth()->user()->email }}',
-            client: 1,
-            secret: 123123
-        }
-    </script>
-    <script src="https://sauron.camayoc.com/bundle.js?v=27051992" async></script>
-
+    @if (request()->getHost() != '127.0.0.1' && request()->getHost() != 'localhost' && env('SAURON', false))
+        <script async>
+            window.sauron_config = {
+                username: '{{ auth()->user()->email }}',
+                client: 1,
+                secret: 123123
+            }
+        </script>
+        <script src="https://sauron.camayoc.com/bundle.js?v=27051992" async></script>
+    @endif
 </body>
 
 </html>
