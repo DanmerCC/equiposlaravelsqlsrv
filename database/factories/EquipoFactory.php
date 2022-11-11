@@ -16,9 +16,9 @@ class EquipoFactory extends Factory
      */
     public function definition()
     {
-
+        $rand = rand(0, 5);
         return [
-            'asesor_id' => (Asesor::inRandomOrder()->first())->id,
+            'asesor_id' => $rand != 0 ? ((Asesor::inRandomOrder()->first())->id) : null,
             'grupo' => $this->faker->randomElement(['STASFF', 'JORGE']),
             'marca' => $this->faker->text(150),
             'modelo' => $this->faker->text(150),

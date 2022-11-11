@@ -19,6 +19,7 @@ class AsesorFactory extends Factory
             'nombres' => $this->faker->name(),
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->lastName(),
+            'estado' => $this->faker->randomElement(["LABORANDO", "VACACIONES"])
         ];
     }
 }

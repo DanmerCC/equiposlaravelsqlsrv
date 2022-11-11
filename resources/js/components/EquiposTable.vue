@@ -91,6 +91,9 @@ export default {
             if (this.asesorEditInfo == null) {
                 return false;
             }
+            if (this.asesorEditInfo.original == null) {
+                return false;
+            }
             return (
                 this.asesorEditInfo.original.id ==
                 this.asesorEditInfo.changed.id
@@ -167,10 +170,10 @@ export default {
                 });
         },
         editAsesor(equipo) {
-            if (equipo == null) {
+            if (equipo.asesor == null) {
                 this.asesorEditInfo = {
-                    original: {},
-                    changed: {},
+                    original: null,
+                    changed: null,
                     row: equipo
                 };
             } else {

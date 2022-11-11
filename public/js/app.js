@@ -5120,6 +5120,10 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      if (this.asesorEditInfo.original == null) {
+        return false;
+      }
+
       return this.asesorEditInfo.original.id == this.asesorEditInfo.changed.id;
     }
   },
@@ -5182,10 +5186,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editAsesor: function editAsesor(equipo) {
-      if (equipo == null) {
+      if (equipo.asesor == null) {
         this.asesorEditInfo = {
-          original: {},
-          changed: {},
+          original: null,
+          changed: null,
           row: equipo
         };
       } else {
