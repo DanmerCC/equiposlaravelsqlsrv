@@ -57,38 +57,7 @@
                 </div>
             @endfor
 
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Staff:</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>27 Laptops<sup style="font-size: 20px"></sup></h3>
-                        <a class="small text-white stretched-link" href="Tabla_Staff.php">></a>
-                        <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Libres:</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>10 Laptops<sup style="font-size: 20px"></sup></h3>
-                        <a class="small text-white stretched-link" href="Tabla_Libres.php">></a>
-                        <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Malogrados:</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>12 Laptops<sup style="font-size: 20px"></sup></h3>
-                        <a class="small text-white stretched-link" href="Tabla_Malogrados.php">></a>
-                        <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    </div>
-                </div>
-            </div>
         </div>
 
 
