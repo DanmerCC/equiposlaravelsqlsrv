@@ -69,7 +69,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">Laborando: Call + Staff</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>84 Laptops<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{ $laborando }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <a class="small text-white stretched-link" href="Tabla_Laborando.php">></a>
                         <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
@@ -80,7 +80,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">Vacaciones:</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>02 Laptops<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{ $vacaciones }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <a class="small text-white stretched-link" href="Tabla_Vacaciones.php">></a>
                         <!--<div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
