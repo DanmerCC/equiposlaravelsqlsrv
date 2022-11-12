@@ -57302,10 +57302,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Buscar por programa"
-                          },
+                          attrs: { type: "text", placeholder: "Buscar " },
                           domProps: { value: _vm.search },
                           on: {
                             input: function($event) {

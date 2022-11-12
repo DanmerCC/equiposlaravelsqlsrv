@@ -14,7 +14,7 @@
                         <input
                             v-model="search"
                             type="text"
-                            placeholder="Buscar por programa"
+                            placeholder="Buscar "
                             class="form-control"
                         />
                         <div class="input-group-append">
