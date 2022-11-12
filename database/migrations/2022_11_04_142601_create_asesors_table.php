@@ -15,6 +15,7 @@ class CreateAsesorsTable extends Migration
     {
         Schema::create('asesors', function (Blueprint $table) {
             $table->id();
+            $table->string("dni")->unique();
             $table->string("nombres");
             $table->string("apellido_paterno");
             $table->string("apellido_materno");

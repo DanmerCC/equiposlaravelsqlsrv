@@ -1,6 +1,5 @@
 <template>
     <v-select
-        label="nombres"
         v-model="int_asesor"
         :options="options"
         @search="search"
@@ -33,7 +32,10 @@ export default {
         search(search, loading) {
             loading(true);
             this.asesorService.list(1, 100, search).then(data => {
-                this.options = data.data;
+                this.options = data.data.map(z => {
+                    z["label"] = z.dni + " " + z.nombres;
+                    return z;
+                });
                 loading(false);
             });
         }
@@ -44,7 +46,10 @@ export default {
         }
     },
     mounted() {
-        this.int_asesor = this.value;
+        let asesorvalue = {
+            label: this.value.dni + " " + this.value.nombres
+        };
+        this.int_asesor = asesorvalue;
         this.int_asesor_original = Object.assign({}, this.value);
         if (this.options.length == 0) {
             this.options.push(...Object.values([this.int_asesor]));

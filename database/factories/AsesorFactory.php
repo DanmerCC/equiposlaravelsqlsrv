@@ -17,6 +17,7 @@ class AsesorFactory extends Factory
     {
         return [
             'nombres' => $this->faker->name(),
+            'dni' => $this->faker->randomNumber(8),
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->lastName(),
             'estado' => $this->faker->randomElement(["LABORANDO", "VACACIONES"])

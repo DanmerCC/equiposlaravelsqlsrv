@@ -4650,7 +4650,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4678,7 +4677,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       loading(true);
       this.asesorService.list(1, 100, _search).then(function (data) {
-        _this.options = data.data;
+        _this.options = data.data.map(function (z) {
+          z["label"] = z.dni + " " + z.nombres;
+          return z;
+        });
         loading(false);
       });
     }
@@ -4689,7 +4691,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mounted: function mounted() {
-    this.int_asesor = this.value;
+    var asesorvalue = {
+      label: this.value.dni + " " + this.value.nombres
+    };
+    this.int_asesor = asesorvalue;
     this.int_asesor_original = Object.assign({}, this.value);
 
     if (this.options.length == 0) {
@@ -5105,6 +5110,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5136,14 +5149,17 @@ __webpack_require__.r(__webpack_exports__);
       search: null,
       page: 1,
       columns: [{
-        name: "Asesor",
+        name: "Dni",
+        value: "dni"
+      }, {
+        name: "Nombre",
         value: "asesor"
+      }, {
+        name: "Equipo",
+        value: "grupo"
       }, {
         name: "Serie",
         value: "serie"
-      }, {
-        name: "grupo",
-        value: "grupo"
       }, {
         name: "marca",
         value: "marca"
@@ -5154,6 +5170,9 @@ __webpack_require__.r(__webpack_exports__);
         name: "color",
         value: "color"
       }, {
+        name: "antiguedad",
+        value: "antiguedad"
+      }, {
         name: "serie",
         value: "serie"
       }, {
@@ -5163,7 +5182,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "memoria",
         value: "memoria"
       }, {
-        name: "disco_duro",
+        name: "Disco duro",
         value: "disco_duro"
       }, {
         name: "fecha_compra",
@@ -56974,7 +56993,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-select", {
-    attrs: { label: "nombres", options: _vm.options },
+    attrs: { options: _vm.options },
     on: { search: _vm.search },
     model: {
       value: _vm.int_asesor,
@@ -57315,6 +57334,24 @@ var render = function() {
               ]
             },
             proxy: true
+          },
+          {
+            key: "dni",
+            fn: function(ref) {
+              var item = ref.item
+              var row = ref.row
+              return [
+                row.asesor != null
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(row.asesor.dni) +
+                          "\n            "
+                      )
+                    ])
+                  : _c("span", [_vm._v("\n                -\n            ")])
+              ]
+            }
           },
           {
             key: "asesor",

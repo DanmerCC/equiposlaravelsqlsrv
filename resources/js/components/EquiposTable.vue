@@ -25,6 +25,14 @@
                     </div>
                 </div>
             </template>
+            <template #dni="{item,row}">
+                <span v-if="row.asesor != null">
+                    {{ row.asesor.dni }}
+                </span>
+                <span v-else>
+                    -
+                </span>
+            </template>
             <template #asesor="{item,row}">
                 <button @click="editAsesor(row)" class="btn btn-sm btn-info">
                     <span v-if="item == null">
@@ -110,17 +118,22 @@ export default {
             page: 1,
             columns: [
                 {
-                    name: "Asesor",
+                    name: "Dni",
+                    value: "dni"
+                },
+                {
+                    name: "Nombre",
                     value: "asesor"
+                },
+                {
+                    name: "Equipo",
+                    value: "grupo"
                 },
                 {
                     name: "Serie",
                     value: "serie"
                 },
-                {
-                    name: "grupo",
-                    value: "grupo"
-                },
+
                 {
                     name: "marca",
                     value: "marca"
@@ -132,6 +145,10 @@ export default {
                 {
                     name: "color",
                     value: "color"
+                },
+                {
+                    name: "antiguedad",
+                    value: "antiguedad"
                 },
                 {
                     name: "serie",
@@ -146,7 +163,7 @@ export default {
                     value: "memoria"
                 },
                 {
-                    name: "disco_duro",
+                    name: "Disco duro",
                     value: "disco_duro"
                 },
                 {
