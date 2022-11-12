@@ -37,6 +37,14 @@ class HomeController extends Controller
     {
         return view('equipos');
     }
+    public function usuarios()
+    {
+        return view('usuarios');
+    }
+    public function asesores()
+    {
+        return view('asesores');
+    }
     public function graficos()
     {
         $resumegrups = DB::table('equipos')->select('grupo', DB::raw('count(*) as total'))->groupBy('grupo')->get();

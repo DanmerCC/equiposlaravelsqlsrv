@@ -8,6 +8,7 @@ import Register from "./components/auth/Register";
 import PasswordReset from "./components/auth/PasswordReset";
 import PasswordUpdate from "./components/auth/PasswordUpdate";
 import EquiposTable from "./components/EquiposTable";
+import UsuariosTable from "./components/UsuariosTable";
 import {
     DataTable,
     Paginate,
@@ -39,6 +40,7 @@ const app = new Vue({
         PasswordUpdate,
         DataTable,
         EquiposTable,
+        UsuariosTable,
         Paginate
     }
 });
