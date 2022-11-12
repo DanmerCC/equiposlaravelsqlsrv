@@ -58289,7 +58289,7 @@ var render = function() {
                   "li",
                   { staticClass: "nav-item" },
                   [
-                    _c("Alink", { attrs: { url: "/equipos" } }, [
+                    _c("Alink", { attrs: { url: "/asesores" } }, [
                       _c("i", {
                         staticClass: "nav-icon fas fa-tachometer-alt"
                       }),
@@ -58304,7 +58304,7 @@ var render = function() {
                   "li",
                   { staticClass: "nav-item" },
                   [
-                    _c("Alink", { attrs: { url: "/equipos" } }, [
+                    _c("Alink", { attrs: { url: "/usuarios" } }, [
                       _c("i", {
                         staticClass: "nav-icon fas fa-tachometer-alt"
                       }),

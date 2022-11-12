@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item">
 
-                        <Alink url="/equipos">
+                        <Alink url="/asesores">
 
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Asesores</p>
@@ -52,7 +52,7 @@
                     </li>
                     <li class="nav-item">
 
-                        <Alink url="/equipos">
+                        <Alink url="/usuarios">
 
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Usuarios</p>
