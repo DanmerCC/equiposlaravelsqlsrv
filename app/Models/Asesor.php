@@ -28,5 +28,7 @@ class Asesor extends Model
         $query->orWhere('apellido_materno',  'like', '%' . $text);
         $query->orWhere('apellido_materno',  'like', '%' . $text . '%');
         $query->orWhere('apellido_materno',  'like', $text . '%');
+        $query->orWhere('dni',  '=', $text);
+        $query->orWhere('dni',  'like', $text . '%');
     }
 }
