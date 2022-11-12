@@ -36,6 +36,7 @@
                 </button>
             </template>
         </data-table>
+        <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
             v-if="newEquipoOBject != null"
             @close="newEquipoOBject = null"
@@ -75,7 +76,7 @@
 </template>
 
 <script>
-import { DataTable, ModalComponent } from "@danmerccoscco/personal";
+import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
 
@@ -84,7 +85,8 @@ export default {
         DataTable,
         ModalComponent,
         EquiposForm,
-        AsesorSelector
+        AsesorSelector,
+        Paginate
     },
     computed: {
         asesorEditInfoDiferent() {
@@ -105,6 +107,7 @@ export default {
             asesorEditInfo: null,
             newEquipoOBject: null,
             search: null,
+            page: 1,
             columns: [
                 {
                     name: "Asesor",
@@ -159,6 +162,18 @@ export default {
         };
     },
     methods: {
+        changePage($event) {
+            console.log($event);
+            let lastPage = this.page;
+            this.page = $event;
+            this.loadData()
+                .then(result => {
+                    //this.page = $event;
+                })
+                .catch(() => {
+                    this.page = lastPage;
+                });
+        },
         updateAsesor() {
             axios
                 .put("/api/equipos/" + this.asesorEditInfo.row.id, {
@@ -189,13 +204,24 @@ export default {
         },
         loadData() {
             let config = {
-                params: {}
+                params: {
+                    page: this.page
+                }
             };
             if (this.search != null && this.search != "") {
                 config.params["search"] = this.search;
             }
-            axios.get("/api/equipos", config).then(({ data }) => {
-                this.items = data.data.data;
+
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/equipos", config)
+                    .then(({ data }) => {
+                        this.items = data.data.data;
+                        resolve();
+                    })
+                    .catch(error => {
+                        reject();
+                    });
             });
         }
     },

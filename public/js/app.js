@@ -5104,6 +5104,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5112,7 +5113,8 @@ __webpack_require__.r(__webpack_exports__);
     DataTable: _danmerccoscco_personal__WEBPACK_IMPORTED_MODULE_0__.DataTable,
     ModalComponent: _danmerccoscco_personal__WEBPACK_IMPORTED_MODULE_0__.ModalComponent,
     EquiposForm: _EquiposForm_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    AsesorSelector: _AsesorSelector_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    AsesorSelector: _AsesorSelector_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    Paginate: _danmerccoscco_personal__WEBPACK_IMPORTED_MODULE_0__.Paginate
   },
   computed: {
     asesorEditInfoDiferent: function asesorEditInfoDiferent() {
@@ -5132,6 +5134,7 @@ __webpack_require__.r(__webpack_exports__);
       asesorEditInfo: null,
       newEquipoOBject: null,
       search: null,
+      page: 1,
       columns: [{
         name: "Asesor",
         value: "asesor"
@@ -5173,16 +5176,27 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateAsesor: function updateAsesor() {
+    changePage: function changePage($event) {
       var _this = this;
+
+      console.log($event);
+      var lastPage = this.page;
+      this.page = $event;
+      this.loadData().then(function (result) {//this.page = $event;
+      })["catch"](function () {
+        _this.page = lastPage;
+      });
+    },
+    updateAsesor: function updateAsesor() {
+      var _this2 = this;
 
       axios.put("/api/equipos/" + this.asesorEditInfo.row.id, {
         asesor_id: this.asesorEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this.asesorEditInfo = null;
+        _this2.asesorEditInfo = null;
 
-        _this.loadData();
+        _this2.loadData();
       });
     },
     editAsesor: function editAsesor(equipo) {
@@ -5204,19 +5218,26 @@ __webpack_require__.r(__webpack_exports__);
       this.newEquipoOBject = {};
     },
     loadData: function loadData() {
-      var _this2 = this;
+      var _this3 = this;
 
       var config = {
-        params: {}
+        params: {
+          page: this.page
+        }
       };
 
       if (this.search != null && this.search != "") {
         config.params["search"] = this.search;
       }
 
-      axios.get("/api/equipos", config).then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.items = data.data.data;
+      return new Promise(function (resolve, reject) {
+        axios.get("/api/equipos", config).then(function (_ref2) {
+          var data = _ref2.data;
+          _this3.items = data.data.data;
+          resolve();
+        })["catch"](function (error) {
+          reject();
+        });
       });
     }
   },
@@ -6134,7 +6155,8 @@ var app = new Vue({
     PasswordReset: _components_auth_PasswordReset__WEBPACK_IMPORTED_MODULE_6__.default,
     PasswordUpdate: _components_auth_PasswordUpdate__WEBPACK_IMPORTED_MODULE_7__.default,
     DataTable: _danmerccoscco_personal__WEBPACK_IMPORTED_MODULE_9__.DataTable,
-    EquiposTable: _components_EquiposTable__WEBPACK_IMPORTED_MODULE_8__.default
+    EquiposTable: _components_EquiposTable__WEBPACK_IMPORTED_MODULE_8__.default,
+    Paginate: _danmerccoscco_personal__WEBPACK_IMPORTED_MODULE_9__.Paginate
   }
 });
 
@@ -57045,6 +57067,21 @@ var render = function() {
             }
           }
         ])
+      }),
+      _vm._v(" "),
+      _c("paginate", {
+        on: {
+          change: function($event) {
+            return _vm.changePage($event)
+          }
+        },
+        model: {
+          value: _vm.page,
+          callback: function($$v) {
+            _vm.page = $$v
+          },
+          expression: "page"
+        }
       }),
       _vm._v(" "),
       _vm.newEquipoOBject != null

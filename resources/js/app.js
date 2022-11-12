@@ -38,6 +38,7 @@ const app = new Vue({
         PasswordReset,
         PasswordUpdate,
         DataTable,
-        EquiposTable
+        EquiposTable,
+        Paginate
     }
 });
