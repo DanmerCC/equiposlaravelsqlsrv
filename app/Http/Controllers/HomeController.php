@@ -37,6 +37,10 @@ class HomeController extends Controller
     {
         return view('equipos');
     }
+    public function graficos()
+    {
+        return view('graficos');
+    }
     public function about()
     {
         return view('without');
