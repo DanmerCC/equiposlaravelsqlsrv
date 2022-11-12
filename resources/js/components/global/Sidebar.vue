@@ -42,14 +42,21 @@
                             <p>Equipos</p>
                         </Alink>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Equipos
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                        </a>
+                    <li class="nav-item">
+
+                        <Alink url="/equipos">
+
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Asesores</p>
+                        </Alink>
+                    </li>
+                    <li class="nav-item">
+
+                        <Alink url="/equipos">
+
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Usuarios</p>
+                        </Alink>
                     </li>
                     <li class="nav-item">
                         <Alink url="/graficos">

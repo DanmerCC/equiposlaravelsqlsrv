@@ -6061,6 +6061,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -58278,7 +58285,35 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(2),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("Alink", { attrs: { url: "/equipos" } }, [
+                      _c("i", {
+                        staticClass: "nav-icon fas fa-tachometer-alt"
+                      }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Asesores")])
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c("Alink", { attrs: { url: "/equipos" } }, [
+                      _c("i", {
+                        staticClass: "nav-icon fas fa-tachometer-alt"
+                      }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Usuarios")])
+                    ])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -58334,21 +58369,6 @@ var staticRenderFns = [
           alt: "User Image"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item has-treeview" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-edit" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                        Equipos\n                        "),
-          _c("i", { staticClass: "fas fa-angle-left right" })
-        ])
-      ])
     ])
   }
 ]
