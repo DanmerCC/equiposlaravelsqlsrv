@@ -31,9 +31,11 @@
                                     return array_merge($before, $current);
                                 }, []);
                         @endphp
-                        <!--<Bars :groups="{{ json_encode($data->pluck('grupo')->toArray()) }}"
-                                    :data="{{ json_encode($data->pluck('total')->toArray()) }}"></Bars>-->
                         <chart :data='{{ json_encode($datachart) }}'></chart>
+                        <Bars :horizontal="true"
+                            :groups="{{ json_encode($resumeDiscos->pluck('disco_duro')->toArray()) }}"
+                            :data="{{ json_encode($resumeDiscos->pluck('total')->toArray()) }}">
+                        </Bars>
                     </div>
                 </div>
             </div>

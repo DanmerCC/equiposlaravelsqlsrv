@@ -48123,13 +48123,17 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
     },
     data: {
       type: Array
+    },
+    horizontal: {
+      "default": false
     }
   },
   data: function data() {
     return {
       labels: null,
       config: {
-        responsive: true
+        responsive: true,
+        indexAxis: "y"
       },
       int_data: {
         labels: this.groups,
@@ -48158,6 +48162,10 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
     }
   },
   mounted: function mounted() {
+    if (this.horizontal == true) {
+      this.config.indexAxis = "y";
+    }
+
     this.render();
   },
   created: function created() {//this.render();

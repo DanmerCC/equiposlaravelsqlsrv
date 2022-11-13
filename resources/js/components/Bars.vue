@@ -33,13 +33,17 @@ export default {
         },
         data: {
             type: Array
+        },
+        horizontal: {
+            default: false
         }
     },
     data() {
         return {
             labels: null,
             config: {
-                responsive: true
+                responsive: true,
+                indexAxis: "y"
             },
             int_data: {
                 labels: this.groups,
@@ -68,6 +72,9 @@ export default {
         }
     },
     mounted() {
+        if (this.horizontal == true) {
+            this.config.indexAxis = "y";
+        }
         this.render();
     },
     created() {

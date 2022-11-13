@@ -48,7 +48,9 @@ class HomeController extends Controller
     public function graficos()
     {
         $resumegrups = DB::table('equipos')->select('grupo', DB::raw('count(*) as total'))->groupBy('grupo')->get();
-        return view('graficos')->with('data', $resumegrups);
+        $resumeDiscos = DB::table('equipos')->select('disco_duro', DB::raw('count(*) as total'))->groupBy('grupo')->get();
+
+        return view('graficos', ['data' => $resumegrups, "resumeDiscos" => $resumeDiscos]);
     }
     public function about()
     {
