@@ -2,14 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListEquiposRequest;
 use App\Models\Equipo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
 {
-    function list(Request $request)
+    function list(ListEquiposRequest $request)
     {
         $queryBase = Equipo::with('asesor');
+
+        if ($request->has('noasigned')) {
+            $queryBase->whereNull('asesor_id');
+        }
+
+        if ($request->has('vacaciones_filter')) {
+            $vacaciones_filter = $request->get('vacaciones_filter') == "true";
+            if ($vacaciones_filter) {
+                $queryBase->whereHas('asesor', function (Builder $query) use ($vacaciones_filter) {
+                    $query->whereEstado('VACACIONES');
+                });
+            } else {
+                $queryBase->whereHas('asesor', function (Builder $query) use ($vacaciones_filter) {
+                    $query->whereEstado('LABORANDO');
+                });
+            }
+        }
+
+        if ($request->has('grupo') && is_array($request->get('grupo'))) {
+            $queryBase->whereIn('grupo', $request->get('grupo'));
+        }
 
         if ($request->has('search') && $request->get('search') != '') {
             $queryBase->search($request->get('search'));

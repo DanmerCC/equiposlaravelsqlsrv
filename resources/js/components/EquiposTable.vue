@@ -1,10 +1,37 @@
 <template>
     <span>
-        <data-table :select="true" :columns="columns" :items="items">
+        <data-table
+            ref="datatable"
+            :select="true"
+            :columns="columns"
+            :items="items"
+        >
             <template #top-options>
                 <button class="btn btn-primary" @click="openNewModal()">
                     Agregar
                 </button>
+                <Chip v-if="asignadosFilter" @close="asignadosFilter = false"
+                    >Asignados
+                </Chip>
+                <Chip
+                    v-for="(grupo, index) in Object.keys(grupoFilters)"
+                    :key="index"
+                    @close="
+                        delete grupoFilters[grupo];
+                        $refs.datatable.$forceUpdate();
+                    "
+                    >{{ grupo }}
+                </Chip>
+                <Chip
+                    v-if="vacacionesFilter != null"
+                    @close="
+                        vacacionesFilter = null;
+                        $refs.datatable.$forceUpdate();
+                    "
+                >
+                    {{ !vacacionesFilter ? "Laborando" : "Vacaciones" }}
+                </Chip>
+
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar equipo"
@@ -87,6 +114,7 @@
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
+import Chip from "./Chip";
 
 export default {
     components: {
@@ -94,7 +122,8 @@ export default {
         ModalComponent,
         EquiposForm,
         AsesorSelector,
-        Paginate
+        Paginate,
+        Chip
     },
     computed: {
         asesorEditInfoDiferent() {
@@ -112,6 +141,9 @@ export default {
     },
     data() {
         return {
+            asignadosFilter: false,
+            vacacionesFilter: null,
+            grupoFilters: {},
             asesorEditInfo: null,
             newEquipoOBject: null,
             search: null,
@@ -179,6 +211,29 @@ export default {
         };
     },
     methods: {
+        toggleAsignacionFilter() {
+            this.asignadosFilter = !this.asignadosFilter;
+            this.$refs.datatable.$forceUpdate();
+        },
+        toggleVacacionesFilter(value) {
+            if (typeof value == "boolean") {
+                this.vacacionesFilter = value;
+            }
+
+            if (value === null) {
+                this.vacacionesFilter = null;
+            }
+            this.$refs.datatable.$forceUpdate();
+        },
+        toggleGruposFilter(value) {
+            if (typeof this.grupoFilters[value] == "undefined") {
+                this.grupoFilters[value] = value;
+            } else {
+                delete this.grupoFilters[value];
+            }
+            this.$refs.datatable.$forceUpdate();
+            this.loadData();
+        },
         changePage($event) {
             console.log($event);
             let lastPage = this.page;
@@ -225,6 +280,15 @@ export default {
                     page: this.page
                 }
             };
+            if (this.asignadosFilter) {
+                config.params["noasigned"] = true;
+            }
+            if (this.vacacionesFilter != null) {
+                config.params["vacaciones_filter"] = this.vacacionesFilter;
+            }
+            if (Object.keys(this.grupoFilters).length > 0) {
+                config.params["grupo"] = Object.keys(this.grupoFilters);
+            }
             if (this.search != null && this.search != "") {
                 config.params["search"] = this.search;
             }
@@ -248,6 +312,18 @@ export default {
     watch: {
         search(newVal) {
             this.loadData();
+        },
+        asignadosFilter(newVal) {
+            this.loadData();
+        },
+        vacacionesFilter(newVal) {
+            this.loadData();
+        },
+        grupoFilters: {
+            handler(newVal) {
+                this.loadData();
+            },
+            deep: true
         }
     }
 };

@@ -28,7 +28,7 @@
                             </div>
                         @endif
 
-                        <equipos-table></equipos-table>
+                        <equipos-table ref='equipostable'></equipos-table>
 
                     </div>
                 </div>
