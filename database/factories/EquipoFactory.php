@@ -27,7 +27,7 @@ class EquipoFactory extends Factory
             'fecha_compra' => $this->faker->date(),
             'procesador' => $this->faker->text(10),
             'memoria' => $this->faker->randomDigit() . " " . $this->faker->text(5),
-            'disco_duro' => $this->faker->randomDigit(),
+            'disco_duro' => $this->faker->randomElement(["MECANICO", "SOLIDO"]),
         ];
     }
 }
