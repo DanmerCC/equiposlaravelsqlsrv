@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@amcharts/amcharts5": "^5.2.31",
         "@danmerccoscco/personal": "^2.7.1",
         "chart.js": "^3.9.1",
         "chartjs": "^0.3.24",

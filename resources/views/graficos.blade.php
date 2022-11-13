@@ -22,9 +22,18 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <Bars :groups="{{ json_encode($data->pluck('grupo')->toArray()) }}"
-                            :data="{{ json_encode($data->pluck('total')->toArray()) }}"></Bars>
+                        @php
+                            $datachart = $data
+                                ->map(function ($item) {
+                                    return [$item->grupo => $item->total];
+                                })
+                                ->reduce(function ($before, $current) {
+                                    return array_merge($before, $current);
+                                }, []);
+                        @endphp
+                        <!--<Bars :groups="{{ json_encode($data->pluck('grupo')->toArray()) }}"
+                                    :data="{{ json_encode($data->pluck('total')->toArray()) }}"></Bars>-->
+                        <chart :data='{{ json_encode($datachart) }}'></chart>
                     </div>
                 </div>
             </div>
