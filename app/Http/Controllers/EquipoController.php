@@ -13,6 +13,8 @@ class EquipoController extends Controller
     {
         $queryBase = Equipo::with('asesor');
 
+        $queryBase->orderBy('id', 'DESC');
+
         if ($request->has('noasigned')) {
             $queryBase->whereNull('asesor_id');
         }
@@ -38,6 +40,12 @@ class EquipoController extends Controller
             $queryBase->search($request->get('search'));
         }
         return $this->sendResponse($queryBase->paginate(), "Correctamente cargado");
+    }
+
+    function create(Request $request)
+    {
+        $equipo  = Equipo::create($request->all());
+        return $this->sendResponse($equipo, "Correctamente creado");
     }
 
     function update($id, Request $request)

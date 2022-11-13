@@ -82,7 +82,9 @@
                 ></equipos-form>
             </template>
             <template #footer>
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-primary" @click="crearEquipo()">
+                    Guardar
+                </button>
             </template>
         </modal-component>
         <modal-component
@@ -211,6 +213,17 @@ export default {
         };
     },
     methods: {
+        crearEquipo() {
+            axios
+                .post(`/api/equipos`, this.newEquipoOBject)
+                .then(result => {
+                    this.loadData();
+                    this.newEquipoOBject = null;
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        },
         toggleAsignacionFilter() {
             this.asignadosFilter = !this.asignadosFilter;
             this.$refs.datatable.$forceUpdate();

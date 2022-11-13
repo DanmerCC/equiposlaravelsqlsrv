@@ -83,11 +83,11 @@ export default {
                 { name: "serie", label: "Serie", value: null },
                 { name: "color", label: "Color", value: null },
                 { name: "modelo", label: "Modelo", value: null },
-                { name: "marca", label: "marca", value: null },
-                { name: "grupo", label: "grupo", value: null },
-                { name: "procesador", label: "procesador", value: null },
-                { name: "memoria", label: "memoria", value: null },
-                { name: "disco_duro", label: "disco_duro", value: null }
+                { name: "marca", label: "Marca", value: null },
+                { name: "grupo", label: "Grupo", value: null },
+                { name: "procesador", label: "Procesador", value: null },
+                { name: "memoria", label: "Memoria", value: null },
+                { name: "disco_duro", label: "Disco Dduro", value: null }
             ],
             randomId: this.generateRandomInteger(100)
         };

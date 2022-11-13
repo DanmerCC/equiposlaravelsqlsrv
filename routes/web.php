@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'api'], function () {
     Route::get('asesor', [App\Http\Controllers\AsesorController::class, 'list'])->name('asesor');
     Route::put('asesor/{id}', [App\Http\Controllers\AsesorController::class, 'update'])->name('asesor.update');
     Route::get('equipos', [App\Http\Controllers\EquipoController::class, 'list'])->name('asesor');
+    Route::post('equipos', [App\Http\Controllers\EquipoController::class, 'create'])->name('asesor');
     Route::put('equipos/{id}', [App\Http\Controllers\EquipoController::class, 'update'])->name('asesor.update');
     Route::resource('usuarios', UsuarioController::class);
 });

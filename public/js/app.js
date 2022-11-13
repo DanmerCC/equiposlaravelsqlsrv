@@ -48464,23 +48464,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: null
       }, {
         name: "marca",
-        label: "marca",
+        label: "Marca",
         value: null
       }, {
         name: "grupo",
-        label: "grupo",
+        label: "Grupo",
         value: null
       }, {
         name: "procesador",
-        label: "procesador",
+        label: "Procesador",
         value: null
       }, {
         name: "memoria",
-        label: "memoria",
+        label: "Memoria",
         value: null
       }, {
         name: "disco_duro",
-        label: "disco_duro",
+        label: "Disco Dduro",
         value: null
       }],
       randomId: this.generateRandomInteger(100)
@@ -48536,6 +48536,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EquiposForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EquiposForm.vue */ "./resources/js/components/EquiposForm.vue");
 /* harmony import */ var _AsesorSelector_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AsesorSelector.vue */ "./resources/js/components/AsesorSelector.vue");
 /* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Chip */ "./resources/js/components/Chip.vue");
+//
+//
 //
 //
 //
@@ -48730,6 +48732,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    crearEquipo: function crearEquipo() {
+      var _this = this;
+
+      axios.post("/api/equipos", this.newEquipoOBject).then(function (result) {
+        _this.loadData();
+
+        _this.newEquipoOBject = null;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
     toggleAsignacionFilter: function toggleAsignacionFilter() {
       this.asignadosFilter = !this.asignadosFilter;
       this.$refs.datatable.$forceUpdate();
@@ -48756,26 +48769,26 @@ __webpack_require__.r(__webpack_exports__);
       this.loadData();
     },
     changePage: function changePage($event) {
-      var _this = this;
+      var _this2 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this.page = lastPage;
+        _this2.page = lastPage;
       });
     },
     updateAsesor: function updateAsesor() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.put("/api/equipos/" + this.asesorEditInfo.row.id, {
         asesor_id: this.asesorEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this2.asesorEditInfo = null;
+        _this3.asesorEditInfo = null;
 
-        _this2.loadData();
+        _this3.loadData();
       });
     },
     editAsesor: function editAsesor(equipo) {
@@ -48797,7 +48810,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newEquipoOBject = {};
     },
     loadData: function loadData() {
-      var _this3 = this;
+      var _this4 = this;
 
       var config = {
         params: {
@@ -48824,7 +48837,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios.get("/api/equipos", config).then(function (_ref2) {
           var data = _ref2.data;
-          _this3.items = data.data.data;
+          _this4.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -102346,9 +102359,18 @@ var render = function() {
                   key: "footer",
                   fn: function() {
                     return [
-                      _c("button", { staticClass: "btn btn-primary" }, [
-                        _vm._v("Guardar")
-                      ])
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.crearEquipo()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                Guardar\n            ")]
+                      )
                     ]
                   },
                   proxy: true
@@ -102356,7 +102378,7 @@ var render = function() {
               ],
               null,
               false,
-              2317195384
+              2896329483
             )
           })
         : _vm._e(),

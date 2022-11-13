@@ -22,7 +22,7 @@ class CreateEquiposTable extends Migration
             $table->string('color');
             $table->string('serie');
             $table->date('fecha_compra');
-            $table->string('observacion');
+            $table->string('observacion')->nullable();
 
             $table->string('procesador')->nullable();
             $table->string('memoria')->nullable();
