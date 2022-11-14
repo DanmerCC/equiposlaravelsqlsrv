@@ -49763,6 +49763,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -49782,11 +49796,11 @@ __webpack_require__.r(__webpack_exports__);
       // Disable the logout button
       this.disable = true; // Get the CSRF token
 
-      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Log the user out
+      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute("content"); // Log the user out
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/logout', token).then(function () {
-        console.log('logged out successfully');
-        window.location.href = '/';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/logout", token).then(function () {
+        console.log("logged out successfully");
+        window.location.href = "/";
       })["catch"](function () {
         return (
           /* Enable the logout button */
@@ -103630,7 +103644,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Logout")]
+          [_vm._v("\n            Logout\n        ")]
         )
       ])
     ]
@@ -103657,14 +103671,6 @@ var staticRenderFns = [
         _c("a", { staticClass: "nav-link", attrs: { href: "/home" } }, [
           _vm._v("Home")
         ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "/without/breadcrumbs" } },
-          [_vm._v("Without breadcrumbs")]
-        )
       ])
     ])
   },
