@@ -48468,7 +48468,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: null
       }, {
         name: "grupo",
-        label: "Grupo",
+        label: "Equipo",
         value: null
       }, {
         name: "procesador",
