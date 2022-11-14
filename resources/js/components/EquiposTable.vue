@@ -169,31 +169,31 @@ export default {
                 },
 
                 {
-                    name: "marca",
+                    name: "Marca",
                     value: "marca"
                 },
                 {
-                    name: "modelo",
+                    name: "Modelo",
                     value: "modelo"
                 },
                 {
-                    name: "color",
+                    name: "Color",
                     value: "color"
                 },
                 {
-                    name: "antiguedad",
+                    name: "Antiguedad",
                     value: "antiguedad"
                 },
                 {
-                    name: "serie",
+                    name: "Serie",
                     value: "serie"
                 },
                 {
-                    name: "procesador",
+                    name: "Procesador",
                     value: "procesador"
                 },
                 {
-                    name: "memoria",
+                    name: "Memoria",
                     value: "memoria"
                 },
                 {
@@ -202,10 +202,10 @@ export default {
                 },
                 {
                     name: "fecha_compra",
-                    value: "fecha_compra"
+                    value: "Fecha de compra"
                 },
                 {
-                    name: "observacion",
+                    name: "Observacion",
                     value: "observacion"
                 }
             ],

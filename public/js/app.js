@@ -48698,34 +48698,34 @@ __webpack_require__.r(__webpack_exports__);
         name: "Serie",
         value: "serie"
       }, {
-        name: "marca",
+        name: "Marca",
         value: "marca"
       }, {
-        name: "modelo",
+        name: "Modelo",
         value: "modelo"
       }, {
-        name: "color",
+        name: "Color",
         value: "color"
       }, {
-        name: "antiguedad",
+        name: "Antiguedad",
         value: "antiguedad"
       }, {
-        name: "serie",
+        name: "Serie",
         value: "serie"
       }, {
-        name: "procesador",
+        name: "Procesador",
         value: "procesador"
       }, {
-        name: "memoria",
+        name: "Memoria",
         value: "memoria"
       }, {
         name: "Disco duro",
         value: "disco_duro"
       }, {
         name: "fecha_compra",
-        value: "fecha_compra"
+        value: "Fecha de compra"
       }, {
-        name: "observacion",
+        name: "Observacion",
         value: "observacion"
       }],
       items: []
