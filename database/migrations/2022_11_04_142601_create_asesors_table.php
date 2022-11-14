@@ -19,6 +19,7 @@ class CreateAsesorsTable extends Migration
             $table->string("nombres");
             $table->string("apellido_paterno");
             $table->string("apellido_materno");
+            $table->string("equipo")->nullable();
             $table->enum("estado", ["LABORANDO", "VACACIONES"]);
             $table->timestamps();
         });

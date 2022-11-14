@@ -32,7 +32,7 @@ class Equipo extends Model
     ];
 
     protected $casts = [
-        'fecha_compra' => 'date'
+        'fecha_compra' => 'date:Y-m-d'
     ];
 
     /**
