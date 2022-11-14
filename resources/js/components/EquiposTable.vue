@@ -201,8 +201,8 @@ export default {
                     value: "disco_duro"
                 },
                 {
-                    name: "fecha_compra",
-                    value: "Fecha de compra"
+                    name: "Fehca de compra",
+                    value: "fecha_compra"
                 },
                 {
                     name: "Observacion",

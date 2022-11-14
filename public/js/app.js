@@ -48722,8 +48722,8 @@ __webpack_require__.r(__webpack_exports__);
         name: "Disco duro",
         value: "disco_duro"
       }, {
-        name: "fecha_compra",
-        value: "Fecha de compra"
+        name: "Fehca de compra",
+        value: "fecha_compra"
       }, {
         name: "Observacion",
         value: "observacion"
