@@ -82,6 +82,10 @@ class Equipo extends Model
 
     function getAntiguedadAttribute()
     {
+
+        if (!$this->fecha_compra) {
+            return null;
+        }
         $time = new Carbon();
 
         $options = [

@@ -12,14 +12,19 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $resumegrups = DB::table('equipos')
-            ->select('asesors.equipo', DB::raw('count(*) as total'))
+        $resumegrups = Equipo::select('asesors.equipo_id', 'equipos.*', DB::raw('count(*) as total'))
             ->join('asesors', 'asesor_id', '=', 'asesors.id')
-            ->groupBy('grupo')
-            ->get();
-        //dd($resumegrups->toArray());
+            ->whereNotNull('equipos.asesor_id')
+            ->whereHas('asesor', function ($query) {
+                $query->whereNotNull('equipo_id');
+            })
+            ->groupBy('asesors.equipo_id');
 
-        //$libres = DB::table('equipos')->whereNotNull('asesors')->count();
+        $resumegrups = $resumegrups->get();
+        $resumegrups->load('asesor.equipo');
+
+        //dd($resumegrups);
+
         $noAsign = Equipo::whereNull('asesor_id')->count();
         $asign = Equipo::whereNotNull('asesor_id')->count();
         $malogrados = Equipo::whereEstado('MALOGRADO')->count();
