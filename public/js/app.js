@@ -48428,6 +48428,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /**
  *  'asesor_id',
@@ -48448,6 +48480,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      inputHDSize: null,
+      inputTipoDisco: null,
       input_observacion: null,
       inputFechaCompra: null,
       inputsText: [{
@@ -48478,10 +48512,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "memoria",
         label: "Memoria",
         value: null
-      }, {
-        name: "disco_duro",
-        label: "Disco Dduro",
-        value: null
       }],
       randomId: this.generateRandomInteger(100)
     };
@@ -48502,7 +48532,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return prev;
       }, Object.create(null))), {}, {
         observacion: this.input_observacion,
-        fecha_compra: this.inputFechaCompra
+        fecha_compra: this.inputFechaCompra,
+        capacidad_disco_duro: this.inputHDSize,
+        tipo_disco: this.inputTipoDisco
       });
     }
   },
@@ -48536,6 +48568,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EquiposForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EquiposForm.vue */ "./resources/js/components/EquiposForm.vue");
 /* harmony import */ var _AsesorSelector_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AsesorSelector.vue */ "./resources/js/components/AsesorSelector.vue");
 /* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Chip */ "./resources/js/components/Chip.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -48693,7 +48735,7 @@ __webpack_require__.r(__webpack_exports__);
         value: "asesor"
       }, {
         name: "Equipo",
-        value: "grupo"
+        value: "equipo"
       }, {
         name: "Serie",
         value: "serie"
@@ -48720,7 +48762,10 @@ __webpack_require__.r(__webpack_exports__);
         value: "memoria"
       }, {
         name: "Disco duro",
-        value: "disco_duro"
+        value: "tipo_disco"
+      }, {
+        name: "Disco duro",
+        value: "capacidad_disco_duro"
       }, {
         name: "Fehca de compra",
         value: "fecha_compra"
@@ -102083,6 +102128,103 @@ var render = function() {
           "label",
           {
             staticClass: "col-sm-2 col-form-label",
+            attrs: { for: _vm.randomId + "tipo_hd" }
+          },
+          [_vm._v("Tipo HD")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-10" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.inputTipoDisco,
+                  expression: "inputTipoDisco"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: _vm.randomId + "tipo_hd" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.inputTipoDisco = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { domProps: { value: null } }, [
+                _vm._v("Selecciona")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "SOLIDO" } }, [_vm._v("SOLIDO")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "MECANICO" } }, [
+                _vm._v("MECANICO")
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: _vm.randomId + "size_hd" }
+          },
+          [_vm._v("Tamaño HD")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-10" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.inputHDSize,
+                expression: "inputHDSize"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "number",
+              id: _vm.randomId + "size_hd",
+              placeholder: "Fecha compra"
+            },
+            domProps: { value: _vm.inputHDSize },
+            on: {
+              change: function($event) {
+                return _vm.emitChanges()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.inputHDSize = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
             attrs: { for: _vm.randomId + "observacion" }
           },
           [_vm._v("Observacion")]
@@ -102285,6 +102427,28 @@ var render = function() {
                       _vm._v(
                         "\n                " +
                           _vm._s(row.asesor.dni) +
+                          "\n            "
+                      )
+                    ])
+                  : _c("span", [_vm._v("\n                -\n            ")])
+              ]
+            }
+          },
+          {
+            key: "equipo",
+            fn: function(ref) {
+              var item = ref.item
+              var row = ref.row
+              return [
+                row.asesor != null
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(row.asesor.equipo.nombres) +
+                          "\n                " +
+                          _vm._s(row.asesor.equipo.apellido_paterno) +
+                          "\n                " +
+                          _vm._s(row.asesor.equipo.apellido_materno) +
                           "\n            "
                       )
                     ])
@@ -103668,9 +103832,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "/home" } }, [
-          _vm._v("Home")
-        ])
+        _c("a", { staticClass: "nav-link", attrs: { href: "/home" } })
       ])
     ])
   },

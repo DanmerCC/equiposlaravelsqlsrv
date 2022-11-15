@@ -22,7 +22,7 @@
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $asign }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_Asignados.php">></a>
-                                                                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                                                                                                                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $total }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_Total.php">></a>
-                                                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                                                                                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
                 </div>
             </div>
@@ -46,17 +46,38 @@
         <div class="row">
             @for ($i = 0; $i < count($resumegrups); $i++)
                 <div class="col-xl-3 col-md-6">
-                    <div @click="$refs.equipostable.toggleGruposFilter('{{ $resumegrups[$i]->grupo }}')"
+                    <div @click="$refs.equipostable.toggleGruposFilter('{{ $resumegrups[$i]->equipo }}')"
                         class="card {{ $i % 2 == 0 ? 'bg-primary' : 'bg-danger' }}  text-white mb-4">
-                        <div class="card-body"> {{ $resumegrups[$i]->grupo }} :</div>
+                        <div class="card-body"> {{ $resumegrups[$i]->equipo }} :</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <h3>{{ $resumegrups[$i]->total }} Laptops<sup style="font-size: 20px"></sup></h3>
                             <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
-                                                                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                                                                                                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                         </div>
                     </div>
                 </div>
             @endfor
+            <div class="col-xl-3 col-md-6">
+                <div class="card {{ $i % 2 == 0 ? 'bg-primary' : 'bg-success' }}  text-white mb-4">
+                    <div class="card-body"> No Asignados</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <h3>{{ $noAsign }} Laptops<sup style="font-size: 20px"></sup></h3>
+                        <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
+                                                                                                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card {{ $i % 2 == 0 ? 'bg-primary' : 'bg-danger' }}  text-white mb-4">
+                    <div class="card-body"> Malogrados</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <h3>{{ $malogrados }} Laptops<sup style="font-size: 20px"></sup></h3>
+                        <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
+                                                                                                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                    </div>
+                </div>
+            </div>
 
 
         </div>
@@ -72,7 +93,7 @@
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $laborando }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_Laborando.php">></a>
-                                                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                                                                                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
                 </div>
             </div>
@@ -83,7 +104,7 @@
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $vacaciones }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_Vacaciones.php">></a>
-                                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                                                                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
                 </div>
             </div>

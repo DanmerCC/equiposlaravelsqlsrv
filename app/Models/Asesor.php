@@ -10,6 +10,25 @@ class Asesor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'dni',
+        'nombres',
+        'apellido_paterno',
+        'apellido_materno',
+        'equipo_id',
+        'estado'
+    ];
+
+    /**
+     * Get the equipo associated with the Asesor
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function equipo(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Asesor::class, 'id', 'equipo_id');
+    }
+
     function scopeSearch(Builder $query, $text, $and = true)
     {
         if ($and) {

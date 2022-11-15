@@ -39,6 +39,38 @@
         </div>
 
         <div class="form-group row">
+            <label :for="randomId + 'tipo_hd'" class="col-sm-2 col-form-label"
+                >Tipo HD</label
+            >
+            <div class="col-sm-10">
+                <select
+                    :id="randomId + 'tipo_hd'"
+                    class="form-control"
+                    v-model="inputTipoDisco"
+                >
+                    <option :value="null">Selecciona</option>
+                    <option value="SOLIDO">SOLIDO</option>
+                    <option value="MECANICO">MECANICO</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label :for="randomId + 'size_hd'" class="col-sm-2 col-form-label"
+                >Tamaño HD</label
+            >
+            <div class="col-sm-10">
+                <input
+                    v-model="inputHDSize"
+                    type="number"
+                    class="form-control"
+                    :id="randomId + 'size_hd'"
+                    placeholder="Fecha compra"
+                    @change="emitChanges()"
+                />
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label
                 :for="randomId + 'observacion'"
                 class="col-sm-2 col-form-label"
@@ -77,6 +109,8 @@ export default {
     },
     data() {
         return {
+            inputHDSize: null,
+            inputTipoDisco: null,
             input_observacion: null,
             inputFechaCompra: null,
             inputsText: [
@@ -86,8 +120,7 @@ export default {
                 { name: "marca", label: "Marca", value: null },
                 { name: "grupo", label: "Equipo", value: null },
                 { name: "procesador", label: "Procesador", value: null },
-                { name: "memoria", label: "Memoria", value: null },
-                { name: "disco_duro", label: "Disco Dduro", value: null }
+                { name: "memoria", label: "Memoria", value: null }
             ],
             randomId: this.generateRandomInteger(100)
         };
@@ -112,7 +145,9 @@ export default {
                     Object.create(null)
                 ),
                 observacion: this.input_observacion,
-                fecha_compra: this.inputFechaCompra
+                fecha_compra: this.inputFechaCompra,
+                capacidad_disco_duro: this.inputHDSize,
+                tipo_disco: this.inputTipoDisco
             };
         }
     },

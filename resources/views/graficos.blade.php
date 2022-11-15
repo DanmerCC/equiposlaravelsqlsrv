@@ -23,9 +23,10 @@
                             </div>
                         @endif
                         @php
-                            $datachart = $data
+                            $datachart = $equipos
                                 ->map(function ($item) {
-                                    return [$item->grupo => $item->total];
+                                    //dd($item);
+                                    return [$item->equipo->nombres => $item->total];
                                 })
                                 ->reduce(function ($before, $current) {
                                     return array_merge($before, $current);

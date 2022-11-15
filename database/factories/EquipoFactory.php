@@ -19,7 +19,7 @@ class EquipoFactory extends Factory
         $rand = rand(0, 5);
         return [
             'asesor_id' => $rand != 0 ? ((Asesor::inRandomOrder()->first())->id) : null,
-            'grupo' => $this->faker->randomElement(['STASFF', 'JORGE']),
+            'estado' => $this->faker->randomElement(['MALOGRADO', 'OPERATIVO']),
             'marca' => $this->faker->text(150),
             'modelo' => $this->faker->text(150),
             'color' => $this->faker->colorName(),
@@ -27,7 +27,8 @@ class EquipoFactory extends Factory
             'fecha_compra' => $this->faker->date(),
             'procesador' => $this->faker->text(10),
             'memoria' => $this->faker->randomDigit() . " " . $this->faker->text(5),
-            'disco_duro' => $this->faker->randomElement(["MECANICO", "SOLIDO"]),
+            'tipo_disco' => $this->faker->randomElement(["MECANICO", "SOLIDO"]),
+            'capacidad_disco_duro' => $this->faker->numberBetween(6, 24),
         ];
     }
 }

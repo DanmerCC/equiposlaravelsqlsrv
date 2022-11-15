@@ -62,7 +62,9 @@ class Equipo extends Model
             'observacion',
             'procesador',
             'memoria',
-            'disco_duro',
+            'estado',
+            'tipo_disco',
+            'capacidad_disco_duro',
         ];
 
         for ($i = 0; $i < count($fields); $i++) {

@@ -16,17 +16,18 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('asesor_id')->nullable();
-            $table->string('grupo')->index();
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
             $table->string('serie');
+            $table->string('grupo');
             $table->date('fecha_compra');
             $table->string('observacion')->nullable();
-
+            $table->enum('estado', ['OPERATIVO', 'MALOGRADO']);
             $table->string('procesador')->nullable();
             $table->string('memoria')->nullable();
-            $table->string('disco_duro')->nullable();
+            $table->string('capacidad_disco_duro')->nullable();
+            $table->enum('tipo_disco', ['SOLIDO', 'MECANICO'])->nullable();
             $table->timestamps();
             $table->foreign('asesor_id')->references('id')->on('asesors');
         });

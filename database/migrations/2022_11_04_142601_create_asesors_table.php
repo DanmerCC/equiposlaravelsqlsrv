@@ -19,9 +19,13 @@ class CreateAsesorsTable extends Migration
             $table->string("nombres");
             $table->string("apellido_paterno");
             $table->string("apellido_materno");
-            $table->string("equipo")->nullable();
+            $table->unsignedBigInteger('equipo_id')->nullable();
             $table->enum("estado", ["LABORANDO", "VACACIONES"]);
+            //$table->foreign("equipo_id")->references('asesors')->on("id");
             $table->timestamps();
+        });
+        Schema::table('asesors', function (Blueprint $table) {
+            $table->foreign("equipo_id")->references('id')->on("asesors");
         });
     }
 

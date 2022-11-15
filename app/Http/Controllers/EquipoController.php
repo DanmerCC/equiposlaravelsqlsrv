@@ -39,6 +39,9 @@ class EquipoController extends Controller
         if ($request->has('search') && $request->get('search') != '') {
             $queryBase->search($request->get('search'));
         }
+
+        $queryBase->with('asesor.equipo');
+
         return $this->sendResponse($queryBase->paginate(), "Correctamente cargado");
     }
 
@@ -67,7 +70,8 @@ class EquipoController extends Controller
             'observacion',
             'procesador',
             'memoria',
-            'disco_duro',
+            'tipo_disco',
+            'capacidad_disco_duro',
         ];
 
         $inputs = $request->only($allowed);

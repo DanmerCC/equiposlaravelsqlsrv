@@ -60,6 +60,16 @@
                     -
                 </span>
             </template>
+            <template #equipo="{item,row}">
+                <span v-if="row.asesor != null">
+                    {{ row.asesor.equipo.nombres }}
+                    {{ row.asesor.equipo.apellido_paterno }}
+                    {{ row.asesor.equipo.apellido_materno }}
+                </span>
+                <span v-else>
+                    -
+                </span>
+            </template>
             <template #asesor="{item,row}">
                 <button @click="editAsesor(row)" class="btn btn-sm btn-info">
                     <span v-if="item == null">
@@ -161,7 +171,7 @@ export default {
                 },
                 {
                     name: "Equipo",
-                    value: "grupo"
+                    value: "equipo"
                 },
                 {
                     name: "Serie",
@@ -198,7 +208,11 @@ export default {
                 },
                 {
                     name: "Disco duro",
-                    value: "disco_duro"
+                    value: "tipo_disco"
+                },
+                {
+                    name: "Disco duro",
+                    value: "capacidad_disco_duro"
                 },
                 {
                     name: "Fehca de compra",

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asesor;
 use App\Models\Equipo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -11,9 +12,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $resumegrups = DB::table('equipos')->select('grupo', DB::raw('count(*) as total'))->groupBy('grupo')->get();
+        $resumegrups = DB::table('equipos')
+            ->select('asesors.equipo', DB::raw('count(*) as total'))
+            ->join('asesors', 'asesor_id', '=', 'asesors.id')
+            ->groupBy('grupo')
+            ->get();
+        //dd($resumegrups->toArray());
+
+        //$libres = DB::table('equipos')->whereNotNull('asesors')->count();
         $noAsign = Equipo::whereNull('asesor_id')->count();
         $asign = Equipo::whereNotNull('asesor_id')->count();
+        $malogrados = Equipo::whereEstado('MALOGRADO')->count();
         $total = Equipo::count();
         $vacaciones = Equipo::whereHas('asesor', function (Builder $query) {
             $query->whereEstado('VACACIONES');
@@ -31,6 +40,7 @@ class HomeController extends Controller
             'total' => $total,
             'vacaciones' => $vacaciones,
             'laborando' => $laborando,
+            'malogrados' => $malogrados,
         ]);
     }
     public function equipos()
@@ -47,10 +57,24 @@ class HomeController extends Controller
     }
     public function graficos()
     {
-        $resumegrups = DB::table('equipos')->select('grupo', DB::raw('count(*) as total'))->groupBy('grupo')->get();
-        $resumeDiscos = DB::table('equipos')->select('disco_duro', DB::raw('count(*) as total'))->groupBy('grupo')->get();
+        $resumegrups = DB::table('equipos')
+            ->select('grupo', DB::raw('count(*) as total'))
+            ->join('asesors', 'asesor_id', '=', 'asesors.id')
+            ->groupBy('grupo')->get();
+        $equipos = Asesor::select('equipo_id', DB::raw('count(*) as total'))->groupBy('equipo_id')->whereNotNull('equipo_id')->get();
+        $equipos->load('equipo');
 
-        return view('graficos', ['data' => $resumegrups, "resumeDiscos" => $resumeDiscos]);
+        $resumeDiscos = DB::table('equipos')
+            ->select('tipo_disco', DB::raw('count(*) as total'))
+            ->join('asesors', 'asesor_id', '=', 'asesors.id')
+            ->groupBy('tipo_disco')
+            ->get();
+        //dd($resumeDiscos);
+        return view('graficos', [
+            'data' => $resumegrups,
+            "resumeDiscos" => $resumeDiscos,
+            "equipos" => $equipos
+        ]);
     }
     public function about()
     {

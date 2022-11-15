@@ -38,12 +38,13 @@ class AsesorSeed extends Seeder
 
                 if (!isset($asesormap[$data[$dni]])) {
                     $asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
+                    $asesorRandom = Asesor::inRandomOrder()->first();
                     $asesornew = Asesor::create([
                         "dni" => $data[$dni],
                         "nombres" => $data[$nombres],
                         "apellido_paterno" => $data[$apellido_paterno],
                         "apellido_materno" => $data[$apellido_materno],
-                        "equipo" => $data[$equipo],
+                        "equipo_id" => $asesorRandom != null ? $asesorRandom->id : null,
                         "estado" => $data[$estado],
                     ]);
                 }

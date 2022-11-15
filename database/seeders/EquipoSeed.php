@@ -14,6 +14,6 @@ class EquipoSeed extends Seeder
      */
     public function run()
     {
-        //Equipo::factory()->count(3000)->create();
+        Equipo::factory()->count(3000)->create();
     }
 }
