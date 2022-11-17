@@ -129,6 +129,28 @@
                 </button>
             </template>
         </modal-component>
+        <modal-component
+            v-if="supervisorEditInfo != null"
+            @close="supervisorEditInfo = null"
+        >
+            <template #body>
+                <div class="row">
+                    <asesor-selector
+                        class="col-12"
+                        v-model="supervisorEditInfo.changed"
+                    ></asesor-selector>
+                </div>
+            </template>
+            <template #footer>
+                <button
+                    class="btn btn-primary"
+                    :disabled="asesorEditInfoDiferent"
+                    @click="updateSupervisor()"
+                >
+                    Guardar
+                </button>
+            </template>
+        </modal-component>
     </span>
 </template>
 
@@ -167,6 +189,7 @@ export default {
             vacacionesFilter: null,
             grupoFilters: {},
             asesorEditInfo: null,
+            supervisorEditInfo:null,
             newEquipoOBject: null,
             search: null,
             page: 1,
@@ -297,6 +320,16 @@ export default {
                     this.loadData();
                 });
         },
+        updateSupervisor() {
+            axios
+                .put("/api/equipos/" + this.asesorEditInfo.row.id, {
+                    supervisor_id: this.asesorEditInfo.changed.id
+                })
+                .then(({ data }) => {
+                    this.asesorEditInfo = null;
+                    this.loadData();
+                });
+        },
         editAsesor(equipo) {
             if (equipo.asesor == null) {
                 this.asesorEditInfo = {
@@ -308,6 +341,21 @@ export default {
                 this.asesorEditInfo = {
                     original: Object.assign({}, equipo.asesor),
                     changed: equipo.asesor,
+                    row: equipo
+                };
+            }
+        },
+        editSupervisor(equipo) {
+            if (equipo.supervisor == null) {
+                this.supervisorEditInfo = {
+                    original: null,
+                    changed: null,
+                    row: equipo
+                };
+            } else {
+                this.supervisorEditInfo = {
+                    original: Object.assign({}, equipo.supervisor),
+                    changed: equipo.supervisor,
                     row: equipo
                 };
             }

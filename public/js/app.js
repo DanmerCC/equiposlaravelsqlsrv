@@ -48925,6 +48925,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48957,6 +48979,7 @@ __webpack_require__.r(__webpack_exports__);
       vacacionesFilter: null,
       grupoFilters: {},
       asesorEditInfo: null,
+      supervisorEditInfo: null,
       newEquipoOBject: null,
       search: null,
       page: 1,
@@ -49072,6 +49095,18 @@ __webpack_require__.r(__webpack_exports__);
         _this3.loadData();
       });
     },
+    updateSupervisor: function updateSupervisor() {
+      var _this4 = this;
+
+      axios.put("/api/equipos/" + this.asesorEditInfo.row.id, {
+        supervisor_id: this.asesorEditInfo.changed.id
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this4.asesorEditInfo = null;
+
+        _this4.loadData();
+      });
+    },
     editAsesor: function editAsesor(equipo) {
       if (equipo.asesor == null) {
         this.asesorEditInfo = {
@@ -49087,11 +49122,26 @@ __webpack_require__.r(__webpack_exports__);
         };
       }
     },
+    editSupervisor: function editSupervisor(equipo) {
+      if (equipo.supervisor == null) {
+        this.supervisorEditInfo = {
+          original: null,
+          changed: null,
+          row: equipo
+        };
+      } else {
+        this.supervisorEditInfo = {
+          original: Object.assign({}, equipo.supervisor),
+          changed: equipo.supervisor,
+          row: equipo
+        };
+      }
+    },
     openNewModal: function openNewModal() {
       this.newEquipoOBject = {};
     },
     loadData: function loadData() {
-      var _this4 = this;
+      var _this5 = this;
 
       var config = {
         params: {
@@ -49116,9 +49166,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return new Promise(function (resolve, reject) {
-        axios.get("/api/equipos", config).then(function (_ref2) {
-          var data = _ref2.data;
-          _this4.items = data.data.data;
+        axios.get("/api/equipos", config).then(function (_ref3) {
+          var data = _ref3.data;
+          _this5.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -103205,6 +103255,69 @@ var render = function() {
               null,
               false,
               937845099
+            )
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.supervisorEditInfo != null
+        ? _c("modal-component", {
+            on: {
+              close: function($event) {
+                _vm.supervisorEditInfo = null
+              }
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "body",
+                  fn: function() {
+                    return [
+                      _c(
+                        "div",
+                        { staticClass: "row" },
+                        [
+                          _c("asesor-selector", {
+                            staticClass: "col-12",
+                            model: {
+                              value: _vm.supervisorEditInfo.changed,
+                              callback: function($$v) {
+                                _vm.$set(_vm.supervisorEditInfo, "changed", $$v)
+                              },
+                              expression: "supervisorEditInfo.changed"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  },
+                  proxy: true
+                },
+                {
+                  key: "footer",
+                  fn: function() {
+                    return [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { disabled: _vm.asesorEditInfoDiferent },
+                          on: {
+                            click: function($event) {
+                              return _vm.updateSupervisor()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                Guardar\n            ")]
+                      )
+                    ]
+                  },
+                  proxy: true
+                }
+              ],
+              null,
+              false,
+              1002036331
             )
           })
         : _vm._e()

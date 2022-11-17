@@ -61,6 +61,7 @@ class EquipoController extends Controller
 
         $allowed = [
             'asesor_id',
+            'supervisor_id',
             'grupo',
             'marca',
             'modelo',
