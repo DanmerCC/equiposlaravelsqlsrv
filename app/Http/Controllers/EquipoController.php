@@ -81,4 +81,13 @@ class EquipoController extends Controller
 
         return $this->sendResponse($inputs, "Correctamente actualziado");
     }
+
+    function delete($id){
+
+        $equipo = Equipo::find($id);
+
+        $equipo->delete();
+
+        return $this->sendResponse($equipo,"Correctamente eliminado");
+    }
 }

@@ -92,6 +92,9 @@
                     </span>
                 </button>
             </template>
+            <template #opciones="{item,row}">
+                <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
+            </template>
         </data-table>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
@@ -161,6 +164,7 @@ import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
 import Chip from "./Chip";
+import axios from 'axios';
 
 export default {
     components: {
@@ -276,12 +280,24 @@ export default {
                 {
                     name: "Observacion",
                     value: "observacion"
+                },
+                {
+                    name: "Opciones",
+                    value: "opciones"
                 }
             ],
             items: []
         };
     },
     methods: {
+        eliminarEquipo(equipo){
+            if(!confirm("Estas seguro de querer eliminar este equipo?"))return
+            axios.delete('/api/equipos/'+equipo.id).then((result) => {
+                this.loadData()
+            }).catch((err) => {
+
+            });
+        },
         crearEquipo() {
             axios
                 .post(`/api/equipos`, this.newEquipoOBject)
