@@ -41,14 +41,18 @@ class AsesorSeed extends Seeder
                 if (!isset($asesormap[$data[$dni]])) {
                     $asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
                     //$asesorRandom = Asesor::whereDni($dni)->first();
-                    $asesornew = Asesor::create([
-                        "dni" => $data[$dni],
-                        "nombres" => $data[$nombres],
-                        "apellido_paterno" => $data[$apellido_paterno],
-                        "apellido_materno" => $data[$apellido_materno],
-                        //"equipo_id" => $asesorRandom != null ? $asesorRandom->id : null,
-                        "estado" => $data[$estado],
-                    ]);
+
+                    if($data[$nombres] != "MALOGRADOS" && $data[$nombres] != "LIBRE"){
+
+                        $asesornew = Asesor::create([
+                            "dni" => $data[$dni],
+                            "nombres" => $data[$nombres],
+                            "apellido_paterno" => $data[$apellido_paterno],
+                            "apellido_materno" => $data[$apellido_materno],
+                            //"equipo_id" => $asesorRandom != null ? $asesorRandom->id : null,
+                            "estado" => $data[$estado],
+                        ]);
+                    }
                 }
             }
             fclose($handle);
