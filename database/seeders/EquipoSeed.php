@@ -36,11 +36,11 @@ class EquipoSeed extends Seeder
         $tipo_disco = 19;
         $procesador = 14;
         $generacion = 11;
-        $supervisor_id = 22;
+        $supervisor_id = 2;
         $index_col2nombreestado = 1;
         $precio = 20;
         $so = 21;
-        $asesor_dni = 2;
+        $asesor_dni = 22;
         $index_disco_duro = 18;
 
         //$apellido_materno = 0;

@@ -66,7 +66,18 @@ class HomeController extends Controller
             ->select('grupo', DB::raw('count(*) as total'))
             ->join('asesors', 'asesor_id', '=', 'asesors.id')
             ->groupBy('grupo')->get();
-        $resumegrups = Equipo::select('supervisor_id', DB::raw('count(*) as total'))->groupBy('supervisor_id')->whereNotNull('supervisor_id')->get();
+        DB::enableQueryLog();
+        $resumegrups = Equipo::select('supervisor_id', DB::raw('count(*) as total'))
+        ->groupBy('supervisor_id')
+        ->whereNotNull('supervisor_id')
+        ->whereHas('supervisor',function($query){
+            $query->where('dni', 'not like',"bot%");
+            $query->orWhere('dni', 'not like',"%bot%");
+            $query->orWhere('dni', 'not like',"%bot");
+
+        })
+        ->get();
+
         $equipos = Asesor::select('equipo_id', DB::raw('count(*) as total'))->groupBy('equipo_id')->whereNotNull('equipo_id')->get();
         $equipos->load('equipo');
         $resumegrups->load('supervisor');
@@ -76,12 +87,13 @@ class HomeController extends Controller
             ->groupBy('tipo_disco')
             ->get();
         $resumeProcesador = Equipo::select('procesador', DB::raw('count(*) as total'))->groupBy('procesador')->whereNotNull('procesador')->get();
-        //dd($resumeProcesador->toArray());
+        //dd($resumegrups->toArray());
         return view('graficos', [
             'data' => $resumegrups,
             "resumeDiscos" => $resumeDiscos,
             "resumeProcesador" => $resumeProcesador,
-            "equipos" => $equipos
+            "equipos" => $equipos,
+            "resumegrups" => $resumegrups
         ]);
     }
     public function about()

@@ -23,10 +23,11 @@
                             </div>
                         @endif
                         @php
-                            $datachart = $equipos
+                        //dd($resumegrups);
+                            $datachart = $resumegrups
                                 ->map(function ($item) {
                                     //dd($item);
-                                    return [$item->equipo->nombres => $item->total];
+                                    return [$item->supervisor->nombres => $item->total];
                                 })
                                 ->reduce(function ($before, $current) {
                                     return array_merge($before, $current);
