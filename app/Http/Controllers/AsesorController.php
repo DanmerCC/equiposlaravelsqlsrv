@@ -9,11 +9,12 @@ class AsesorController extends Controller
 {
     function list(Request $request)
     {
+        $baseQuery = Asesor::with('equipo');
         if ($request->has('search')) {
 
-            return $this->sendResponse(Asesor::search($request->get('search'))->paginate(), "Correctamente cargado");
+            return $this->sendResponse($baseQuery->search($request->get('search'))->paginate(), "Correctamente cargado");
         }
-        return $this->sendResponse(Asesor::paginate(), "Correctamente cargado");
+        return $this->sendResponse($baseQuery->paginate(), "Correctamente cargado");
     }
 
     function update($id, Request $request)
@@ -25,8 +26,7 @@ class AsesorController extends Controller
         }
 
         $allowed = [
-            'asesor_id',
-            'grupo',
+            'equipo_id',
             'marca',
             'modelo',
             'color',

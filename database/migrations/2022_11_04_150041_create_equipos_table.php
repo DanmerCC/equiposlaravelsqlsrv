@@ -16,6 +16,7 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('asesor_id')->nullable();
+            $table->unsignedBigInteger('supervisor_id')->nullable();
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
@@ -30,6 +31,7 @@ class CreateEquiposTable extends Migration
             $table->enum('tipo_disco', ['SOLIDO', 'MECANICO'])->nullable();
             $table->timestamps();
             $table->foreign('asesor_id')->references('id')->on('asesors');
+            $table->foreign('supervisor_id')->references('id')->on('asesors');
         });
     }
 

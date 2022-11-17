@@ -45,6 +45,16 @@ class Equipo extends Model
         return $this->hasOne(Asesor::class, 'id', 'asesor_id');
     }
 
+    /**
+     * Get the asesor associated with the Equipo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function supervisor(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Asesor::class, 'id', 'supervisor_id');
+    }
+
     function scopeSearch(EloquentBuilder $query, $string)
     {
 

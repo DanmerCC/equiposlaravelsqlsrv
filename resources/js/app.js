@@ -9,6 +9,7 @@ import PasswordReset from "./components/auth/PasswordReset";
 import PasswordUpdate from "./components/auth/PasswordUpdate";
 import EquiposTable from "./components/EquiposTable";
 import UsuariosTable from "./components/UsuariosTable";
+import AsesoresTable from "./components/AsesoresTable";
 
 import {
     DataTable,
@@ -49,6 +50,7 @@ const app = new Vue({
         DataTable,
         EquiposTable,
         UsuariosTable,
-        Paginate
+        Paginate,
+        AsesoresTable
     }
 });

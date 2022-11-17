@@ -11,7 +11,7 @@ class EquipoController extends Controller
 {
     function list(ListEquiposRequest $request)
     {
-        $queryBase = Equipo::with('asesor');
+        $queryBase = Equipo::with(['asesor','supervisor']);
 
         $queryBase->orderBy('id', 'DESC');
 

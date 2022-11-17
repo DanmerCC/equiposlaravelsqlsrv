@@ -46,10 +46,13 @@ export default {
         }
     },
     mounted() {
-        let asesorvalue = {
-            label: this.value.dni + " " + this.value.nombres
-        };
-        this.int_asesor = asesorvalue;
+        if (this.value !=null){
+
+            let asesorvalue = {
+                label: this.value.dni + " " + this.value.nombres
+            };
+            this.int_asesor = asesorvalue;
+        }
         this.int_asesor_original = Object.assign({}, this.value);
         if (this.options.length == 0) {
             this.options.push(...Object.values([this.int_asesor]));

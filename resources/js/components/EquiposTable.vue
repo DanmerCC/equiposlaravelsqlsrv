@@ -170,6 +170,10 @@ export default {
                     value: "asesor"
                 },
                 {
+                    name: "Supervisor",
+                    value: "supervisor"
+                },
+                {
                     name: "Equipo",
                     value: "equipo"
                 },
