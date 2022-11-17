@@ -35,6 +35,7 @@ class EquipoSeed extends Seeder
         $procesador = 10;
         $generacion = 11;
         $supervisor_id = 2;
+        $index_col2nombreestado = 1;
 
 
         $marca =
@@ -53,7 +54,14 @@ class EquipoSeed extends Seeder
                 if (!isset($asesormap[$data[$dni]])) {
                     //$asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
                     $asesor = Asesor::whereDni( $data[$supervisor_id] )->first();
+                    $estado = null;
+                    $col2nombreestado = $data[$index_col2nombreestado];
 
+                    if($col2nombreestado == "MALOGRADO"){
+                        $estado = "MALOGRADO";
+                    }else {
+                        $estado = "OPERATIVO";
+                    }
                     $asesornew = Equipo::create([
                         //"grupo" => $data[$dni],
                         "marca" => $data[$marca],
@@ -63,7 +71,7 @@ class EquipoSeed extends Seeder
                         "fecha_compra" => $data[$fecha_facturacion],
                         "observacion" => $data[$observacion],
                         "procesador" => $data[$procesador],
-                        "estado" => $data[$estado],
+                        "estado" => $estado,
                         "tipo_disco" => $data[$tipo_disco],
                         //"capacidad_disco_duro" => $data[$capacidad_disco_duro],
                         "supervisor_id" => $asesor == null ? null : $asesor->id,

@@ -223,6 +223,10 @@ export default {
                     value: "equipo"
                 },*/
                 {
+                    name: "Estado",
+                    value: "estado"
+                },
+                {
                     name: "Serie",
                     value: "serie"
                 },

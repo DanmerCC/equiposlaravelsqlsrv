@@ -49009,6 +49009,9 @@ __webpack_require__.r(__webpack_exports__);
           value: "equipo"
       },*/
       {
+        name: "Estado",
+        value: "estado"
+      }, {
         name: "Serie",
         value: "serie"
       }, {
