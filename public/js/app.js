@@ -48915,6 +48915,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -103009,6 +103019,41 @@ var render = function() {
                     on: {
                       click: function($event) {
                         return _vm.editAsesor(row)
+                      }
+                    }
+                  },
+                  [
+                    item == null
+                      ? _c("span", [
+                          _vm._v(
+                            "\n                    Sin Asignar\n                "
+                          )
+                        ])
+                      : _c("span", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.nombres) +
+                              "\n                "
+                          )
+                        ])
+                  ]
+                )
+              ]
+            }
+          },
+          {
+            key: "supervisor",
+            fn: function(ref) {
+              var item = ref.item
+              var row = ref.row
+              return [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-info",
+                    on: {
+                      click: function($event) {
+                        return _vm.editSupervisor(row)
                       }
                     }
                   },

@@ -80,6 +80,16 @@
                     </span>
                 </button>
             </template>
+            <template #supervisor="{item,row}">
+                <button @click="editSupervisor(row)" class="btn btn-sm btn-info">
+                    <span v-if="item == null">
+                        Sin Asignar
+                    </span>
+                    <span v-else>
+                        {{ item.nombres }}
+                    </span>
+                </button>
+            </template>
         </data-table>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
