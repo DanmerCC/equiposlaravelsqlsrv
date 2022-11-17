@@ -32,7 +32,9 @@ class AsesorSeed extends Seeder
         $asesormap = [];
         if (($handle = fopen($filename, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-
+                if($row<=2){
+                    continue;
+                }
                 $num = count($data);
                 $row++;
 
