@@ -26,13 +26,12 @@ class AsesorController extends Controller
         }
 
         $allowed = [
+            'dni',
+            'nombres',
+            'apellido_paterno',
+            'apellido_materno',
             'equipo_id',
-            'marca',
-            'modelo',
-            'color',
-            'serie',
-            'fecha_compra',
-            'observacion'
+            'estado'
         ];
 
         $inputs = $request->only($allowed);
@@ -40,5 +39,13 @@ class AsesorController extends Controller
         $asesor->update($inputs);
 
         return $this->sendResponse($inputs, "Correctamente actualziado");
+    }
+
+    function delete($id){
+        $asesor = Asesor::find($id);
+
+        $asesor->delete();
+
+        return $this->sendResponse($asesor, "Correctamente eliminado");
     }
 }

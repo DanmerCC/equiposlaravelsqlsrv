@@ -35,6 +35,14 @@
                     </span>
                 </button>
             </template>
+            <template #opciones="{item,row}">
+                <button @click="deleteAsesor(row)" class="btn btn-sm btn-danger">
+                   Eliminar
+                </button>
+                <button @click="editAsesores(row)" class="btn btn-sm btn-info">
+                   Editar
+                </button>
+            </template>
         </data-table>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
@@ -72,20 +80,39 @@
                 </button>
             </template>
         </modal-component>
+        <modal-component v-if="asesorEdit!=null" @close="asesorEdit = null">
+            <template #body>
+                <asesor-form :value="asesorEdit.original" @change="asesorEdit.changes = $event"></asesor-form>
+            </template>
+            <template #footer>
+                <button @click="updateAsesor()" :disabled="!hasAsesorchanges" class="btn btn-secondary">Actualizar</button>
+            </template>
+        </modal-component>
     </span>
 </template>
 
 <script>
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
+
 import AsesorSelector from "./AsesorSelector"
+import AsesorForm from "./AsesorForm";
+import axios from "axios";
 export default {
     components: {
         DataTable,
         ModalComponent,
         Paginate,
-        AsesorSelector
+        AsesorSelector,
+        AsesorForm
     },
     computed: {
+        hasAsesorchanges(){
+            if(this.asesorEdit.changes == null){
+                return false
+            }
+
+            return Object.keys(this.asesorEdit.changes).length != 0;
+        },
         equipoEditInfoDiferent() {
             if (this.equipoEditInfo == null) {
                 return false;
@@ -100,6 +127,7 @@ export default {
     },
     data() {
         return {
+            asesorEdit:null,
             equipoEditInfo: null,
             newAsesorObject: null,
             search: null,
@@ -119,7 +147,7 @@ export default {
                 },
                 {
                     name: "Apellido materno",
-                    value: "apellido_paterno"
+                    value: "apellido_materno"
                 },
                 {
                     name: "Equipo",
@@ -129,11 +157,38 @@ export default {
                     name: "Estado",
                     value: "estado"
                 },
+                {
+                    name: "Opciones",
+                    value: "opciones"
+                },
             ],
             items: []
         };
     },
     methods: {
+        updateAsesor(){
+
+            axios.put('/api/asesor/'+this.asesorEdit.original.id,this.asesorEdit.changes).then((result) => {
+                this.loadData()
+                this.asesorEdit = null
+            }).catch((err) => {
+
+            });
+        },
+        editAsesores(asesor){
+            this.asesorEdit = {
+                original:Object.assign({},asesor),
+                changes:null
+            }
+        },
+        deleteAsesor(asesor){
+            if(!confirm("estas seguro de eliminar?"))return;
+            axios.delete("/api/asesor/"+asesor.id).then((result) => {
+                this.loadData()
+            }).catch((err) => {
+
+            });
+        },
         changePage($event) {
             console.log($event);
             let lastPage = this.page;
