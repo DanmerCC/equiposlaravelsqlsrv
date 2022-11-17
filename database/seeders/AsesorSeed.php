@@ -32,11 +32,11 @@ class AsesorSeed extends Seeder
         $asesormap = [];
         if (($handle = fopen($filename, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $num = count($data);
+                $row++;
                 if($row<=2){
                     continue;
                 }
-                $num = count($data);
-                $row++;
 
                 if (!isset($asesormap[$data[$dni]])) {
                     $asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
