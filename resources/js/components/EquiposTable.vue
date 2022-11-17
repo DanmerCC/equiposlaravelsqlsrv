@@ -159,10 +159,10 @@
         </modal-component>
         <modal-component v-if="equipoDataEdit!=null" @close="equipoDataEdit = null">
             <template #body>
-                <equipos-form :source="equipoDataEdit.original"></equipos-form>
+                <equipos-form :source="equipoDataEdit.original" @changes="equipoDataEdit.changes = $event"></equipos-form>
             </template>
             <template #footer>
-                <button class="btn btn-secondary">Guardar</button>
+                <button class="btn btn-secondary" @click="updateEquipo()">Guardar</button>
             </template>
         </modal-component>
     </span>
@@ -300,6 +300,17 @@ export default {
         };
     },
     methods: {
+        updateEquipo(){
+            axios
+                .put(`/api/equipos/${this.equipoDataEdit.original.id}`, this.equipoDataEdit.changes)
+                .then(result => {
+                    this.loadData();
+                    this.equipoDataEdit = null;
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        },
         equipoEdit(equipo){
             this.equipoDataEdit = {
                 original:Object.assign({},equipo),

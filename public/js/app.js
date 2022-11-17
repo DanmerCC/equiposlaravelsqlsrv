@@ -48977,6 +48977,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.emitChanges();
       },
       deep: true
+    },
+    inputTipoDisco: function inputTipoDisco(value) {
+      this.emitChanges();
+    },
+    inputHDSize: function inputHDSize(value) {
+      this.emitChanges();
+    },
+    input_observacion: function input_observacion(value) {
+      this.emitChanges();
+    },
+    inputFechaCompra: function inputFechaCompra(value) {
+      this.emitChanges();
     }
   }
 });
@@ -49280,6 +49292,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    updateEquipo: function updateEquipo() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/".concat(this.equipoDataEdit.original.id), this.equipoDataEdit.changes).then(function (result) {
+        _this.loadData();
+
+        _this.equipoDataEdit = null;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
     equipoEdit: function equipoEdit(equipo) {
       this.equipoDataEdit = {
         original: Object.assign({}, equipo),
@@ -49287,20 +49310,20 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     eliminarEquipo: function eliminarEquipo(equipo) {
-      var _this = this;
+      var _this2 = this;
 
       if (!confirm("Estas seguro de querer eliminar este equipo?")) return;
       axios__WEBPACK_IMPORTED_MODULE_4___default().delete('/api/equipos/' + equipo.id).then(function (result) {
-        _this.loadData();
+        _this2.loadData();
       })["catch"](function (err) {});
     },
     crearEquipo: function crearEquipo() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/equipos", this.newEquipoOBject).then(function (result) {
-        _this2.loadData();
+        _this3.loadData();
 
-        _this2.newEquipoOBject = null;
+        _this3.newEquipoOBject = null;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -49331,38 +49354,38 @@ __webpack_require__.r(__webpack_exports__);
       this.loadData();
     },
     changePage: function changePage($event) {
-      var _this3 = this;
+      var _this4 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this3.page = lastPage;
+        _this4.page = lastPage;
       });
     },
     updateAsesor: function updateAsesor() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.asesorEditInfo.row.id, {
         asesor_id: this.asesorEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this4.asesorEditInfo = null;
+        _this5.asesorEditInfo = null;
 
-        _this4.loadData();
+        _this5.loadData();
       });
     },
     updateSupervisor: function updateSupervisor() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.supervisorEditInfo.row.id, {
         supervisor_id: this.supervisorEditInfo.changed.id
       }).then(function (_ref2) {
         var data = _ref2.data;
-        _this5.supervisorEditInfo = null;
+        _this6.supervisorEditInfo = null;
 
-        _this5.loadData();
+        _this6.loadData();
       });
     },
     editAsesor: function editAsesor(equipo) {
@@ -49399,7 +49422,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newEquipoOBject = {};
     },
     loadData: function loadData() {
-      var _this6 = this;
+      var _this7 = this;
 
       var config = {
         params: {
@@ -49426,7 +49449,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/equipos", config).then(function (_ref3) {
           var data = _ref3.data;
-          _this6.items = data.data.data;
+          _this7.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -103994,7 +104017,12 @@ var render = function() {
                   fn: function() {
                     return [
                       _c("equipos-form", {
-                        attrs: { source: _vm.equipoDataEdit.original }
+                        attrs: { source: _vm.equipoDataEdit.original },
+                        on: {
+                          changes: function($event) {
+                            _vm.equipoDataEdit.changes = $event
+                          }
+                        }
                       })
                     ]
                   },
@@ -104004,9 +104032,18 @@ var render = function() {
                   key: "footer",
                   fn: function() {
                     return [
-                      _c("button", { staticClass: "btn btn-secondary" }, [
-                        _vm._v("Guardar")
-                      ])
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.updateEquipo()
+                            }
+                          }
+                        },
+                        [_vm._v("Guardar")]
+                      )
                     ]
                   },
                   proxy: true
@@ -104014,7 +104051,7 @@ var render = function() {
               ],
               null,
               false,
-              651175565
+              1162766862
             )
           })
         : _vm._e()

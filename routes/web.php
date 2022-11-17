@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'api'], function () {
     Route::put('asesor/{id}', [App\Http\Controllers\AsesorController::class, 'update'])->name('asesor.update');
     Route::delete('asesor/{id}', [App\Http\Controllers\AsesorController::class, 'delete'])->name('asesor.delete');
     Route::get('equipos', [App\Http\Controllers\EquipoController::class, 'list'])->name('asesor');
+
     Route::delete('equipos/{id}', [App\Http\Controllers\EquipoController::class, 'delete'])->name('equipo.delete');
     Route::post('equipos', [App\Http\Controllers\EquipoController::class, 'create'])->name('asesor');
     Route::put('equipos/{id}', [App\Http\Controllers\EquipoController::class, 'update'])->name('asesor.update');

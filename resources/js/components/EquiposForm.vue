@@ -173,7 +173,19 @@ export default {
                 this.emitChanges();
             },
             deep: true
-        }
+        },
+        inputTipoDisco(value){
+            this.emitChanges()
+        },
+        inputHDSize(value){
+            this.emitChanges()
+        },
+        input_observacion(value){
+            this.emitChanges()
+        },
+        inputFechaCompra(value){
+            this.emitChanges()
+        },
     }
 };
 </script>
