@@ -42,6 +42,15 @@
                             :groups="{{ json_encode($resumeProcesador->pluck('procesador')->toArray()) }}"
                             :data="{{ json_encode($resumeProcesador->pluck('total')->toArray()) }}">
                         </Bars>
+                        @php
+                            $labelResumentAntiguedad = $resumentAntiguedad->pluck('years')->map(function($item){
+                                return $item." años";
+                            })
+                        @endphp
+                        <Bars :horizontal="true"
+                            :groups="{{ json_encode($labelResumentAntiguedad->toArray()) }}"
+                            :data="{{ json_encode($resumentAntiguedad->pluck('total')->toArray()) }}">
+                        </Bars>
                     </div>
                 </div>
             </div>

@@ -87,13 +87,17 @@ class HomeController extends Controller
             ->groupBy('tipo_disco')
             ->get();
         $resumeProcesador = Equipo::select('procesador', DB::raw('count(*) as total'))->groupBy('procesador')->whereNotNull('procesador')->get();
-        //dd($resumegrups->toArray());
+
+
+        $resumentAntiguedad = Equipo::select(DB::raw('COUNT(*) AS total'),DB::raw('TIMESTAMPDIFF(YEAR, fecha_compra, CURDATE()) AS years'))->groupBy('years')->get();
+        //dd($resumentAntiguedad->toArray());
         return view('graficos', [
             'data' => $resumegrups,
             "resumeDiscos" => $resumeDiscos,
             "resumeProcesador" => $resumeProcesador,
             "equipos" => $equipos,
-            "resumegrups" => $resumegrups
+            "resumegrups" => $resumegrups,
+            "resumentAntiguedad" => $resumentAntiguedad,
         ]);
     }
     public function about()
