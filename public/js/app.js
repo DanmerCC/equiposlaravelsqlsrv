@@ -48971,6 +48971,17 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.asesorEditInfo.original.id == this.asesorEditInfo.changed.id;
+    },
+    supervisorEditInfoDiferent: function supervisorEditInfoDiferent() {
+      if (this.supervisorEditInfo == null) {
+        return false;
+      }
+
+      if (this.supervisorEditInfo.original == null) {
+        return false;
+      }
+
+      return this.supervisorEditInfo.original.id == this.supervisorEditInfo.changed.id;
     }
   },
   data: function data() {
@@ -49098,11 +49109,11 @@ __webpack_require__.r(__webpack_exports__);
     updateSupervisor: function updateSupervisor() {
       var _this4 = this;
 
-      axios.put("/api/equipos/" + this.asesorEditInfo.row.id, {
-        supervisor_id: this.asesorEditInfo.changed.id
+      axios.put("/api/equipos/" + this.supervisorEditInfo.row.id, {
+        supervisor_id: this.supervisorEditInfo.changed.id
       }).then(function (_ref2) {
         var data = _ref2.data;
-        _this4.asesorEditInfo = null;
+        _this4.supervisorEditInfo = null;
 
         _this4.loadData();
       });
@@ -103301,7 +103312,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-primary",
-                          attrs: { disabled: _vm.asesorEditInfoDiferent },
+                          attrs: { disabled: false },
                           on: {
                             click: function($event) {
                               return _vm.updateSupervisor()
@@ -103317,7 +103328,7 @@ var render = function() {
               ],
               null,
               false,
-              1002036331
+              4091482334
             )
           })
         : _vm._e()

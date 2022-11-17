@@ -144,7 +144,7 @@
             <template #footer>
                 <button
                     class="btn btn-primary"
-                    :disabled="asesorEditInfoDiferent"
+                    :disabled="false"
                     @click="updateSupervisor()"
                 >
                     Guardar
@@ -180,6 +180,18 @@ export default {
             return (
                 this.asesorEditInfo.original.id ==
                 this.asesorEditInfo.changed.id
+            );
+        },
+        supervisorEditInfoDiferent() {
+            if (this.supervisorEditInfo == null) {
+                return false;
+            }
+            if (this.supervisorEditInfo.original == null) {
+                return false;
+            }
+            return (
+                this.supervisorEditInfo.original.id ==
+                this.supervisorEditInfo.changed.id
             );
         }
     },
@@ -322,11 +334,11 @@ export default {
         },
         updateSupervisor() {
             axios
-                .put("/api/equipos/" + this.asesorEditInfo.row.id, {
-                    supervisor_id: this.asesorEditInfo.changed.id
+                .put("/api/equipos/" + this.supervisorEditInfo.row.id, {
+                    supervisor_id: this.supervisorEditInfo.changed.id
                 })
                 .then(({ data }) => {
-                    this.asesorEditInfo = null;
+                    this.supervisorEditInfo = null;
                     this.loadData();
                 });
         },

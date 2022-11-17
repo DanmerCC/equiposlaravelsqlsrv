@@ -24,6 +24,7 @@ class Equipo extends Model
         'procesador',
         'memoria',
         'disco_duro',
+        'supervisor_id',
 
     ];
 
