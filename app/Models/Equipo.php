@@ -65,28 +65,32 @@ class Equipo extends Model
         $query->orWhere('modelo', 'like', "%" . $string);
 
         $fields = [
-            'grupo',
-            'marca',
-            'modelo',
-            'color',
-            'serie',
-            'fecha_compra',
-            'observacion',
-            'procesador',
-            'memoria',
-            'estado',
-            'tipo_disco',
-            'capacidad_disco_duro',
+            //'grupo',
+            //'marca',
+            //'modelo',
+            //'color',
+            //'serie',
+            //'fecha_compra',
+            //'observacion',
+            //'procesador',
+            //'memoria',
+            //'estado',
+            //'tipo_disco',
+            //'capacidad_disco_duro',
         ];
 
         for ($i = 0; $i < count($fields); $i++) {
             $query->orWhere($fields[$i], 'like', $string . "%");
             $query->orWhere($fields[$i], 'like', "%" . $string . "%");
             $query->orWhere($fields[$i], 'like', "%" . $string);
+            $query->orWhere($fields[$i], '=',  $string);
         }
 
-        $query->orWhereHas('asesor', function ($query) use ($string) {
-            $query->search($string, false);
+        $query->orWhereHas('supervisor', function ($query) use ($string) {
+            $query->search($string,false);
+        });
+        $query->whereHas('asesor', function ($query) use ($string) {
+            $query->search($string, true);
         });
 
         return $query;
