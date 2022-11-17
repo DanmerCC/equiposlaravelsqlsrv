@@ -29,7 +29,7 @@ class CreateEquiposTable extends Migration
             $table->string('memoria')->nullable();
             $table->decimal('precio',12,2)->nullable();
             $table->string('capacidad_disco_duro')->nullable();
-            $table->enum('tipo_disco', ['SSD', 'HD'])->nullable();
+            $table->enum('tipo_disco', ['SSD', 'HDD'])->nullable();
             $table->timestamps();
             $table->foreign('asesor_id')->references('id')->on('asesors');
             $table->foreign('supervisor_id')->references('id')->on('asesors');

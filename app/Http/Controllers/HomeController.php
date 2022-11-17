@@ -62,18 +62,20 @@ class HomeController extends Controller
     }
     public function graficos()
     {
-        $resumegrups = DB::table('equipos')
+        $resumegrupsFromEquipos = DB::table('equipos')
             ->select('grupo', DB::raw('count(*) as total'))
             ->join('asesors', 'asesor_id', '=', 'asesors.id')
             ->groupBy('grupo')->get();
+        $resumegrups = Equipo::select('supervisor_id', DB::raw('count(*) as total'))->groupBy('supervisor_id')->whereNotNull('supervisor_id')->get();
         $equipos = Asesor::select('equipo_id', DB::raw('count(*) as total'))->groupBy('equipo_id')->whereNotNull('equipo_id')->get();
         $equipos->load('equipo');
-
+        $resumegrups->load('supervisor');
         $resumeDiscos = DB::table('equipos')
             ->select('tipo_disco', DB::raw('count(*) as total'))
             ->join('asesors', 'asesor_id', '=', 'asesors.id')
             ->groupBy('tipo_disco')
             ->get();
+
         //dd($resumeDiscos);
         return view('graficos', [
             'data' => $resumegrups,

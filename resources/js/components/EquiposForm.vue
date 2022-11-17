@@ -50,7 +50,7 @@
                 >
                     <option :value="null">Selecciona</option>
                     <option value="SSD">SOLIDO</option>
-                    <option value="HD">MECANICO</option>
+                    <option value="HDD">MECANICO</option>
                 </select>
             </div>
         </div>

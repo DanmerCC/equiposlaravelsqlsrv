@@ -34,7 +34,7 @@
                         @endphp
                         <chart :data='{{ json_encode($datachart) }}'></chart>
                         <Bars :horizontal="true"
-                            :groups="{{ json_encode($resumeDiscos->pluck('disco_duro')->toArray()) }}"
+                            :groups="{{ json_encode($resumeDiscos->pluck('tipo_disco')->toArray()) }}"
                             :data="{{ json_encode($resumeDiscos->pluck('total')->toArray()) }}">
                         </Bars>
                     </div>

@@ -252,10 +252,6 @@ export default {
                     value: "precio"
                 },
                 {
-                    name: "Serie",
-                    value: "serie"
-                },
-                {
                     name: "Procesador",
                     value: "procesador"
                 },

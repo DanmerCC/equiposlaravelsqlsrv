@@ -49030,9 +49030,6 @@ __webpack_require__.r(__webpack_exports__);
         name: "Precio",
         value: "precio"
       }, {
-        name: "Serie",
-        value: "serie"
-      }, {
         name: "Procesador",
         value: "procesador"
       }, {
@@ -102789,7 +102786,7 @@ var render = function() {
               _vm._v(" "),
               _c("option", { attrs: { value: "SSD" } }, [_vm._v("SOLIDO")]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "HD" } }, [_vm._v("MECANICO")])
+              _c("option", { attrs: { value: "HDD" } }, [_vm._v("MECANICO")])
             ]
           )
         ])
