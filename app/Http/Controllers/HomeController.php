@@ -75,11 +75,12 @@ class HomeController extends Controller
             ->join('asesors', 'asesor_id', '=', 'asesors.id')
             ->groupBy('tipo_disco')
             ->get();
-
-        //dd($resumeDiscos);
+        $resumeProcesador = Equipo::select('procesador', DB::raw('count(*) as total'))->groupBy('procesador')->whereNotNull('procesador')->get();
+        //dd($resumeProcesador->toArray());
         return view('graficos', [
             'data' => $resumegrups,
             "resumeDiscos" => $resumeDiscos,
+            "resumeProcesador" => $resumeProcesador,
             "equipos" => $equipos
         ]);
     }

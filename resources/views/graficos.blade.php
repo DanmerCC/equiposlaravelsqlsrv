@@ -37,6 +37,10 @@
                             :groups="{{ json_encode($resumeDiscos->pluck('tipo_disco')->toArray()) }}"
                             :data="{{ json_encode($resumeDiscos->pluck('total')->toArray()) }}">
                         </Bars>
+                        <Bars :horizontal="true"
+                            :groups="{{ json_encode($resumeProcesador->pluck('procesador')->toArray()) }}"
+                            :data="{{ json_encode($resumeProcesador->pluck('total')->toArray()) }}">
+                        </Bars>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ class EquipoSeed extends Seeder
         $fecha_facturacion = 10;
         $estado_equipo = 16;
         $tipo_disco = 19;
-        $procesador = 10;
+        $procesador = 14;
         $generacion = 11;
         $supervisor_id = 22;
         $index_col2nombreestado = 1;
