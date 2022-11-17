@@ -215,13 +215,13 @@ export default {
                     value: "asesor"
                 },
                 {
-                    name: "Supervisor",
+                    name: "Equipo",
                     value: "supervisor"
                 },
-                {
+                /*{
                     name: "Equipo",
                     value: "equipo"
-                },
+                },*/
                 {
                     name: "Serie",
                     value: "serie"

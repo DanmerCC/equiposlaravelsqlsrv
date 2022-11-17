@@ -49001,12 +49001,14 @@ __webpack_require__.r(__webpack_exports__);
         name: "Nombre",
         value: "asesor"
       }, {
-        name: "Supervisor",
-        value: "supervisor"
-      }, {
         name: "Equipo",
-        value: "equipo"
-      }, {
+        value: "supervisor"
+      },
+      /*{
+          name: "Equipo",
+          value: "equipo"
+      },*/
+      {
         name: "Serie",
         value: "serie"
       }, {
