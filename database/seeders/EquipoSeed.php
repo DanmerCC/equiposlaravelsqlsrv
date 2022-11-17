@@ -90,7 +90,7 @@ class EquipoSeed extends Seeder
                         "procesador" => $data[$procesador],
                         "estado" => $estado,
                         "tipo_disco" => $data[$tipo_disco],
-                        "precio" => $data[$precio],
+                        "precio" => str_replace(",","",str_replace("S/ ","",$data[$precio])),
                         "asesor_id" => $asesor == null ? null : $asesor->id,
                         "capacidad_disco_duro" => $disco_duro_medida,
                         "supervisor_id" => $supervisor == null ? null : $supervisor->id,

@@ -71,22 +71,24 @@
                 </span>
             </template>
             <template #asesor="{item,row}">
-                <button @click="editAsesor(row)" class="btn btn-sm btn-info">
-                    <span v-if="item == null">
+                <button v-if="item != null" @click="editAsesor(row)" class="btn btn-sm btn-info">
+
+                    {{ item.nombres }}
+                </button>
+                <button v-else class="btn btn-sm" @click="editAsesor(row)">
+                    <span >
                         Sin Asignar
-                    </span>
-                    <span v-else>
-                        {{ item.nombres }}
                     </span>
                 </button>
             </template>
             <template #supervisor="{item,row}">
-                <button @click="editSupervisor(row)" class="btn btn-sm btn-info">
-                    <span v-if="item == null">
+                <button  v-if="item != null" @click="editSupervisor(row)" class="btn btn-sm btn-info">
+
+                    {{ item.nombres }}
+                </button>
+                <button v-else class="btn btn-sm" @click="editAsesor(row)">
+                    <span >
                         Sin Asignar
-                    </span>
-                    <span v-else>
-                        {{ item.nombres }}
                     </span>
                 </button>
             </template>
