@@ -118,7 +118,7 @@ export default {
                 { name: "color", label: "Color", value: null },
                 { name: "modelo", label: "Modelo", value: null },
                 { name: "marca", label: "Marca", value: null },
-                { name: "grupo", label: "Equipo", value: null },
+                //{ name: "grupo", label: "Equipo", value: null },
                 { name: "procesador", label: "Procesador", value: null },
                 { name: "memoria", label: "Memoria", value: null }
             ],
@@ -153,6 +153,19 @@ export default {
     },
     mounted() {
         this.randomId = this.generateRandomInteger(100);
+        if(this.source !=null){
+            this.inputHDSize = this.source.capacidad_disco_duro
+            this.inputTipoDisco = this.source.tipo_disco
+            this.input_observacion = this.source.observacion
+            this.inputFechaCompra = this.source.fecha_compra
+
+            this.inputsText.forEach(el => {
+                console.log(el.name)
+                if(typeof this.source[el.name] != "undefined"){
+                    el.value = this.source[el.name]
+                }
+            });
+        }
     },
     watch: {
         inputsText: {

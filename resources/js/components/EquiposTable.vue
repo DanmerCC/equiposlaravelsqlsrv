@@ -93,6 +93,7 @@
                 </button>
             </template>
             <template #opciones="{item,row}">
+                <button class="btn btn-info" @click="equipoEdit(row)">editar</button>
                 <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
             </template>
         </data-table>
@@ -156,6 +157,14 @@
                 </button>
             </template>
         </modal-component>
+        <modal-component v-if="equipoDataEdit!=null" @close="equipoDataEdit = null">
+            <template #body>
+                <equipos-form :source="equipoDataEdit.original"></equipos-form>
+            </template>
+            <template #footer>
+                <button class="btn btn-secondary">Guardar</button>
+            </template>
+        </modal-component>
     </span>
 </template>
 
@@ -173,7 +182,7 @@ export default {
         EquiposForm,
         AsesorSelector,
         Paginate,
-        Chip
+        Chip,
     },
     computed: {
         asesorEditInfoDiferent() {
@@ -203,6 +212,7 @@ export default {
     },
     data() {
         return {
+            equipoDataEdit:null,
             asignadosFilter: false,
             vacacionesFilter: null,
             grupoFilters: {},
@@ -290,6 +300,12 @@ export default {
         };
     },
     methods: {
+        equipoEdit(equipo){
+            this.equipoDataEdit = {
+                original:Object.assign({},equipo),
+                changes:null
+            }
+        },
         eliminarEquipo(equipo){
             if(!confirm("Estas seguro de querer eliminar este equipo?"))return
             axios.delete('/api/equipos/'+equipo.id).then((result) => {

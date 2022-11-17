@@ -48917,11 +48917,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "marca",
         label: "Marca",
         value: null
-      }, {
-        name: "grupo",
-        label: "Equipo",
-        value: null
-      }, {
+      }, //{ name: "grupo", label: "Equipo", value: null },
+      {
         name: "procesador",
         label: "Procesador",
         value: null
@@ -48956,7 +48953,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.randomId = this.generateRandomInteger(100);
+
+    if (this.source != null) {
+      this.inputHDSize = this.source.capacidad_disco_duro;
+      this.inputTipoDisco = this.source.tipo_disco;
+      this.input_observacion = this.source.observacion;
+      this.inputFechaCompra = this.source.fecha_compra;
+      this.inputsText.forEach(function (el) {
+        console.log(el.name);
+
+        if (typeof _this.source[el.name] != "undefined") {
+          el.value = _this.source[el.name];
+        }
+      });
+    }
   },
   watch: {
     inputsText: {
@@ -48987,6 +49000,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Chip */ "./resources/js/components/Chip.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49188,6 +49210,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      equipoDataEdit: null,
       asignadosFilter: false,
       vacacionesFilter: null,
       grupoFilters: {},
@@ -49257,6 +49280,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    equipoEdit: function equipoEdit(equipo) {
+      this.equipoDataEdit = {
+        original: Object.assign({}, equipo),
+        changes: null
+      };
+    },
     eliminarEquipo: function eliminarEquipo(equipo) {
       var _this = this;
 
@@ -103730,6 +103759,19 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "btn btn-info",
+                    on: {
+                      click: function($event) {
+                        return _vm.equipoEdit(row)
+                      }
+                    }
+                  },
+                  [_vm._v("editar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
                     staticClass: "btn btn-danger",
                     on: {
                       click: function($event) {
@@ -103934,6 +103976,45 @@ var render = function() {
               null,
               false,
               4091482334
+            )
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.equipoDataEdit != null
+        ? _c("modal-component", {
+            on: {
+              close: function($event) {
+                _vm.equipoDataEdit = null
+              }
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "body",
+                  fn: function() {
+                    return [
+                      _c("equipos-form", {
+                        attrs: { source: _vm.equipoDataEdit.original }
+                      })
+                    ]
+                  },
+                  proxy: true
+                },
+                {
+                  key: "footer",
+                  fn: function() {
+                    return [
+                      _c("button", { staticClass: "btn btn-secondary" }, [
+                        _vm._v("Guardar")
+                      ])
+                    ]
+                  },
+                  proxy: true
+                }
+              ],
+              null,
+              false,
+              651175565
             )
           })
         : _vm._e()
