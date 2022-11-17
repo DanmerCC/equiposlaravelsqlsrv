@@ -49027,6 +49027,9 @@ __webpack_require__.r(__webpack_exports__);
         name: "Antiguedad",
         value: "antiguedad"
       }, {
+        name: "Precio",
+        value: "precio"
+      }, {
         name: "Serie",
         value: "serie"
       }, {

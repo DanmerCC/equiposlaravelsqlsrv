@@ -248,6 +248,10 @@ export default {
                     value: "antiguedad"
                 },
                 {
+                    name: "Precio",
+                    value: "precio"
+                },
+                {
                     name: "Serie",
                     value: "serie"
                 },
