@@ -46,7 +46,7 @@
         <div class="row">
 
             <div class="col-xl-3 col-md-6">
-                <div class="card {{ $i % 2 == 0 ? 'bg-primary' : 'bg-success' }}  text-white mb-4">
+                <div class="card bg-primary text-white mb-4">
                     <div class="card-body"> No Asignados</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $noAsign }} Laptops<sup style="font-size: 20px"></sup></h3>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="col-xl-3 col-md-6">
-                <div class="card {{ $i % 2 == 0 ? 'bg-primary' : 'bg-danger' }}  text-white mb-4">
+                <div class="card bg-danger text-white mb-4">
                     <div class="card-body"> Malogrados</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $malogrados }} Laptops<sup style="font-size: 20px"></sup></h3>
