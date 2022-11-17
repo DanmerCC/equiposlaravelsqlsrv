@@ -22,23 +22,24 @@ class EquipoSeed extends Seeder
 
         $dni = 0;
 
-        $serie = 16;
-        $color = 5;
-        $modelo = 6;
-        $marca = 7;
-        $ubicacion = 17;
-        $observacion = 14;
+        $serie = 3;
+        $color = 4;
+        $modelo = 5;
+        $marca = 6;
+        $ubicacion = 7;
+        $observacion = 8;
         $proveedor = 9;
-        $fecha_facturacion = 20;
+        $fecha_facturacion = 10;
         $estado_equipo = 16;
-        $tipo_disco = 4;
+        $tipo_disco = 13;
         $procesador = 10;
         $generacion = 11;
         $supervisor_id = 2;
         $index_col2nombreestado = 1;
+        $precio = 20;
+        $so = 21;
+        $asesor_dni = 22;
 
-
-        $marca =
         //$apellido_materno = 0;
         $estado = 8;
 
@@ -49,11 +50,11 @@ class EquipoSeed extends Seeder
                 $num = count($data);
                 $row++;
 
-                //echo var_dump($row,$data);
+                echo var_dump($row,$data);
 
                 if (!isset($asesormap[$data[$dni]])) {
                     //$asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
-                    $asesor = Asesor::whereDni( $data[$supervisor_id] )->first();
+                    $asesor = Asesor::whereDni( $data[$asesor_dni] )->first();
                     $estado = null;
                     $col2nombreestado = $data[$index_col2nombreestado];
 
@@ -73,6 +74,8 @@ class EquipoSeed extends Seeder
                         "procesador" => $data[$procesador],
                         "estado" => $estado,
                         "tipo_disco" => $data[$tipo_disco],
+                        "precio" => $data[$precio],
+                        "asesor_id" => $asesor == null ? null : $asesor->id,
                         //"capacidad_disco_duro" => $data[$capacidad_disco_duro],
                         "supervisor_id" => $asesor == null ? null : $asesor->id,
                     ]);

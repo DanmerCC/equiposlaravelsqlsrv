@@ -102784,11 +102784,9 @@ var render = function() {
                 _vm._v("Selecciona")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "SOLIDO" } }, [_vm._v("SOLIDO")]),
+              _c("option", { attrs: { value: "SSD" } }, [_vm._v("SOLIDO")]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "MECANICO" } }, [
-                _vm._v("MECANICO")
-              ])
+              _c("option", { attrs: { value: "HD" } }, [_vm._v("MECANICO")])
             ]
           )
         ])

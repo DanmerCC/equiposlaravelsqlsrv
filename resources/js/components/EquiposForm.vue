@@ -49,8 +49,8 @@
                     v-model="inputTipoDisco"
                 >
                     <option :value="null">Selecciona</option>
-                    <option value="SOLIDO">SOLIDO</option>
-                    <option value="MECANICO">MECANICO</option>
+                    <option value="SSD">SOLIDO</option>
+                    <option value="HD">MECANICO</option>
                 </select>
             </div>
         </div>

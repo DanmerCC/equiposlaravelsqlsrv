@@ -25,6 +25,7 @@ class Equipo extends Model
         'memoria',
         'disco_duro',
         'supervisor_id',
+        'precio'
 
     ];
 
