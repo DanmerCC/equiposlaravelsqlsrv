@@ -34,11 +34,11 @@ class EquipoSeed extends Seeder
         $tipo_disco = 13;
         $procesador = 10;
         $generacion = 11;
-        $supervisor_id = 2;
+        $supervisor_id = 22;
         $index_col2nombreestado = 1;
         $precio = 20;
         $so = 21;
-        $asesor_dni = 22;
+        $asesor_dni = 2;
 
         //$apellido_materno = 0;
         $estado = 8;
@@ -55,6 +55,7 @@ class EquipoSeed extends Seeder
                 if (!isset($asesormap[$data[$dni]])) {
                     //$asesormap[$data[$dni]] = $data[$apellido_paterno] . $data[$apellido_materno] . $data[$nombres];
                     $asesor = Asesor::whereDni( $data[$asesor_dni] )->first();
+                    $supervisor = Asesor::whereDni( $data[$supervisor_id] )->first();
                     $estado = null;
                     $col2nombreestado = $data[$index_col2nombreestado];
 
@@ -77,7 +78,7 @@ class EquipoSeed extends Seeder
                         "precio" => $data[$precio],
                         "asesor_id" => $asesor == null ? null : $asesor->id,
                         //"capacidad_disco_duro" => $data[$capacidad_disco_duro],
-                        "supervisor_id" => $asesor == null ? null : $asesor->id,
+                        "supervisor_id" => $supervisor == null ? null : $supervisor->id,
                     ]);
                 }
             }
