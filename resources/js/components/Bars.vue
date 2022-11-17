@@ -36,6 +36,10 @@ export default {
         },
         horizontal: {
             default: false
+        },
+        label:{
+            type: String,
+            default: ""
         }
     },
     data() {
@@ -47,7 +51,7 @@ export default {
             },
             int_data: {
                 labels: this.groups,
-                datasets: [{ data: this.data }]
+                datasets: [{ data: this.data ,label:this.label}]
             }
         };
     },

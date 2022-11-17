@@ -48349,6 +48349,10 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
     },
     horizontal: {
       "default": false
+    },
+    label: {
+      type: String,
+      "default": ""
     }
   },
   data: function data() {
@@ -48361,7 +48365,8 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
       int_data: {
         labels: this.groups,
         datasets: [{
-          data: this.data
+          data: this.data,
+          label: this.label
         }]
       }
     };
