@@ -57,7 +57,7 @@ class EquipoSeed extends Seeder
                     $estado = null;
                     $col2nombreestado = $data[$index_col2nombreestado];
 
-                    if($col2nombreestado == "MALOGRADO"){
+                    if($col2nombreestado == "MALOGRADOS"){
                         $estado = "MALOGRADO";
                     }else {
                         $estado = "OPERATIVO";
