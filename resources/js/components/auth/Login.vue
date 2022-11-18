@@ -128,7 +128,7 @@ export default {
                 .then(res => {
                     this.loading = false;
                     this.success = true;
-                    this.message = "Successfully Logged in.";
+                    this.message = "Correctamente autentificado.";
                     this.failure = false;
 
                     setTimeout(() => {

@@ -49825,7 +49825,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", user).then(function (res) {
         _this.loading = false;
         _this.success = true;
-        _this.message = "Successfully Logged in.";
+        _this.message = "Correctamente autentificado.";
         _this.failure = false;
         setTimeout(function () {
           window.location.href = "/home";

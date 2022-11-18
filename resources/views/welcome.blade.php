@@ -15,7 +15,7 @@
         html,
         body {
             background-color: #f4f4f4f4;
-            color: #636b6f;
+            color: #ffffff;
             font-family: 'Mulish', sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -51,7 +51,7 @@
         }
 
         .links>a {
-            color: #636b6f;
+            color: #ffffff;
             padding: 0 25px;
             font-size: 13px;
             font-weight: 600;
@@ -62,6 +62,10 @@
 
         .m-b-md {
             margin-bottom: 30px;
+        }
+        body {
+            background :url("/background1.jpg") no-repeat center;
+            color: aliceblue
         }
     </style>
 </head>
