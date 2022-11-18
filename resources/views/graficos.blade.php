@@ -2,11 +2,9 @@
 
 @section('content')
     @php
-        $title = 'Home';
+        $title = 'Graficos';
         $breadcrumbs = [
-            'First' => ['url' => '/first'],
-            'Second' => ['url' => '/second'],
-            'Third' => ['url' => '/third'],
+            'home' => ['url' => '/home']
         ];
     @endphp
 

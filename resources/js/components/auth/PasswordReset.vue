@@ -25,8 +25,8 @@
                         </div>
                     </form>
 
-                    <a href="/login" class="text-center">Login</a> <br/>
-                    <a href="/register" class="text-center">Register</a>
+                    <a href="/login" class="text-center">Irgreso</a> <br/>
+                    <!--<a href="/register" class="text-center">Register</a>-->
                 </div>
                 <!-- /.form-box -->
             </div><!-- /.card -->
@@ -65,7 +65,7 @@ export default {
             this.loading = true
             this.failure = false
             this.success = false
-            
+
             // Register the user
             let user = {
                 email: this.email,

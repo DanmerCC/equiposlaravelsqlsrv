@@ -3,7 +3,7 @@
         <div class="register-box">
             <div class="card">
                 <div class="card-body register-card-body">
-                    <p class="login-box-msg">Welcome Back</p>
+                    <p class="login-box-msg">Bienvenido de nuevo</p>
 
                     <errors
                         :success="success"
@@ -57,7 +57,7 @@
                                     class="btn btn-primary btn-block"
                                     @click="validate($event)"
                                 >
-                                    Login
+                                    Ingreso
                                 </button>
                             </div>
                             <!-- /.col -->
@@ -65,11 +65,11 @@
                     </form>
 
                     <a href="/register" class="text-center"
-                        >Don't have an account?</a
+                        >No tienes una cuenta?</a
                     >
                     <br />
                     <a href="/password/reset" class="text-center"
-                        >Forgot your password?</a
+                        >Olvidaste tu contraseña?</a
                     >
                 </div>
                 <!-- /.form-box -->
@@ -153,3 +153,8 @@ export default {
     }
 };
 </script>
+<style scoped>
+.register-page{
+    background: url("/background1.jpg") no-repeat center fixed;;
+}
+</style>

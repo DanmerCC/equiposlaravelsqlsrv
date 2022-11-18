@@ -17,7 +17,7 @@
             </li>
         </ul>
 
-        <!-- SEARCH FORM -->
+        <!-- SEARCH FORM
         <form class="form-inline ml-3">
             <div class="input-group input-group-sm">
                 <input
@@ -32,7 +32,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </form>-->
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -41,7 +41,7 @@
                 @click="logout()"
                 class="btn btn-danger"
             >
-                Logout
+                Salir
             </button>
         </ul>
     </nav>
