@@ -30,7 +30,7 @@ export default {
         let data = [];
 
         Object.keys(this.data).forEach(key => {
-            let obj = { category: key, value1: this.data[key] };
+            let obj = { category: key, value1: this.data[key],bulletSettings: { src: "/profile.png" } };
             data.push(obj);
         });
 
@@ -61,6 +61,24 @@ export default {
             })
         );
         series1.data.setAll(data);
+
+        series1.bullets.push(function() {
+            return am5.Bullet.new(root, {
+                locationY: 1,
+                sprite: am5.Picture.new(root, {
+                templateField: "bulletSettings",
+                width: 50,
+                height: 50,
+                centerX: am5.p50,
+                centerY: am5.p50,
+                shadowColor: am5.color(0x000000),
+                shadowBlur: 4,
+                shadowOffsetX: 4,
+                shadowOffsetY: 4,
+                shadowOpacity: 0.6
+                })
+            });
+        });
 
         // Add legend
         let legend = chart.children.push(am5.Legend.new(root, {}));
