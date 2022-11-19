@@ -19,6 +19,14 @@ class Asesor extends Model
         'estado'
     ];
 
+    protected $appends = [
+        'full_name'
+    ];
+
+    protected $with = [
+        //'full_name'
+    ];
+
     /**
      * Get the equipo associated with the Asesor
      *
@@ -27,6 +35,10 @@ class Asesor extends Model
     public function equipo(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Asesor::class, 'id', 'equipo_id');
+    }
+
+    public function getFullNameAttribute(){
+        return $this->nombres." ".$this->apellido_paterno . " ".$this->apellido_materno;
     }
 
     function scopeSearch(Builder $query, $text, $and = true)

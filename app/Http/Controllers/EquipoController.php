@@ -42,7 +42,7 @@ class EquipoController extends Controller
 
         $queryBase->with('asesor.equipo');
 
-        return $this->sendResponse($queryBase->paginate(), "Correctamente cargado");
+        return $this->sendResponse($queryBase->paginate($request->get('perPage')), "Correctamente cargado");
     }
 
     function create(Request $request)

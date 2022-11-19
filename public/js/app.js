@@ -48193,7 +48193,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       loading(true);
       this.asesorService.list(1, 100, _search).then(function (data) {
         _this.options = data.data.map(function (z) {
-          z["label"] = z.dni + " " + z.nombres;
+          z["label"] = z.dni + " " + z.nombres + " " + z.apellido_paterno + " ...";
           return z;
         });
         loading(false);
@@ -48208,7 +48208,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   mounted: function mounted() {
     if (this.value != null) {
       var asesorvalue = {
-        label: this.value.dni + " " + this.value.nombres
+        label: this.value.dni + " " + this.value.full_name
       };
       this.int_asesor = asesorvalue;
     }
@@ -48338,6 +48338,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -48372,6 +48377,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      perPage: 115,
       asesorEdit: null,
       equipoEditInfo: null,
       newAsesorObject: null,
@@ -49206,6 +49212,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49246,6 +49258,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      onloading: false,
+      perPage: 15,
       equipoDataEdit: null,
       asignadosFilter: false,
       vacacionesFilter: null,
@@ -49448,9 +49462,11 @@ __webpack_require__.r(__webpack_exports__);
     loadData: function loadData() {
       var _this7 = this;
 
+      this.onloading = true;
       var config = {
         params: {
-          page: this.page
+          page: this.page,
+          perPage: this.perPage
         }
       };
 
@@ -49475,8 +49491,10 @@ __webpack_require__.r(__webpack_exports__);
           var data = _ref3.data;
           _this7.items = data.data.data;
           resolve();
+          _this7.onloading = false;
         })["catch"](function (error) {
           reject();
+          _this7.onloading = false;
         });
       });
     }
@@ -49485,6 +49503,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadData();
   },
   watch: {
+    perPage: function perPage(newVal) {
+      this.loadData();
+    },
     search: function search(newVal) {
       this.loadData();
     },
@@ -102983,6 +103004,42 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.perPage,
+              expression: "perPage"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.perPage = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { domProps: { value: 15 } }, [_vm._v("15")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 50 } }, [_vm._v("50")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 150 } }, [_vm._v("150")])
+        ]
+      ),
+      _vm._v(" "),
       _c("paginate", {
         on: {
           change: function($event) {
@@ -103584,7 +103641,12 @@ var render = function() {
     [
       _c("data-table", {
         ref: "datatable",
-        attrs: { select: true, columns: _vm.columns, items: _vm.items },
+        attrs: {
+          select: true,
+          columns: _vm.columns,
+          items: _vm.items,
+          inload: _vm.onloading
+        },
         scopedSlots: _vm._u([
           {
             key: "top-options",
@@ -103876,6 +103938,42 @@ var render = function() {
           }
         ])
       }),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.perPage,
+              expression: "perPage"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.perPage = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { domProps: { value: 15 } }, [_vm._v("15")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 50 } }, [_vm._v("50")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 150 } }, [_vm._v("150")])
+        ]
+      ),
       _vm._v(" "),
       _c("paginate", {
         on: {

@@ -44,6 +44,11 @@
                 </button>
             </template>
         </data-table>
+        <select v-model="perPage">
+            <option :value="15">15</option>
+            <option :value="50">50</option>
+            <option :value="150">150</option>
+        </select>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
             v-if="newAsesorObject != null"
@@ -127,6 +132,7 @@ export default {
     },
     data() {
         return {
+            perPage:115,
             asesorEdit:null,
             equipoEditInfo: null,
             newAsesorObject: null,

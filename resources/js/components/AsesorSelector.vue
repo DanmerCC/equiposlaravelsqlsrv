@@ -33,7 +33,7 @@ export default {
             loading(true);
             this.asesorService.list(1, 100, search).then(data => {
                 this.options = data.data.map(z => {
-                    z["label"] = z.dni + " " + z.nombres;
+                    z["label"] = z.dni + " " + z.nombres + " " + z.apellido_paterno+ " ...";
                     return z;
                 });
                 loading(false);
@@ -49,7 +49,7 @@ export default {
         if (this.value !=null){
 
             let asesorvalue = {
-                label: this.value.dni + " " + this.value.nombres
+                label: this.value.dni + " " + this.value.full_name
             };
             this.int_asesor = asesorvalue;
         }

@@ -5,6 +5,7 @@
             :select="true"
             :columns="columns"
             :items="items"
+            :inload="onloading"
         >
             <template #top-options>
                 <button class="btn btn-primary" @click="openNewModal()">
@@ -97,6 +98,11 @@
                 <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
             </template>
         </data-table>
+        <select v-model="perPage">
+            <option :value="15">15</option>
+            <option :value="50">50</option>
+            <option :value="150">150</option>
+        </select>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
             v-if="newEquipoOBject != null"
@@ -212,6 +218,8 @@ export default {
     },
     data() {
         return {
+            onloading:false,
+            perPage:15,
             equipoDataEdit:null,
             asignadosFilter: false,
             vacacionesFilter: null,
@@ -425,9 +433,11 @@ export default {
             this.newEquipoOBject = {};
         },
         loadData() {
+            this.onloading = true
             let config = {
                 params: {
-                    page: this.page
+                    page: this.page,
+                    perPage: this.perPage
                 }
             };
             if (this.asignadosFilter) {
@@ -449,9 +459,11 @@ export default {
                     .then(({ data }) => {
                         this.items = data.data.data;
                         resolve();
+                        this.onloading = false
                     })
                     .catch(error => {
                         reject();
+                        this.onloading = false
                     });
             });
         }
@@ -460,6 +472,9 @@ export default {
         this.loadData();
     },
     watch: {
+        perPage(newVal) {
+            this.loadData();
+        },
         search(newVal) {
             this.loadData();
         },
