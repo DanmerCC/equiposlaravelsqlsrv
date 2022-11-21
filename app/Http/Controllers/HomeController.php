@@ -26,6 +26,7 @@ class HomeController extends Controller
         //dd($resumegrups);
 
         $noAsign = Equipo::whereNull('asesor_id')->count();
+        $disponibles = Equipo::whereNull('asesor_id')->whereEstado('OPERATIVO')->count();
         $asign = Equipo::whereNotNull('asesor_id')->count();
         $malogrados = Equipo::whereEstado('MALOGRADO')->count();
         $total = Equipo::count();
@@ -46,6 +47,7 @@ class HomeController extends Controller
             'vacaciones' => $vacaciones,
             'laborando' => $laborando,
             'malogrados' => $malogrados,
+            'disponibles' => $disponibles,
         ]);
     }
     public function equipos()

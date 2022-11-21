@@ -49,7 +49,7 @@
                 <div @click="$refs.equipostable.disponibles()"  class="card bg-primary text-white mb-4">
                     <div class="card-body"> Disponibles</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>{{ $noAsign }} Laptops<sup style="font-size: 20px"></sup></h3>
+                        <h3>{{ $disponibles }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
                                                                                                                                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
