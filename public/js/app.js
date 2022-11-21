@@ -49254,6 +49254,10 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      if (this.asesorEditInfo.changed == null) {
+        return false;
+      }
+
       return this.asesorEditInfo.original.id == this.asesorEditInfo.changed.id;
     },
     supervisorEditInfoDiferent: function supervisorEditInfoDiferent() {
@@ -49430,7 +49434,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.asesorEditInfo.row.id, {
-        asesor_id: this.asesorEditInfo.changed.id
+        asesor_id: this.asesorEditInfo.changed == null ? null : this.asesorEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
         _this5.asesorEditInfo = null;

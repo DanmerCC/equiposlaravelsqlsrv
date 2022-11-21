@@ -207,7 +207,11 @@ export default {
             if (this.asesorEditInfo == null) {
                 return false;
             }
+
             if (this.asesorEditInfo.original == null) {
+                return false;
+            }
+            if (this.asesorEditInfo.changed == null) {
                 return false;
             }
             return (
@@ -407,7 +411,7 @@ export default {
         updateAsesor() {
             axios
                 .put("/api/equipos/" + this.asesorEditInfo.row.id, {
-                    asesor_id: this.asesorEditInfo.changed.id
+                    asesor_id:  this.asesorEditInfo.changed == null?null: this.asesorEditInfo.changed.id
                 })
                 .then(({ data }) => {
                     this.asesorEditInfo = null;
