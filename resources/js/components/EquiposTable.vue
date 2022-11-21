@@ -110,6 +110,11 @@
             <option :value="150">150</option>
         </select>
         <paginate v-model="page" @change="changePage($event)"></paginate>
+        <div class="row">
+            <div class="col-12">
+                Mostrando {{ items.length }} de  {{ total}}
+            </div>
+        </div>
         <modal-component
             v-if="newEquipoOBject != null"
             @close="newEquipoOBject = null"
@@ -224,6 +229,7 @@ export default {
     },
     data() {
         return {
+            total:null,
             malogradosFilter:false,
             libresFilter:false,
             onloading:false,
@@ -479,6 +485,7 @@ export default {
                     .get("/api/equipos", config)
                     .then(({ data }) => {
                         this.items = data.data.data;
+                        this.total = data.data.total;
                         resolve();
                         this.onloading = false
                         this.$refs.hiddenref.focus();

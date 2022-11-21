@@ -49224,6 +49224,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -49264,6 +49269,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      total: null,
       malogradosFilter: false,
       libresFilter: false,
       onloading: false,
@@ -49511,6 +49517,7 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/equipos", config).then(function (_ref3) {
           var data = _ref3.data;
           _this7.items = data.data.data;
+          _this7.total = data.data.total;
           resolve();
           _this7.onloading = false;
 
@@ -104050,6 +104057,18 @@ var render = function() {
           expression: "page"
         }
       }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _vm._v(
+            "\n            Mostrando " +
+              _vm._s(_vm.items.length) +
+              " de  " +
+              _vm._s(_vm.total) +
+              "\n        "
+          )
+        ])
+      ]),
       _vm._v(" "),
       _vm.newEquipoOBject != null
         ? _c("modal-component", {
