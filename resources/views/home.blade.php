@@ -45,9 +45,9 @@
         </ol>
         <div class="row">
 
-            <div class="col-xl-3 col-md-6">
-                <div @click="$refs.equipostable.libres()"  class="card bg-primary text-white mb-4">
-                    <div class="card-body"> Libres</div>
+            <div class="col-xl-3 col-md-6" @click="$refs.equipostable.disponibles()">
+                <div @click="$refs.equipostable.disponibles()"  class="card bg-primary text-white mb-4">
+                    <div class="card-body"> Disponibles</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $noAsign }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
@@ -58,7 +58,7 @@
 
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-danger text-white mb-4">
-                    <div @click="$refs.equipostable.malogrados()"  class="card-body"> Malogrados</div>
+                    <div @click="$refs.equipostable.malogrados(false)"  class="card-body"> Malogrados</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $malogrados }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
@@ -87,7 +87,7 @@
             </div>
 
             <div class="col-xl-3 col-md-6">
-                <div @click="$refs.equipostable.toggleVacacionesFilter(true)"class="card bg-primary text-white mb-4">
+                <div @click="$refs.equipostable.toggleVacacionesFilter(true)" class="card bg-primary text-white mb-4">
                     <div class="card-body">Vacaciones:</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $vacaciones }} Laptops<sup style="font-size: 20px"></sup></h3>

@@ -49230,6 +49230,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -49275,6 +49278,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       total: null,
+      disponibleFilter: true,
       malogradosFilter: false,
       libresFilter: false,
       onloading: false,
@@ -49349,6 +49353,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    disponibles: function disponibles() {
+      this.disponibleFilter = true;
+      this.$refs.datatable.$forceUpdate();
+    },
     updateEquipo: function updateEquipo() {
       var _this = this;
 
@@ -49386,7 +49394,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     malogrados: function malogrados() {
-      this.malogradosFilter = true;
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      console.log("malogrados:" + value);
+      this.malogradosFilter = value;
+      this.$refs.datatable.$forceUpdate();
+    },
+    asigandos: function asigandos() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this.asignadosFilter = value;
       this.$refs.datatable.$forceUpdate();
     },
     libres: function libres() {
@@ -49506,6 +49521,10 @@ __webpack_require__.r(__webpack_exports__);
         config.params["malogrados"] = 1;
       }
 
+      if (this.disponibleFilter) {
+        config.params["disponibles"] = 1;
+      }
+
       if (this.vacacionesFilter != null) {
         config.params["vacaciones_filter"] = this.vacacionesFilter;
       }
@@ -49539,6 +49558,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     malogradosFilter: function malogradosFilter(val) {
+      this.loadData();
+    },
+    disponibleFilter: function disponibleFilter(val) {
       this.loadData();
     },
     libresFilter: function libresFilter(val) {
@@ -103788,6 +103810,21 @@ var render = function() {
                         }
                       },
                       [_vm._v("\n                Malogrados\n            ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.disponibleFilter
+                  ? _c(
+                      "Chip",
+                      {
+                        on: {
+                          close: function($event) {
+                            _vm.disponibleFilter = false
+                            _vm.$refs.datatable.$forceUpdate()
+                          }
+                        }
+                      },
+                      [_vm._v("\n                Disponibles\n            ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),

@@ -22,6 +22,10 @@ class EquipoController extends Controller
             $queryBase->whereEstado('MALOGRADO');
         }
 
+        if($request->has('disponibles')) {
+            $queryBase->whereNull('asesor_id')->whereEstado('OPERATIVO');
+        }
+
         if ($request->has('vacaciones_filter')) {
             $vacaciones_filter = $request->get('vacaciones_filter') == "true";
             if ($vacaciones_filter) {

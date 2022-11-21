@@ -39,6 +39,9 @@
                 <Chip v-if="malogradosFilter" @close="malogradosFilter= false;$refs.datatable.$forceUpdate();">
                     Malogrados
                 </Chip>
+                <Chip v-if="disponibleFilter" @close="disponibleFilter= false;$refs.datatable.$forceUpdate();">
+                    Disponibles
+                </Chip>
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar equipo"
@@ -235,6 +238,7 @@ export default {
     data() {
         return {
             total:null,
+            disponibleFilter:true,
             malogradosFilter:false,
             libresFilter:false,
             onloading:false,
@@ -327,6 +331,10 @@ export default {
         };
     },
     methods: {
+        disponibles(){
+            this.disponibleFilter = true
+            this.$refs.datatable.$forceUpdate();
+        },
         updateEquipo(){
             axios
                 .put(`/api/equipos/${this.equipoDataEdit.original.id}`, this.equipoDataEdit.changes)
@@ -363,8 +371,13 @@ export default {
                     console.error(err);
                 });
         },
-        malogrados(){
-            this.malogradosFilter = true
+        malogrados(value=true ){
+            console.log("malogrados:"+value);
+            this.malogradosFilter = value
+            this.$refs.datatable.$forceUpdate();
+        },
+        asigandos(value =false){
+            this.asignadosFilter = value;
             this.$refs.datatable.$forceUpdate();
         },
         libres(){
@@ -475,6 +488,9 @@ export default {
             if (this.malogradosFilter) {
                 config.params["malogrados"] = 1;
             }
+            if (this.disponibleFilter) {
+                config.params["disponibles"] = 1;
+            }
             if (this.vacacionesFilter != null) {
                 config.params["vacaciones_filter"] = this.vacacionesFilter;
             }
@@ -507,6 +523,9 @@ export default {
     },
     watch: {
         malogradosFilter(val){
+            this.loadData();
+        },
+        disponibleFilter(val){
             this.loadData();
         },
         libresFilter(val){
