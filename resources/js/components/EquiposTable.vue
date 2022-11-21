@@ -238,7 +238,7 @@ export default {
     data() {
         return {
             total:null,
-            disponibleFilter:true,
+            disponibleFilter:false,
             malogradosFilter:false,
             libresFilter:false,
             onloading:false,
