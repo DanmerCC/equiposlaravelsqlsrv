@@ -93,7 +93,7 @@
 
                     {{ item.nombres }}
                 </button>
-                <button v-else class="btn btn-sm" @click="editAsesor(row)">
+                <button v-else class="btn btn-sm" @click="editSupervisor(row)">
                     <span >
                         Sin Asignar
                     </span>

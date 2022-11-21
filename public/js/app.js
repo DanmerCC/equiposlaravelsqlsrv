@@ -103960,7 +103960,7 @@ var render = function() {
                         staticClass: "btn btn-sm",
                         on: {
                           click: function($event) {
-                            return _vm.editAsesor(row)
+                            return _vm.editSupervisor(row)
                           }
                         }
                       },
