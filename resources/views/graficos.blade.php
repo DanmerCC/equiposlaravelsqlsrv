@@ -25,11 +25,16 @@
                             $datachart = $resumegrups
                                 ->map(function ($item) {
                                     //dd($item);
-                                    return [$item->supervisor->nombres => $item->total];
+                                    return [$item->supervisor->nombres => [
+                                        "value"=>$item->total,
+                                        "photo_url"=>$item->supervisor->photo_url
+                                        ]
+                                    ];
                                 })
                                 ->reduce(function ($before, $current) {
                                     return array_merge($before, $current);
                                 }, []);
+                            //dd($datachart);
                         @endphp
                         <chart :data='{{ json_encode($datachart) }}'></chart>
                         <Bars :horizontal="true"

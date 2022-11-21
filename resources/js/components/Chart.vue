@@ -30,7 +30,7 @@ export default {
         let data = [];
 
         Object.keys(this.data).forEach(key => {
-            let obj = { category: key, value1: this.data[key],bulletSettings: { src: "/profile.png" } };
+            let obj = { category: key, value1: this.data[key].value,bulletSettings: { src: this.data[key].photo_url} };
             data.push(obj);
         });
 

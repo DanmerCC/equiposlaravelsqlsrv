@@ -20,7 +20,8 @@ class Asesor extends Model
     ];
 
     protected $appends = [
-        'full_name'
+        'full_name',
+        'photo_url',
     ];
 
     protected $with = [
@@ -35,6 +36,14 @@ class Asesor extends Model
     public function equipo(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Asesor::class, 'id', 'equipo_id');
+    }
+
+    public function getPhotoUrlAttribute(){
+
+        if(file_exists(public_path("/images/".$this->dni.".png"))){
+            return "/images/".$this->dni.".png";
+        }
+        return "/profile.png";
     }
 
     public function getFullNameAttribute(){
