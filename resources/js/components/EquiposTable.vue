@@ -105,6 +105,7 @@
             </template>
         </data-table>
         <select v-model="perPage">
+            <option :value="10">10</option>
             <option :value="15">15</option>
             <option :value="50">50</option>
             <option :value="150">150</option>

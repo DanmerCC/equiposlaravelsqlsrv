@@ -49229,6 +49229,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -104035,6 +104036,8 @@ var render = function() {
           }
         },
         [
+          _c("option", { domProps: { value: 10 } }, [_vm._v("10")]),
+          _vm._v(" "),
           _c("option", { domProps: { value: 15 } }, [_vm._v("15")]),
           _vm._v(" "),
           _c("option", { domProps: { value: 50 } }, [_vm._v("50")]),
