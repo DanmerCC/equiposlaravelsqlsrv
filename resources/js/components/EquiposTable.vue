@@ -1,5 +1,6 @@
 <template>
     <span>
+        <input ref="hiddenref" type="text" hidden/>
         <data-table
             ref="datatable"
             :select="true"
@@ -34,6 +35,9 @@
                 </Chip>
                 <Chip v-if="libresFilter" @close="libresFilter= false;$refs.datatable.$forceUpdate();">
                     Libres
+                </Chip>
+                <Chip v-if="malogradosFilter" @close="malogradosFilter= false;$refs.datatable.$forceUpdate();">
+                    Malogrados
                 </Chip>
                 <div class="float-right border border-primary">
                     <div
@@ -220,6 +224,7 @@ export default {
     },
     data() {
         return {
+            malogradosFilter:false,
             libresFilter:false,
             onloading:false,
             perPage:15,
@@ -347,6 +352,10 @@ export default {
                     console.error(err);
                 });
         },
+        malogrados(){
+            this.malogradosFilter = true
+            this.$refs.datatable.$forceUpdate();
+        },
         libres(){
             this.libresFilter = true
             //console.log(this.libresFilter)
@@ -382,6 +391,7 @@ export default {
             this.loadData()
                 .then(result => {
                     //this.page = $event;
+
                 })
                 .catch(() => {
                     this.page = lastPage;
@@ -451,6 +461,9 @@ export default {
             if (this.libresFilter) {
                 config.params["noasigned"] = 1;
             }
+            if (this.malogradosFilter) {
+                config.params["malogrados"] = 1;
+            }
             if (this.vacacionesFilter != null) {
                 config.params["vacaciones_filter"] = this.vacacionesFilter;
             }
@@ -468,6 +481,7 @@ export default {
                         this.items = data.data.data;
                         resolve();
                         this.onloading = false
+                        this.$refs.hiddenref.focus();
                     })
                     .catch(error => {
                         reject();
@@ -480,6 +494,9 @@ export default {
         this.loadData();
     },
     watch: {
+        malogradosFilter(val){
+            this.loadData();
+        },
         libresFilter(val){
             this.loadData();
         },

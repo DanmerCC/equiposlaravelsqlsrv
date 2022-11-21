@@ -25,7 +25,8 @@ class ListEquiposRequest extends FormRequest
     {
         return [
             //'vacaciones_filter' => 'boolean',
-            'noasigned' => 'boolean'
+            'noasigned' => 'boolean',
+            'malogrados' => 'boolean',
         ];
     }
 }

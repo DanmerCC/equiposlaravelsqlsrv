@@ -18,6 +18,9 @@ class EquipoController extends Controller
         if ($request->has('noasigned')) {
             $queryBase->whereNull('asesor_id');
         }
+        if ($request->has('malogrados')) {
+            $queryBase->whereEstado('MALOGRADO');
+        }
 
         if ($request->has('vacaciones_filter')) {
             $vacaciones_filter = $request->get('vacaciones_filter') == "true";

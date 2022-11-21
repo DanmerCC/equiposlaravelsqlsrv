@@ -49220,6 +49220,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -49260,6 +49264,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      malogradosFilter: false,
       libresFilter: false,
       onloading: false,
       perPage: 15,
@@ -49368,6 +49373,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.error(err);
       });
+    },
+    malogrados: function malogrados() {
+      this.malogradosFilter = true;
+      this.$refs.datatable.$forceUpdate();
     },
     libres: function libres() {
       this.libresFilter = true; //console.log(this.libresFilter)
@@ -49482,6 +49491,10 @@ __webpack_require__.r(__webpack_exports__);
         config.params["noasigned"] = 1;
       }
 
+      if (this.malogradosFilter) {
+        config.params["malogrados"] = 1;
+      }
+
       if (this.vacacionesFilter != null) {
         config.params["vacaciones_filter"] = this.vacacionesFilter;
       }
@@ -49500,6 +49513,8 @@ __webpack_require__.r(__webpack_exports__);
           _this7.items = data.data.data;
           resolve();
           _this7.onloading = false;
+
+          _this7.$refs.hiddenref.focus();
         })["catch"](function (error) {
           reject();
           _this7.onloading = false;
@@ -49511,6 +49526,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadData();
   },
   watch: {
+    malogradosFilter: function malogradosFilter(val) {
+      this.loadData();
+    },
     libresFilter: function libresFilter(val) {
       this.loadData();
     },
@@ -103650,6 +103668,8 @@ var render = function() {
   return _c(
     "span",
     [
+      _c("input", { ref: "hiddenref", attrs: { type: "text", hidden: "" } }),
+      _vm._v(" "),
       _c("data-table", {
         ref: "datatable",
         attrs: {
@@ -103741,6 +103761,21 @@ var render = function() {
                         }
                       },
                       [_vm._v("\n                Libres\n            ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.malogradosFilter
+                  ? _c(
+                      "Chip",
+                      {
+                        on: {
+                          close: function($event) {
+                            _vm.malogradosFilter = false
+                            _vm.$refs.datatable.$forceUpdate()
+                          }
+                        }
+                      },
+                      [_vm._v("\n                Malogrados\n            ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
