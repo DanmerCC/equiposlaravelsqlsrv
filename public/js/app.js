@@ -49218,6 +49218,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -49258,6 +49260,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      libresFilter: false,
       onloading: false,
       perPage: 15,
       equipoDataEdit: null,
@@ -49366,6 +49369,11 @@ __webpack_require__.r(__webpack_exports__);
         console.error(err);
       });
     },
+    libres: function libres() {
+      this.libresFilter = true; //console.log(this.libresFilter)
+
+      this.$refs.datatable.$forceUpdate();
+    },
     toggleAsignacionFilter: function toggleAsignacionFilter() {
       this.asignadosFilter = !this.asignadosFilter;
       this.$refs.datatable.$forceUpdate();
@@ -49470,8 +49478,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
 
-      if (this.asignadosFilter) {
-        config.params["noasigned"] = true;
+      if (this.libresFilter) {
+        config.params["noasigned"] = 1;
       }
 
       if (this.vacacionesFilter != null) {
@@ -49503,6 +49511,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadData();
   },
   watch: {
+    libresFilter: function libresFilter(val) {
+      this.loadData();
+    },
     perPage: function perPage(newVal) {
       this.loadData();
     },
@@ -103715,6 +103726,21 @@ var render = function() {
                             "\n            "
                         )
                       ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.libresFilter
+                  ? _c(
+                      "Chip",
+                      {
+                        on: {
+                          close: function($event) {
+                            _vm.libresFilter = false
+                            _vm.$refs.datatable.$forceUpdate()
+                          }
+                        }
+                      },
+                      [_vm._v("\n                Libres\n            ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),

@@ -32,7 +32,9 @@
                 >
                     {{ !vacacionesFilter ? "Laborando" : "Vacaciones" }}
                 </Chip>
-
+                <Chip v-if="libresFilter" @close="libresFilter= false;$refs.datatable.$forceUpdate();">
+                    Libres
+                </Chip>
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar equipo"
@@ -218,6 +220,7 @@ export default {
     },
     data() {
         return {
+            libresFilter:false,
             onloading:false,
             perPage:15,
             equipoDataEdit:null,
@@ -344,6 +347,11 @@ export default {
                     console.error(err);
                 });
         },
+        libres(){
+            this.libresFilter = true
+            //console.log(this.libresFilter)
+            this.$refs.datatable.$forceUpdate();
+        },
         toggleAsignacionFilter() {
             this.asignadosFilter = !this.asignadosFilter;
             this.$refs.datatable.$forceUpdate();
@@ -440,8 +448,8 @@ export default {
                     perPage: this.perPage
                 }
             };
-            if (this.asignadosFilter) {
-                config.params["noasigned"] = true;
+            if (this.libresFilter) {
+                config.params["noasigned"] = 1;
             }
             if (this.vacacionesFilter != null) {
                 config.params["vacaciones_filter"] = this.vacacionesFilter;
@@ -472,12 +480,16 @@ export default {
         this.loadData();
     },
     watch: {
+        libresFilter(val){
+            this.loadData();
+        },
         perPage(newVal) {
             this.loadData();
         },
         search(newVal) {
             this.loadData();
         },
+
         asignadosFilter(newVal) {
             this.loadData();
         },
