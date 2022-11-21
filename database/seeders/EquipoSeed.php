@@ -32,7 +32,7 @@ class EquipoSeed extends Seeder
         $observacion = 8;
         $proveedor = 9;
         $fecha_facturacion = 10;
-        $estado_equipo = 16;
+        $memoria = 16;
         $tipo_disco = 19;
         $procesador = 14;
         $generacion = 11;
@@ -89,6 +89,7 @@ class EquipoSeed extends Seeder
                         "observacion" => $data[$observacion],
                         "procesador" => $data[$procesador],
                         "estado" => $estado,
+                        "memoria" => $data[$memoria],
                         "tipo_disco" => $data[$tipo_disco],
                         "precio" => str_replace(",","",str_replace("S/ ","",$data[$precio])),
                         "asesor_id" => $asesor == null ? null : $asesor->id,
