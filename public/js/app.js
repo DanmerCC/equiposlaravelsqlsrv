@@ -48395,10 +48395,12 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Apellido materno",
         value: "apellido_materno"
-      }, {
-        name: "Equipo",
-        value: "equipo"
-      }, {
+      },
+      /*{
+          name: "Equipo",
+          value: "equipo"
+      },*/
+      {
         name: "Estado",
         value: "estado"
       }, {
