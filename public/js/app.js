@@ -48165,6 +48165,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -48175,6 +48176,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     value: {
       type: Object,
       "default": null
+    },
+    placeholder: {
+      type: String,
+      "default": 'seleccion de asesores'
     }
   },
   data: function data() {
@@ -49235,6 +49240,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49426,11 +49442,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs.datatable.$forceUpdate();
     },
-    toggleGruposFilter: function toggleGruposFilter(value) {
-      if (typeof this.grupoFilters[value] == "undefined") {
-        this.grupoFilters[value] = value;
+    toggleGruposFilter: function toggleGruposFilter(index, value) {
+      if (typeof this.grupoFilters[index] == "undefined") {
+        this.grupoFilters[index] = value;
       } else {
-        delete this.grupoFilters[value];
+        delete this.grupoFilters[index];
       }
 
       this.$refs.datatable.$forceUpdate();
@@ -102904,7 +102920,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-select", {
-    attrs: { options: _vm.options },
+    attrs: { options: _vm.options, placeholder: _vm.placeholder },
     on: { search: _vm.search },
     model: {
       value: _vm.int_asesor,
@@ -103722,18 +103738,39 @@ var render = function() {
             key: "top-options",
             fn: function() {
               return [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        return _vm.openNewModal()
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Agregar\n            ")]
-                ),
+                _c("div", { staticClass: "container" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.openNewModal()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Agregar\n                        "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-4" },
+                      [
+                        _c("AsesorSelector", {
+                          attrs: { placeholder: "Equipos" }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm.asignadosFilter
                   ? _c(

@@ -9,9 +9,20 @@
             :inload="onloading"
         >
             <template #top-options>
-                <button class="btn btn-primary" @click="openNewModal()">
-                    Agregar
-                </button>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn btn-primary" @click="openNewModal()">
+                                Agregar
+                            </button>
+                        </div>
+                        <div class="col-4">
+
+                            <AsesorSelector placeholder="Equipos"></AsesorSelector>
+                        </div>
+                    </div>
+                </div>
                 <Chip v-if="asignadosFilter" @close="asignadosFilter = false"
                     >Asignados
                 </Chip>
@@ -399,11 +410,11 @@ export default {
             }
             this.$refs.datatable.$forceUpdate();
         },
-        toggleGruposFilter(value) {
-            if (typeof this.grupoFilters[value] == "undefined") {
-                this.grupoFilters[value] = value;
+        toggleGruposFilter(index,value) {
+            if (typeof this.grupoFilters[index] == "undefined") {
+                this.grupoFilters[index] = value;
             } else {
-                delete this.grupoFilters[value];
+                delete this.grupoFilters[index];
             }
             this.$refs.datatable.$forceUpdate();
             this.loadData();

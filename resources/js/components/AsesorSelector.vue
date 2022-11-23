@@ -3,6 +3,7 @@
         v-model="int_asesor"
         :options="options"
         @search="search"
+        :placeholder="placeholder"
     ></v-select>
 </template>
 
@@ -17,6 +18,10 @@ export default {
         value: {
             type: Object,
             default: null
+        },
+        placeholder:{
+            type:String,
+            default:'seleccion de asesores'
         }
     },
     data() {
