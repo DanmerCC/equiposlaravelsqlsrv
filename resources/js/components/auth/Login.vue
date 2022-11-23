@@ -3,6 +3,9 @@
         <div class="register-box">
             <div class="card">
                 <div class="card-body register-card-body">
+
+                        <img class="" width="100%"  src="/logo.png" alt="" srcset="">
+
                     <p class="login-box-msg">Bienvenido de nuevo</p>
 
                     <errors

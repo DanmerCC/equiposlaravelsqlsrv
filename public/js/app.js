@@ -49889,6 +49889,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -104622,6 +104625,10 @@ var render = function() {
           "div",
           { staticClass: "card-body register-card-body" },
           [
+            _c("img", {
+              attrs: { width: "100%", src: "/logo.png", alt: "", srcset: "" }
+            }),
+            _vm._v(" "),
             _c("p", { staticClass: "login-box-msg" }, [
               _vm._v("Bienvenido de nuevo")
             ]),
