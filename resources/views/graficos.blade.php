@@ -48,11 +48,34 @@
                         @php
                             $labelResumentAntiguedad = $resumentAntiguedad->pluck('years')->map(function($item){
                                 return $item." años";
-                            })
+                            });
+
+                            $ranges = [
+                                "0 a 2 años" => [0,1,2],
+                                "2 años" => [2],
+                                "3 años" => [3]
+                            ];
+
+                            $totales = [];
+
+                            foreach ($ranges as $key => $value) {
+                                $totales[$key] = $resumentAntiguedad->filter(function($resume)use(&$totales,$value){
+                                    return in_array($resume->years,$value);
+                                })->reduce(function($current,$resume){
+                                    return $current + $resume->total;
+                                },0);
+                            }
+
+                            $totales["4 a mas"] = $resumentAntiguedad->filter(function($resume)use(&$totales,$value){
+                                return $resume->years>=4;
+                            })->reduce(function($current,$resume){
+                                return $current + $resume->total;
+                            },0);
+
                         @endphp
                         <Bars :horizontal="true"
-                            :groups="{{ json_encode($labelResumentAntiguedad->toArray()) }}"
-                            :data="{{ json_encode($resumentAntiguedad->pluck('total')->toArray()) }}">
+                            :groups="{{ json_encode(array_keys($totales)) }}"
+                            :data="{{ json_encode(array_values($totales)) }}">
                         </Bars>
                     </div>
                 </div>
