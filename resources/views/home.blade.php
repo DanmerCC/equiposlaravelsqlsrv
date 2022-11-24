@@ -16,16 +16,6 @@
             <li class="breadcrumb-item active">Contador de equipos asignados en total</li>
         </ol>
         <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div @click="$refs.equipostable.toggleAsignacionFilter()" class="card bg-success text-white mb-4">
-                    <div class="card-body">Asignadas:</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h3>{{ $asign }} Laptops<sup style="font-size: 20px"></sup></h3>
-                        <!--<a class="small text-white stretched-link" href="Tabla_Asignados.php">></a>
-                                                                                                                                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    </div>
-                </div>
-            </div>
 
             <div class="col-xl-3 col-md-6">
                 <div @click="$refs.equipostable.toggleAsignacionFilter()" class="card bg-primary text-white mb-4">
@@ -34,6 +24,17 @@
                         <h3>{{ $total }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_Total.php">></a>
                                                                                                                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div @click="$refs.equipostable.toggleAsignacionFilter()" class="card bg-success text-white mb-4">
+                    <div class="card-body">Asignadas:</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <h3>{{ $asign }} Laptops<sup style="font-size: 20px"></sup></h3>
+                        <!--<a class="small text-white stretched-link" href="Tabla_Asignados.php">></a>
+                                                                                                                                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
                     </div>
                 </div>
             </div>
