@@ -22,7 +22,7 @@ class CreateEquiposTable extends Migration
             $table->string('modelo');
             $table->string('color');
             $table->string('serie');
-            $table->string('grupo');
+
             $table->date('fecha_compra');
             $table->string('observacion')->nullable();
             $table->enum('estado', ['OPERATIVO', 'MALOGRADO']);

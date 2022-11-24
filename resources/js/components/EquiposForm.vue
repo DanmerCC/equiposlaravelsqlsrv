@@ -92,7 +92,6 @@
 <script>
 /**
  *  'asesor_id',
-    'grupo',
     'marca',
     'modelo',
     'color',

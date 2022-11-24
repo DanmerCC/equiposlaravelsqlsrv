@@ -64,10 +64,6 @@ class HomeController extends Controller
     }
     public function graficos()
     {
-        $resumegrupsFromEquipos = DB::table('equipos')
-            ->select('grupo', DB::raw('count(*) as total'))
-            ->join('asesors', 'asesor_id', '=', 'asesors.id')
-            ->groupBy('grupo')->get();
         DB::enableQueryLog();
         $resumegrups = Equipo::select('supervisor_id', DB::raw('count(*) as total'))
         ->groupBy('supervisor_id')

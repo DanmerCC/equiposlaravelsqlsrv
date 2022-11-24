@@ -48941,7 +48941,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  *  'asesor_id',
-    'grupo',
     'marca',
     'modelo',
     'color',
@@ -49273,15 +49272,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49339,7 +49329,6 @@ __webpack_require__.r(__webpack_exports__);
       equipoDataEdit: null,
       asignadosFilter: false,
       vacacionesFilter: null,
-      grupoFilters: {},
       asesorEditInfo: null,
       supervisorEditInfo: null,
       newEquipoOBject: null,
@@ -49488,16 +49477,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs.datatable.$forceUpdate();
     },
-    toggleGruposFilter: function toggleGruposFilter(index, value) {
-      if (typeof this.grupoFilters[index] == "undefined") {
-        this.grupoFilters[index] = value;
-      } else {
-        delete this.grupoFilters[index];
-      }
-
-      this.$refs.datatable.$forceUpdate();
-      this.loadData();
-    },
     changePage: function changePage($event) {
       var _this5 = this;
 
@@ -49593,10 +49572,6 @@ __webpack_require__.r(__webpack_exports__);
         config.params["vacaciones_filter"] = this.vacacionesFilter;
       }
 
-      if (Object.keys(this.grupoFilters).length > 0) {
-        config.params["grupo"] = Object.keys(this.grupoFilters);
-      }
-
       if (this.search != null && this.search != "") {
         config.params["search"] = this.search;
       }
@@ -49641,12 +49616,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     vacacionesFilter: function vacacionesFilter(newVal) {
       this.loadData();
-    },
-    grupoFilters: {
-      handler: function handler(newVal) {
-        this.loadData();
-      },
-      deep: true
     }
   }
 });
@@ -103874,22 +103843,6 @@ var render = function() {
                       [_vm._v("Asignados\n            ")]
                     )
                   : _vm._e(),
-                _vm._v(" "),
-                _vm._l(Object.keys(_vm.grupoFilters), function(grupo, index) {
-                  return _c(
-                    "Chip",
-                    {
-                      key: index,
-                      on: {
-                        close: function($event) {
-                          delete _vm.grupoFilters[grupo]
-                          _vm.$refs.datatable.$forceUpdate()
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(grupo) + "\n            ")]
-                  )
-                }),
                 _vm._v(" "),
                 _vm.vacacionesFilter != null
                   ? _c(

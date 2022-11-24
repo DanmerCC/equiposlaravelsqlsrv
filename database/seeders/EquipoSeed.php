@@ -80,7 +80,7 @@ class EquipoSeed extends Seeder
                     }
 
                     $asesornew = Equipo::create([
-                        //"grupo" => $data[$dni],
+
                         "marca" => $data[$marca],
                         "modelo" => $data[$modelo],
                         "color" => $data[$color],

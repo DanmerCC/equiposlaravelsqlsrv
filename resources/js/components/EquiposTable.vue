@@ -27,15 +27,6 @@
                     >Asignados
                 </Chip>
                 <Chip
-                    v-for="(grupo, index) in Object.keys(grupoFilters)"
-                    :key="index"
-                    @close="
-                        delete grupoFilters[grupo];
-                        $refs.datatable.$forceUpdate();
-                    "
-                    >{{ grupo }}
-                </Chip>
-                <Chip
                     v-if="vacacionesFilter != null"
                     @close="
                         vacacionesFilter = null;
@@ -264,7 +255,6 @@ export default {
             equipoDataEdit:null,
             asignadosFilter: false,
             vacacionesFilter: null,
-            grupoFilters: {},
             asesorEditInfo: null,
             supervisorEditInfo:null,
             newEquipoOBject: null,
@@ -429,15 +419,6 @@ export default {
             }
             this.$refs.datatable.$forceUpdate();
         },
-        toggleGruposFilter(index,value) {
-            if (typeof this.grupoFilters[index] == "undefined") {
-                this.grupoFilters[index] = value;
-            } else {
-                delete this.grupoFilters[index];
-            }
-            this.$refs.datatable.$forceUpdate();
-            this.loadData();
-        },
         changePage($event) {
             console.log($event);
             let lastPage = this.page;
@@ -524,9 +505,7 @@ export default {
             if (this.vacacionesFilter != null) {
                 config.params["vacaciones_filter"] = this.vacacionesFilter;
             }
-            if (Object.keys(this.grupoFilters).length > 0) {
-                config.params["grupo"] = Object.keys(this.grupoFilters);
-            }
+
             if (this.search != null && this.search != "") {
                 config.params["search"] = this.search;
             }
@@ -573,12 +552,6 @@ export default {
         },
         vacacionesFilter(newVal) {
             this.loadData();
-        },
-        grupoFilters: {
-            handler(newVal) {
-                this.loadData();
-            },
-            deep: true
         }
     }
 };

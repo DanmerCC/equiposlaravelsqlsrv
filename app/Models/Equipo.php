@@ -15,7 +15,6 @@ class Equipo extends Model
     protected $fillable = [
         'nombre_equipo',
         'asesor_id',
-        'grupo',
         'marca',
         'modelo',
         'color',
@@ -71,7 +70,6 @@ class Equipo extends Model
 
 
         $exactitud = [
-            //'grupo',
             'marca',
             'modelo',
             'color',
@@ -88,7 +86,6 @@ class Equipo extends Model
         }
 
         $fields = [
-            //'grupo',
             //'marca',
             //'modelo',
             //'color',

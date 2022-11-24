@@ -39,9 +39,6 @@ class EquipoController extends Controller
             }
         }
 
-        if ($request->has('grupo') && is_array($request->get('grupo'))) {
-            $queryBase->whereIn('grupo', $request->get('grupo'));
-        }
 
         if ($request->has('search') && $request->get('search') != '') {
             $queryBase->search($request->get('search'));
@@ -69,7 +66,6 @@ class EquipoController extends Controller
         $allowed = [
             'asesor_id',
             'supervisor_id',
-            'grupo',
             'marca',
             'modelo',
             'nombre_equipo',
