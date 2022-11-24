@@ -12,12 +12,20 @@ class AsesorController extends Controller
         $baseQuery = Asesor::with('equipo');
         if ($request->has('search')) {
 
+
+
             $states = ["LABORANDO","VACACIONES"];
             if(in_array($request->get('search'),$states)) {
-                $baseQuery->whereEstado($request->get('search'));
+                //dd("hola");
+                $baseQuery = $baseQuery->whereEstado($request->get('search'));
+            }else{
+
+                $baseQuery = $baseQuery->search($request->get('search'));
             }
 
-            return $this->sendResponse($baseQuery->search($request->get('search'))->paginate(), "Correctamente cargado");
+            $paginated = $baseQuery->paginate();
+
+            return $this->sendResponse($paginated, "Correctamente cargado");
         }
         return $this->sendResponse($baseQuery->paginate(), "Correctamente cargado");
     }
