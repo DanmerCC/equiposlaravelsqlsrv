@@ -66,12 +66,14 @@ class Equipo extends Model
         $query->orWhere('modelo', 'like', "%" . $string . "%");
         $query->orWhere('modelo', 'like', "%" . $string);
 
+        $query->orWhere('serie', '=', $string);
+
         $fields = [
             //'grupo',
             //'marca',
             //'modelo',
             //'color',
-            //'serie',
+            'serie',
             //'fecha_compra',
             //'observacion',
             //'procesador',

@@ -104115,7 +104115,7 @@ var render = function() {
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn",
+                        staticClass: "btn btn-sm",
                         on: {
                           click: function($event) {
                             return _vm.cambioEstado(row, "MALOGRADO")
@@ -104127,7 +104127,7 @@ var render = function() {
                   : _c(
                       "button",
                       {
-                        staticClass: "btn btn-danger",
+                        staticClass: "btn btn-sm btn-danger",
                         on: {
                           click: function($event) {
                             return _vm.eliminarEquipo(row, "OPERATIVO")
