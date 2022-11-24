@@ -1,5 +1,6 @@
 <template>
     <span>
+
         <data-table :select="true" :columns="columns" :items="items">
             <template #top-options>
                 <!--<button class="btn btn-primary" @click="openNewModal()">
