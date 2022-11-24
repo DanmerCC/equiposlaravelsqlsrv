@@ -17,7 +17,7 @@ class CreateEquiposTable extends Migration
             $table->id();
             $table->unsignedBigInteger('asesor_id')->nullable();
             $table->unsignedBigInteger('supervisor_id')->nullable();
-            $table->string('nombre_equipo');
+            $table->string('nombre_equipo')->nullable();
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
