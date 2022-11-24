@@ -78,7 +78,7 @@ class EquipoSeed extends Seeder
                         $disco_duro_medida = $regex_disco[0];
                         echo $disco_duro_medida;
                     }
-
+                    $price = str_replace(",","",str_replace("S/ ","",$data[$precio]));
                     $asesornew = Equipo::create([
 
                         "marca" => $data[$marca],
@@ -92,7 +92,7 @@ class EquipoSeed extends Seeder
                         "memoria" => $data[$memoria],
 
                         "tipo_disco" => $data[$tipo_disco],
-                        "precio" => str_replace(",","",str_replace("S/ ","",$data[$precio])),
+                        "precio" => is_numeric($price)?(double)$price:0,
                         "asesor_id" => $asesor == null ? null : $asesor->id,
                         "capacidad_disco_duro" => $disco_duro_medida,
                         "supervisor_id" => $supervisor == null ? null : $supervisor->id,
