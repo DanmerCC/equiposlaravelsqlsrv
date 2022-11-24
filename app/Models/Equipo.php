@@ -24,6 +24,7 @@ class Equipo extends Model
         'procesador',
         'memoria',
         'disco_duro',
+        'estado',
         'supervisor_id',
         'precio',
         'tipo_disco',

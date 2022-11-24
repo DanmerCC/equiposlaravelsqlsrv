@@ -74,6 +74,7 @@ class EquipoController extends Controller
             'modelo',
             'color',
             'serie',
+            'estado',
             'fecha_compra',
             'observacion',
             'procesador',

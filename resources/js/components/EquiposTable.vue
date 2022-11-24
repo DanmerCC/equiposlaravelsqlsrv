@@ -117,6 +117,10 @@
                 <button class="btn btn-info" @click="equipoEdit(row)">editar</button>
                 <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
             </template>
+            <template #estado="{item,row}">
+                <button v-if="item=='OPERATIVO'" class="btn" @click="cambioEstado(row,'MALOGRADO')">{{item}}</button>
+                <button v-else class="btn btn-danger" @click="eliminarEquipo(row,'OPERATIVO')">{{ item }}</button>
+            </template>
         </data-table>
         <select v-model="perPage">
             <option :value="10">10</option>
@@ -342,6 +346,18 @@ export default {
         };
     },
     methods: {
+        cambioEstado(equipo,state){
+            console.log(equipo)
+            if(!confirm("Esta seguro de cambiar a 'Malogrado'?"))return
+            axios
+                .put(`/api/equipos/${equipo.id}`, {estado:state})
+                .then(result => {
+                    this.loadData();
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        },
         disponibles(){
             this.disponibleFilter = true
             this.$refs.datatable.$forceUpdate();

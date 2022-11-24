@@ -49251,6 +49251,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -49371,17 +49375,30 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cambioEstado: function cambioEstado(equipo, state) {
+      var _this = this;
+
+      console.log(equipo);
+      if (!confirm("Esta seguro de cambiar a 'Malogrado'?")) return;
+      axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/".concat(equipo.id), {
+        estado: state
+      }).then(function (result) {
+        _this.loadData();
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
     disponibles: function disponibles() {
       this.disponibleFilter = true;
       this.$refs.datatable.$forceUpdate();
     },
     updateEquipo: function updateEquipo() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/".concat(this.equipoDataEdit.original.id), this.equipoDataEdit.changes).then(function (result) {
-        _this.loadData();
+        _this2.loadData();
 
-        _this.equipoDataEdit = null;
+        _this2.equipoDataEdit = null;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -49393,20 +49410,20 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     eliminarEquipo: function eliminarEquipo(equipo) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!confirm("Estas seguro de querer eliminar este equipo?")) return;
       axios__WEBPACK_IMPORTED_MODULE_4___default().delete('/api/equipos/' + equipo.id).then(function (result) {
-        _this2.loadData();
+        _this3.loadData();
       })["catch"](function (err) {});
     },
     crearEquipo: function crearEquipo() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/equipos", this.newEquipoOBject).then(function (result) {
-        _this3.loadData();
+        _this4.loadData();
 
-        _this3.newEquipoOBject = null;
+        _this4.newEquipoOBject = null;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -49453,38 +49470,38 @@ __webpack_require__.r(__webpack_exports__);
       this.loadData();
     },
     changePage: function changePage($event) {
-      var _this4 = this;
+      var _this5 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this4.page = lastPage;
+        _this5.page = lastPage;
       });
     },
     updateAsesor: function updateAsesor() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.asesorEditInfo.row.id, {
         asesor_id: this.asesorEditInfo.changed == null ? null : this.asesorEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this5.asesorEditInfo = null;
+        _this6.asesorEditInfo = null;
 
-        _this5.loadData();
+        _this6.loadData();
       });
     },
     updateSupervisor: function updateSupervisor() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.supervisorEditInfo.row.id, {
         supervisor_id: this.supervisorEditInfo.changed.id
       }).then(function (_ref2) {
         var data = _ref2.data;
-        _this6.supervisorEditInfo = null;
+        _this7.supervisorEditInfo = null;
 
-        _this6.loadData();
+        _this7.loadData();
       });
     },
     editAsesor: function editAsesor(equipo) {
@@ -49521,7 +49538,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newEquipoOBject = {};
     },
     loadData: function loadData() {
-      var _this7 = this;
+      var _this8 = this;
 
       this.onloading = true;
       var config = {
@@ -49558,15 +49575,15 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/equipos", config).then(function (_ref3) {
           var data = _ref3.data;
-          _this7.items = data.data.data;
-          _this7.total = data.data.total;
+          _this8.items = data.data.data;
+          _this8.total = data.data.total;
           resolve();
-          _this7.onloading = false;
+          _this8.onloading = false;
 
-          _this7.$refs.hiddenref.focus();
+          _this8.$refs.hiddenref.focus();
         })["catch"](function (error) {
           reject();
-          _this7.onloading = false;
+          _this8.onloading = false;
         });
       });
     }
@@ -104085,6 +104102,40 @@ var render = function() {
                   },
                   [_vm._v("eliminar")]
                 )
+              ]
+            }
+          },
+          {
+            key: "estado",
+            fn: function(ref) {
+              var item = ref.item
+              var row = ref.row
+              return [
+                item == "OPERATIVO"
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn",
+                        on: {
+                          click: function($event) {
+                            return _vm.cambioEstado(row, "MALOGRADO")
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(item))]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.eliminarEquipo(row, "OPERATIVO")
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(item))]
+                    )
               ]
             }
           }
