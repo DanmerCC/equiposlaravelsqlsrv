@@ -119,7 +119,7 @@
             </template>
             <template #estado="{item,row}">
                 <button v-if="item=='OPERATIVO'" class="btn btn-sm" @click="cambioEstado(row,'MALOGRADO')">{{item}}</button>
-                <button v-else class="btn btn-sm btn-danger" @click="eliminarEquipo(row,'OPERATIVO')">{{ item }}</button>
+                <button v-else class="btn btn-sm btn-danger" @click="cambioEstado(row,'OPERATIVO')">{{ item }}</button>
             </template>
         </data-table>
         <select v-model="perPage">

@@ -104130,7 +104130,7 @@ var render = function() {
                         staticClass: "btn btn-sm btn-danger",
                         on: {
                           click: function($event) {
-                            return _vm.eliminarEquipo(row, "OPERATIVO")
+                            return _vm.cambioEstado(row, "OPERATIVO")
                           }
                         }
                       },
