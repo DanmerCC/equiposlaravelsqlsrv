@@ -244,6 +244,9 @@ export default {
             if (this.supervisorEditInfo.original == null) {
                 return false;
             }
+            if (this.supervisorEditInfo.changed == null) {
+                return false;
+            }
             return (
                 this.supervisorEditInfo.original.id ==
                 this.supervisorEditInfo.changed.id
@@ -348,7 +351,7 @@ export default {
     methods: {
         cambioEstado(equipo,state){
             console.log(equipo)
-            if(!confirm("Esta seguro de cambiar a 'Malogrado'?"))return
+            if(state=='MALOGRADO' && !confirm("Esta seguro de cambiar a 'Malogrado'?"))return
             axios
                 .put(`/api/equipos/${equipo.id}`, {estado:state})
                 .then(result => {
@@ -461,7 +464,7 @@ export default {
         updateSupervisor() {
             axios
                 .put("/api/equipos/" + this.supervisorEditInfo.row.id, {
-                    supervisor_id: this.supervisorEditInfo.changed.id
+                    supervisor_id: this.supervisorEditInfo.changed == null ?null:this.supervisorEditInfo.changed.id
                 })
                 .then(({ data }) => {
                     this.supervisorEditInfo = null;

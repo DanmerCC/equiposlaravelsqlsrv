@@ -49294,6 +49294,10 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      if (this.supervisorEditInfo.changed == null) {
+        return false;
+      }
+
       return this.supervisorEditInfo.original.id == this.supervisorEditInfo.changed.id;
     }
   },
@@ -49379,7 +49383,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log(equipo);
-      if (!confirm("Esta seguro de cambiar a 'Malogrado'?")) return;
+      if (state == 'MALOGRADO' && !confirm("Esta seguro de cambiar a 'Malogrado'?")) return;
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/".concat(equipo.id), {
         estado: state
       }).then(function (result) {
@@ -49496,7 +49500,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this7 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/equipos/" + this.supervisorEditInfo.row.id, {
-        supervisor_id: this.supervisorEditInfo.changed.id
+        supervisor_id: this.supervisorEditInfo.changed == null ? null : this.supervisorEditInfo.changed.id
       }).then(function (_ref2) {
         var data = _ref2.data;
         _this7.supervisorEditInfo = null;
