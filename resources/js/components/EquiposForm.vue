@@ -118,7 +118,7 @@ export default {
                 { name: "color", label: "Color", value: null },
                 { name: "modelo", label: "Modelo", value: null },
                 { name: "marca", label: "Marca", value: null },
-                //{ name: "grupo", label: "Equipo", value: null },
+                { name: "nombre_equipo", label: "Nom Equipo", value: null },
                 { name: "procesador", label: "Procesador", value: null },
                 { name: "memoria", label: "Memoria", value: null }
             ],

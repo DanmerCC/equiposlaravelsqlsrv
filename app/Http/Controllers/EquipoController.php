@@ -72,6 +72,7 @@ class EquipoController extends Controller
             'grupo',
             'marca',
             'modelo',
+            'nombre_equipo',
             'color',
             'serie',
             'estado',

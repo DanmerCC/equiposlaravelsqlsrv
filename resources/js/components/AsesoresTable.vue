@@ -35,6 +35,14 @@
                     </span>
                 </button>
             </template>
+            <template #estado="{item,row}">
+                <button v-if="item=='LABORANDO'" @click="changeState(row,'VACACIONES')" class="btn btn-sm btn-success">
+                    {{ item}}
+                </button>
+                <button v-else class="btn btn-sm btn-secondary" @click="changeState(row,'LABORANDO')" >
+                    {{ item }}
+                </button>
+            </template>
             <template #opciones="{item,row}">
                 <button @click="deleteAsesor(row)" class="btn btn-sm btn-danger">
                    Eliminar
@@ -172,6 +180,14 @@ export default {
         };
     },
     methods: {
+        changeState(asesor,state){
+            axios.put('/api/asesor/'+asesor.id,{estado:state}).then((result) => {
+                this.loadData()
+                this.asesorEdit = null
+            }).catch((err) => {
+
+            });
+        },
         updateAsesor(){
 
             axios.put('/api/asesor/'+this.asesorEdit.original.id,this.asesorEdit.changes).then((result) => {

@@ -283,10 +283,10 @@ export default {
                     name: "Equipo",
                     value: "supervisor"
                 },
-                /*{
-                    name: "Equipo",
-                    value: "equipo"
-                },*/
+                {
+                    name: "Nombre equipo",
+                    value: "nombre_equipo"
+                },
                 {
                     name: "Estado",
                     value: "estado"

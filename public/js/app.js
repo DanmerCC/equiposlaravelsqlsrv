@@ -48348,6 +48348,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48416,13 +48424,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateAsesor: function updateAsesor() {
+    changeState: function changeState(asesor, state) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + this.asesorEdit.original.id, this.asesorEdit.changes).then(function (result) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + asesor.id, {
+        estado: state
+      }).then(function (result) {
         _this.loadData();
 
         _this.asesorEdit = null;
+      })["catch"](function (err) {});
+    },
+    updateAsesor: function updateAsesor() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + this.asesorEdit.original.id, this.asesorEdit.changes).then(function (result) {
+        _this2.loadData();
+
+        _this2.asesorEdit = null;
       })["catch"](function (err) {});
     },
     editAsesores: function editAsesores(asesor) {
@@ -48432,34 +48451,34 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     deleteAsesor: function deleteAsesor(asesor) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!confirm("estas seguro de eliminar?")) return;
       axios__WEBPACK_IMPORTED_MODULE_3___default().delete("/api/asesor/" + asesor.id).then(function (result) {
-        _this2.loadData();
+        _this3.loadData();
       })["catch"](function (err) {});
     },
     changePage: function changePage($event) {
-      var _this3 = this;
+      var _this4 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this3.page = lastPage;
+        _this4.page = lastPage;
       });
     },
     updateEquipo: function updateEquipo() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/asesor/" + this.equipoEditInfo.row.id, {
         equipo_id: this.equipoEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this4.equipoEditInfo = null;
+        _this5.equipoEditInfo = null;
 
-        _this4.loadData();
+        _this5.loadData();
       });
     },
     editEquipo: function editEquipo(asesor) {
@@ -48483,7 +48502,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newAsesorObject = {};
     },
     loadData: function loadData() {
-      var _this5 = this;
+      var _this6 = this;
 
       var config = {
         params: {
@@ -48498,7 +48517,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_3___default().get("/api/asesor", config).then(function (_ref2) {
           var data = _ref2.data;
-          _this5.items = data.data.data;
+          _this6.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -48954,8 +48973,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "marca",
         label: "Marca",
         value: null
-      }, //{ name: "grupo", label: "Equipo", value: null },
-      {
+      }, {
+        name: "nombre_equipo",
+        label: "Nom Equipo",
+        value: null
+      }, {
         name: "procesador",
         label: "Procesador",
         value: null
@@ -49327,12 +49349,10 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Equipo",
         value: "supervisor"
-      },
-      /*{
-          name: "Equipo",
-          value: "equipo"
-      },*/
-      {
+      }, {
+        name: "Nombre equipo",
+        value: "nombre_equipo"
+      }, {
         name: "Estado",
         value: "estado"
       }, {
@@ -103069,6 +103089,48 @@ var render = function() {
                         ])
                   ]
                 )
+              ]
+            }
+          },
+          {
+            key: "estado",
+            fn: function(ref) {
+              var item = ref.item
+              var row = ref.row
+              return [
+                item == "LABORANDO"
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.changeState(row, "VACACIONES")
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " + _vm._s(item) + "\n            "
+                        )
+                      ]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-secondary",
+                        on: {
+                          click: function($event) {
+                            return _vm.changeState(row, "LABORANDO")
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " + _vm._s(item) + "\n            "
+                        )
+                      ]
+                    )
               ]
             }
           },

@@ -2,10 +2,10 @@
 
 @section('content')
     @php
-        $title = 'Equipos';
+        $title = 'Asesores';
         $breadcrumbs = [
             'Inicio' => ['url' => '/home'],
-            'Equipos' => ['url' => '/equipos'],
+            'Asesores' => ['url' => '/asesores'],
         ];
     @endphp
 
