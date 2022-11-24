@@ -57,7 +57,8 @@ export default {
                 xAxis: xAxis,
                 yAxis: yAxis,
                 valueYField: "value1",
-                categoryXField: "category"
+                categoryXField: "category",
+                tooltip: am5.Tooltip.new(root, { dy: -25, labelText: "{valueY}" })
             })
         );
         series1.data.setAll(data);
