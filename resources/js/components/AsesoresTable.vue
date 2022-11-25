@@ -2,9 +2,9 @@
     <span>
         <data-table :select="true" :columns="columns" :items="items">
             <template #top-options>
-                <!--<button class="btn btn-primary" @click="openNewModal()">
+                <button class="btn btn-primary" @click="openNewModal()">
                     Agregar
-                </button>-->
+                </button>
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar asesor"
@@ -63,12 +63,12 @@
             @close="newAsesorObject = null"
         >
             <template #body>
-                <!--<equipos-form
-                    @changes="newAsesorObject = $event"
-                ></equipos-form>-->
+                <asesor-form
+                    @change="newAsesorObject = $event"
+                ></asesor-form>
             </template>
             <template #footer>
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-primary" @click="agregarAsesor()">Guardar</button>
             </template>
         </modal-component>
         <modal-component
@@ -180,6 +180,14 @@ export default {
         };
     },
     methods: {
+        agregarAsesor(){
+            axios.post('/api/asesor',this.newAsesorObject).then((result) => {
+                this.loadData();
+                this.newAsesorObject = null;
+            }).catch((err) => {
+
+            });
+        },
         changeState(asesor,state){
             axios.put('/api/asesor/'+asesor.id,{estado:state}).then((result) => {
                 this.loadData()

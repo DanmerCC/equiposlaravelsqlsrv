@@ -48069,6 +48069,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     value: {
@@ -48424,24 +48438,33 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    changeState: function changeState(asesor, state) {
+    agregarAsesor: function agregarAsesor() {
       var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('/api/asesor', this.newAsesorObject).then(function (result) {
+        _this.loadData();
+
+        _this.newAsesorObject = null;
+      })["catch"](function (err) {});
+    },
+    changeState: function changeState(asesor, state) {
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + asesor.id, {
         estado: state
       }).then(function (result) {
-        _this.loadData();
-
-        _this.asesorEdit = null;
-      })["catch"](function (err) {});
-    },
-    updateAsesor: function updateAsesor() {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + this.asesorEdit.original.id, this.asesorEdit.changes).then(function (result) {
         _this2.loadData();
 
         _this2.asesorEdit = null;
+      })["catch"](function (err) {});
+    },
+    updateAsesor: function updateAsesor() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default().put('/api/asesor/' + this.asesorEdit.original.id, this.asesorEdit.changes).then(function (result) {
+        _this3.loadData();
+
+        _this3.asesorEdit = null;
       })["catch"](function (err) {});
     },
     editAsesores: function editAsesores(asesor) {
@@ -48451,34 +48474,34 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     deleteAsesor: function deleteAsesor(asesor) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!confirm("estas seguro de eliminar?")) return;
       axios__WEBPACK_IMPORTED_MODULE_3___default().delete("/api/asesor/" + asesor.id).then(function (result) {
-        _this3.loadData();
+        _this4.loadData();
       })["catch"](function (err) {});
     },
     changePage: function changePage($event) {
-      var _this4 = this;
+      var _this5 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this4.page = lastPage;
+        _this5.page = lastPage;
       });
     },
     updateEquipo: function updateEquipo() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/asesor/" + this.equipoEditInfo.row.id, {
         equipo_id: this.equipoEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this5.equipoEditInfo = null;
+        _this6.equipoEditInfo = null;
 
-        _this5.loadData();
+        _this6.loadData();
       });
     },
     editEquipo: function editEquipo(asesor) {
@@ -48502,7 +48525,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newAsesorObject = {};
     },
     loadData: function loadData() {
-      var _this6 = this;
+      var _this7 = this;
 
       var config = {
         params: {
@@ -48517,7 +48540,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_3___default().get("/api/asesor", config).then(function (_ref2) {
           var data = _ref2.data;
-          _this6.items = data.data.data;
+          _this7.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -102786,6 +102809,42 @@ var render = function() {
       _c(
         "label",
         { staticClass: "col-sm-2 col-form-label", attrs: { for: "" } },
+        [_vm._v("\n            Nombres\n        ")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-10" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.nombres,
+              expression: "nombres"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: _vm.randomId + "nombres",
+            placeholder: "NOmbres"
+          },
+          domProps: { value: _vm.nombres },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.nombres = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        { staticClass: "col-sm-2 col-form-label", attrs: { for: "" } },
         [_vm._v("\n            Apellido paterno\n        ")]
       ),
       _vm._v(" "),
@@ -102980,6 +103039,19 @@ var render = function() {
             key: "top-options",
             fn: function() {
               return [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: {
+                      click: function($event) {
+                        return _vm.openNewModal()
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Agregar\n            ")]
+                ),
+                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "float-right border border-primary" },
@@ -103209,7 +103281,15 @@ var render = function() {
                 {
                   key: "body",
                   fn: function() {
-                    return undefined
+                    return [
+                      _c("asesor-form", {
+                        on: {
+                          change: function($event) {
+                            _vm.newAsesorObject = $event
+                          }
+                        }
+                      })
+                    ]
                   },
                   proxy: true
                 },
@@ -103217,9 +103297,18 @@ var render = function() {
                   key: "footer",
                   fn: function() {
                     return [
-                      _c("button", { staticClass: "btn btn-primary" }, [
-                        _vm._v("Guardar")
-                      ])
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.agregarAsesor()
+                            }
+                          }
+                        },
+                        [_vm._v("Guardar")]
+                      )
                     ]
                   },
                   proxy: true
@@ -103227,7 +103316,7 @@ var render = function() {
               ],
               null,
               false,
-              2217505592
+              3886051943
             )
           })
         : _vm._e(),

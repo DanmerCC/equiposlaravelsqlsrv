@@ -16,6 +16,20 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="">
+                Nombres
+            </label>
+            <div class="col-sm-10">
+                <input
+                    v-model="nombres"
+                    type="text"
+                    class="form-control"
+                    :id="randomId + 'nombres'"
+                    :placeholder="'NOmbres'"
+                />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">
                 Apellido paterno
             </label>
             <div class="col-sm-10">

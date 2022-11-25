@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateAsesorRequest;
 use App\Models\Asesor;
+
 use Illuminate\Http\Request;
 
 class AsesorController extends Controller
 {
     function list(Request $request)
     {
-        $baseQuery = Asesor::with('equipo');
+        $baseQuery = Asesor::with('equipo')->orderBy('id', 'desc');
         if ($request->has('search')) {
-
-
 
             $states = ["LABORANDO","VACACIONES"];
             if(in_array($request->get('search'),$states)) {
@@ -60,5 +60,16 @@ class AsesorController extends Controller
         $asesor->delete();
 
         return $this->sendResponse($asesor, "Correctamente eliminado");
+    }
+
+    function create(CreateAsesorRequest $request){
+        $asesor = Asesor::create($request->only([
+            'dni',
+            'nombres',
+            'apellido_paterno',
+            'apellido_materno',
+            'estado'
+        ]));
+        return $this->sendResponse($asesor,"Correctamente creado");
     }
 }
