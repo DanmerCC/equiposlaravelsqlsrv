@@ -44,6 +44,10 @@ class EquipoController extends Controller
             $queryBase->search($request->get('search'));
         }
 
+        if($request->has('supervisor_id') && is_numeric($request->get('supervisor_id'))){
+            $queryBase->where('supervisor_id','=',$request->get('supervisor_id'));
+        }
+
         $queryBase->with('asesor.equipo');
 
         return $this->sendResponse($queryBase->paginate($request->get('perPage')), "Correctamente cargado");

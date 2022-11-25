@@ -49295,6 +49295,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -49412,7 +49416,8 @@ __webpack_require__.r(__webpack_exports__);
         name: "Opciones",
         value: "opciones"
       }],
-      items: []
+      items: [],
+      supervisorFilter: null
     };
   },
   methods: {
@@ -49599,6 +49604,10 @@ __webpack_require__.r(__webpack_exports__);
         config.params["search"] = this.search;
       }
 
+      if (this.supervisorFilter != null) {
+        config.params["supervisor_id"] = this.supervisorFilter.id;
+      }
+
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/equipos", config).then(function (_ref3) {
           var data = _ref3.data;
@@ -49619,6 +49628,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadData();
   },
   watch: {
+    supervisorFilter: function supervisorFilter(val) {
+      this.loadData();
+    },
     malogradosFilter: function malogradosFilter(val) {
       this.loadData();
     },
@@ -103887,35 +103899,9 @@ var render = function() {
               return [
                 _c("div", { staticClass: "container" }, [
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-4" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          on: {
-                            click: function($event) {
-                              return _vm.openNewModal()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Agregar\n                        "
-                          )
-                        ]
-                      )
-                    ]),
+                    _c("div", { staticClass: "col-4" }),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-4" },
-                      [
-                        _c("AsesorSelector", {
-                          attrs: { placeholder: "Equipos" }
-                        })
-                      ],
-                      1
-                    )
+                    _c("div", { staticClass: "col-4" })
                   ])
                 ]),
                 _vm._v(" "),
@@ -104000,6 +103986,45 @@ var render = function() {
                       [_vm._v("\n                Disponibles\n            ")]
                     )
                   : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "float-left border border-primary",
+                    staticStyle: { display: "flex" }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.openNewModal()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Agregar\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("AsesorSelector", {
+                      staticStyle: { width: "180px" },
+                      attrs: { placeholder: "Equipos" },
+                      model: {
+                        value: _vm.supervisorFilter,
+                        callback: function($$v) {
+                          _vm.supervisorFilter = $$v
+                        },
+                        expression: "supervisorFilter"
+                      }
+                    })
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "div",

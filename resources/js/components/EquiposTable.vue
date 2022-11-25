@@ -13,13 +13,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-4">
-                            <button class="btn btn-primary" @click="openNewModal()">
-                                Agregar
-                            </button>
+
                         </div>
                         <div class="col-4">
 
-                            <AsesorSelector placeholder="Equipos"></AsesorSelector>
+
                         </div>
                     </div>
                 </div>
@@ -44,6 +42,12 @@
                 <Chip v-if="disponibleFilter" @close="disponibleFilter= false;$refs.datatable.$forceUpdate();">
                     Disponibles
                 </Chip>
+                <div class="float-left border border-primary" style="display: flex">
+                    <button class="btn btn-primary" @click="openNewModal()">
+                        Agregar
+                    </button>
+                    <AsesorSelector style="width:180px" v-model="supervisorFilter" placeholder="Equipos"></AsesorSelector>
+                </div>
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar equipo"
@@ -335,7 +339,8 @@ export default {
                     value: "opciones"
                 }
             ],
-            items: []
+            items: [],
+            supervisorFilter:null
         };
     },
     methods: {
@@ -510,6 +515,10 @@ export default {
                 config.params["search"] = this.search;
             }
 
+            if(this.supervisorFilter!=null){
+                config.params["supervisor_id"] = this.supervisorFilter.id;
+            }
+
             return new Promise((resolve, reject) => {
                 axios
                     .get("/api/equipos", config)
@@ -531,6 +540,9 @@ export default {
         this.loadData();
     },
     watch: {
+        supervisorFilter(val){
+            this.loadData();
+        },
         malogradosFilter(val){
             this.loadData();
         },
