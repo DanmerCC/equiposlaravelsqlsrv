@@ -24,6 +24,7 @@ class UsuarioController extends Controller
         if ($request->has('search') && $request->get('search') != '') {
             $queryBase->search($request->get('search'));
         }
+        $queryBase->orderBy('id', 'DESC');
         return $this->sendResponse($queryBase->paginate(), "Correctamente cargado");
     }
 
@@ -45,7 +46,12 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+        return $this->sendResponse($user, "Usuario creado correctamente");
     }
 
     /**
@@ -90,6 +96,8 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        (User::find($id))->delete();
+
+        return $this->sendResponse(1, "Usuario eliminado correctamente");
     }
 }

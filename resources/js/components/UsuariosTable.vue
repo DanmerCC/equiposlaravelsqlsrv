@@ -3,9 +3,9 @@
 
         <data-table :select="true" :columns="columns" :items="items">
             <template #top-options>
-                <!--<button class="btn btn-primary" @click="openNewModal()">
+                <button class="btn btn-primary" @click="openNewModal()">
                     Agregar
-                </button>-->
+                </button>
                 <div class="float-right border border-primary">
                     <div
                         title="Buscar equipo"
@@ -26,6 +26,11 @@
                     </div>
                 </div>
             </template>
+            <template #opciones="{item,row}">
+                <button :disabled="(items.length <= 1)" class="btn btn-primary" @click="deleteUser(row.id)">
+                    Eliminar
+                </button>
+            </template>
             <template #asesor="{item,row}">
                 <button @click="editAsesor(row)" class="btn btn-sm btn-info">
                     <span v-if="item == null">
@@ -39,16 +44,16 @@
         </data-table>
         <paginate v-model="page" @change="changePage($event)"></paginate>
         <modal-component
-            v-if="newEquipoOBject != null"
-            @close="newEquipoOBject = null"
+            v-if="newUserOBject != null"
+            @close="newUserOBject = null"
         >
             <template #body>
-                <!--<equipos-form
-                    @changes="newEquipoOBject = $event"
-                ></equipos-form>-->
+                <user-form
+                    @input="newUserOBject = $event"
+                ></user-form>
             </template>
             <template #footer>
-                <button class="btn btn-primary">Guardar</button>
+                <button class="btn btn-primary" @click="createUser()">Guardar</button>
             </template>
         </modal-component>
         <modal-component
@@ -78,11 +83,12 @@
 
 <script>
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
-
+import UserForm from "./UserForm.vue";
 export default {
     components: {
         DataTable,
         ModalComponent,
+        UserForm,
         Paginate
     },
     computed: {
@@ -101,7 +107,7 @@ export default {
     data() {
         return {
             userEditInfo: null,
-            newEquipoOBject: null,
+            newUserOBject: null,
             search: null,
             page: 1,
             columns: [
@@ -112,12 +118,32 @@ export default {
                 {
                     name: "Correo",
                     value: "email"
+                },
+                {
+                    name: "Opciones",
+                    value: "opciones"
                 }
             ],
             items: []
         };
     },
     methods: {
+        deleteUser(id){
+            if(!confirm("estas seguro?"))return
+            axios.delete('/api/usuarios/'+id).then((result) => {
+                this.loadData()
+            }).catch((err) => {
+
+            });
+        },
+        createUser(){
+            axios.post("/api/usuarios",this.newUserOBject).then((result) => {
+                this.newUserOBject = null
+                this.loadData()
+            }).catch((err) => {
+                console.error(err)
+            });
+        },
         changePage($event) {
             console.log($event);
             let lastPage = this.page;
@@ -156,7 +182,7 @@ export default {
             }
         },
         openNewModal() {
-            this.newEquipoOBject = {};
+            this.newUserOBject = {};
         },
         loadData() {
             let config = {

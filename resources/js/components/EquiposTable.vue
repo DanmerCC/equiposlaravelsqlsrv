@@ -202,6 +202,7 @@
 <script>
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
+import UserForm from "./UserForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
 import Chip from "./Chip";
 import axios from 'axios';
@@ -212,6 +213,7 @@ export default {
         ModalComponent,
         EquiposForm,
         AsesorSelector,
+        UserForm,
         Paginate,
         Chip,
     },
