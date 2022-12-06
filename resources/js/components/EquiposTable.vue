@@ -42,14 +42,34 @@
                 <Chip v-if="disponibleFilter" @close="disponibleFilter= false;$refs.datatable.$forceUpdate();">
                     Disponibles
                 </Chip>
-                <div class="float-left border border-primary" style="display: flex">
+                <div class="float-left border" style="display: flex">
                     <button class="btn btn-primary" @click="openNewModal()">
                         Agregar
                     </button>
+                    <div class="invisble-block">
+
+                    </div>
                     <AsesorSelector style="width:180px" v-model="supervisorFilter" placeholder="Equipos"></AsesorSelector>
+                    <div
+                        title="Buscar equipo"
+                        class="input-group input-group-sm buscador"
+                        style="width: 300px;"
+                    >
+                        <input
+                            v-model="search"
+                            type="text"
+                            placeholder="Buscar global"
+                            class="form-control"
+                        />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="float-right border border-primary">
-                    <div
+                    <!--<div
                         title="Buscar equipo"
                         class="input-group input-group-sm"
                         style="width: 300px;"
@@ -65,7 +85,7 @@
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </template>
             <template #dni="{item,row}">
@@ -571,4 +591,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+.invisble-block{
+    width: 5vw;
+}
+
+::v-deep .buscador input {
+    height: 100%;
+}
+</style>
