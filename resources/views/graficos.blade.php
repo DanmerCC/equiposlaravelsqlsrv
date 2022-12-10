@@ -34,17 +34,19 @@
                                 ->reduce(function ($before, $current) {
                                     return array_merge($before, $current);
                                 }, []);
-                            //dd($datachart);
+                        function formater($resumen,$attr){
+                            return  $resumen->reduce(function($before,$current)use($attr){
+                                $before[$current->{$attr}]=["value"=>$current->total];
+                                return $before;
+                            },[]);
+                        }
                         @endphp
+                        <div class="card">
+
+                        </div>
                         <chart :data='{{ json_encode($datachart) }}'></chart>
-                        <Bars :horizontal="true"
-                            :groups="{{ json_encode($resumeDiscos->pluck('tipo_disco')->toArray()) }}"
-                            :data="{{ json_encode($resumeDiscos->pluck('total')->toArray()) }}">
-                        </Bars>
-                        <Bars :horizontal="true"
-                            :groups="{{ json_encode($resumeProcesador->pluck('procesador')->toArray()) }}"
-                            :data="{{ json_encode($resumeProcesador->pluck('total')->toArray()) }}">
-                        </Bars>
+                        <chart :data='{{ json_encode(formater($resumeDiscos,"tipo_disco")) }}'></chart>
+                        <chart :data='{{ json_encode(formater($resumeProcesador,"procesador")) }}'></chart>
                         @php
                             $labelResumentAntiguedad = $resumentAntiguedad->pluck('years')->map(function($item){
                                 return $item." años";
@@ -73,10 +75,10 @@
                             },0);
 
                         @endphp
-                        <Bars :horizontal="true"
-                            :groups="{{ json_encode(array_keys($totales)) }}"
-                            :data="{{ json_encode(array_values($totales)) }}">
-                        </Bars>
+
+                         <chart :data='{{ json_encode(array_map(function($item){
+                            return ["value"=>$item];
+                        },$totales)) }}'></chart>
                     </div>
                 </div>
             </div>
