@@ -49068,6 +49068,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.inputTipoDisco = this.source.tipo_disco;
       this.input_observacion = this.source.observacion;
       this.inputFechaCompra = this.source.fecha_compra;
+      this.inputPrecio = this.source.precio;
       this.inputsText.forEach(function (el) {
         console.log(el.name);
 
@@ -49094,6 +49095,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.emitChanges();
     },
     inputFechaCompra: function inputFechaCompra(value) {
+      this.emitChanges();
+    },
+    inputPrecio: function inputPrecio(value) {
       this.emitChanges();
     }
   }
@@ -104083,7 +104087,7 @@ var render = function() {
             attrs: {
               type: "number",
               id: _vm.randomId + "size_hd",
-              placeholder: "Fecha compra"
+              placeholder: "Tamaño"
             },
             domProps: { value: _vm.inputHDSize },
             on: {

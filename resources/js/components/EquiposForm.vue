@@ -66,7 +66,7 @@
                     type="number"
                     class="form-control"
                     :id="randomId + 'size_hd'"
-                    placeholder="Fecha compra"
+                    placeholder="Tamaño"
                     @change="emitChanges()"
                 />
             </div>
@@ -177,6 +177,7 @@ export default {
             this.inputTipoDisco = this.source.tipo_disco
             this.input_observacion = this.source.observacion
             this.inputFechaCompra = this.source.fecha_compra
+            this.inputPrecio = this.source.precio
 
             this.inputsText.forEach(el => {
                 console.log(el.name)
@@ -205,6 +206,9 @@ export default {
         inputFechaCompra(value){
             this.emitChanges()
         },
+        inputPrecio(value){
+            this.emitChanges()
+        }
     }
 };
 </script>
