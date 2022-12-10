@@ -85,7 +85,21 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if($user == null){
+            return $this->sendError(null,"No existe");
+        }
+        $inputs = $request->only(['name','name']);
+
+        if($request->has('password')){
+            $inputs["password"] = bcrypt($request->get('password'));
+        }
+
+        $user->update($inputs);
+
+        return $this->sendResponse($user,"Correctamente actualizado");
+
     }
 
     /**

@@ -27,6 +27,9 @@
                 </div>
             </template>
             <template #opciones="{item,row}">
+                <button class="btn btn-info" @click="editarUser(row)">
+                    Editar
+                </button>
                 <button :disabled="(items.length <= 1)" class="btn btn-primary" @click="deleteUser(row.id)">
                     Eliminar
                 </button>
@@ -62,17 +65,18 @@
         >
             <template #body>
                 <div class="row">
-                    <asesor-selector
+                    <user-form
                         class="col-12"
+                        :source="userEditInfo.original"
                         v-model="userEditInfo.changed"
-                    ></asesor-selector>
+                    ></user-form>
                 </div>
             </template>
             <template #footer>
                 <button
                     class="btn btn-primary"
                     :disabled="userEditInfoDiferent"
-                    @click="updateAsesor()"
+                    @click="updateUser()"
                 >
                     Guardar
                 </button>
@@ -97,6 +101,9 @@ export default {
                 return false;
             }
             if (this.userEditInfo.original == null) {
+                return false;
+            }
+            if (this.userEditInfo.changed == null) {
                 return false;
             }
             return (
@@ -128,6 +135,26 @@ export default {
         };
     },
     methods: {
+        updateUser(){
+            axios.put(`/api/usuarios/${this.userEditInfo.original.id}`,this.userEditInfo.changed).then((result) => {
+                console.log(result)
+                console.log(result.data.status)
+                if(result.data.status){
+                    this.loadData()
+                    this.userEditInfo = null
+                }
+            }).catch((err) => {
+                console.err(err)
+            });
+        },
+        editarUser(user){
+            this.userEditInfo = null
+            this.userEditInfo = {
+                original: Object.assign({}, user),
+                changed: null,
+                row: user
+            };
+        },
         deleteUser(id){
             if(!confirm("estas seguro?"))return
             axios.delete('/api/usuarios/'+id).then((result) => {

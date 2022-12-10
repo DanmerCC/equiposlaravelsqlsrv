@@ -49767,6 +49767,10 @@ __webpack_require__.r(__webpack_exports__);
     value: {
       type: Object,
       "default": null
+    },
+    source: {
+      type: Object,
+      "default": null
     }
   },
   data: function data() {
@@ -49789,6 +49793,11 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password
       };
     }
+  },
+  mounted: function mounted() {
+    if (this.source == null) return;
+    this.nombre = this.source.name;
+    this.correo = this.source.email;
   },
   watch: {
     nombre: function nombre(newValue, oldValue) {
@@ -49901,6 +49910,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -49917,6 +49930,10 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.userEditInfo.original == null) {
+        return false;
+      }
+
+      if (this.userEditInfo.changed == null) {
         return false;
       }
 
@@ -49943,46 +49960,70 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    deleteUser: function deleteUser(id) {
+    updateUser: function updateUser() {
       var _this = this;
+
+      axios.put("/api/usuarios/".concat(this.userEditInfo.original.id), this.userEditInfo.changed).then(function (result) {
+        console.log(result);
+        console.log(result.data.status);
+
+        if (result.data.status) {
+          _this.loadData();
+
+          _this.userEditInfo = null;
+        }
+      })["catch"](function (err) {
+        console.err(err);
+      });
+    },
+    editarUser: function editarUser(user) {
+      this.userEditInfo = null;
+      this.userEditInfo = {
+        original: Object.assign({}, user),
+        changed: null,
+        row: user
+      };
+    },
+    deleteUser: function deleteUser(id) {
+      var _this2 = this;
 
       if (!confirm("estas seguro?")) return;
       axios["delete"]('/api/usuarios/' + id).then(function (result) {
-        _this.loadData();
+        _this2.loadData();
       })["catch"](function (err) {});
     },
     createUser: function createUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post("/api/usuarios", this.newUserOBject).then(function (result) {
-        _this2.newUserOBject = null;
+        _this3.newUserOBject = null;
 
-        _this2.loadData();
+        _this3.loadData();
       })["catch"](function (err) {
         console.error(err);
       });
     },
     changePage: function changePage($event) {
-      var _this3 = this;
+      var _this4 = this;
 
       console.log($event);
       var lastPage = this.page;
       this.page = $event;
       this.loadData().then(function (result) {//this.page = $event;
       })["catch"](function () {
-        _this3.page = lastPage;
+        _this4.page = lastPage;
       });
     },
     updateUsuario: function updateUsuario() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.put("/api/usuarios/" + this.userEditInfo.row.id, {
         asesor_id: this.userEditInfo.changed.id
       }).then(function (_ref) {
         var data = _ref.data;
-        _this4.userEditInfo = null;
+        _this5.userEditInfo = null;
 
-        _this4.loadData();
+        _this5.loadData();
       });
     },
     editAsesor: function editAsesor(equipo) {
@@ -50004,7 +50045,7 @@ __webpack_require__.r(__webpack_exports__);
       this.newUserOBject = {};
     },
     loadData: function loadData() {
-      var _this5 = this;
+      var _this6 = this;
 
       var config = {
         params: {
@@ -50019,7 +50060,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios.get("/api/usuarios", config).then(function (_ref2) {
           var data = _ref2.data;
-          _this5.items = data.data.data;
+          _this6.items = data.data.data;
           resolve();
         })["catch"](function (error) {
           reject();
@@ -105156,6 +105197,19 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "btn btn-info",
+                    on: {
+                      click: function($event) {
+                        return _vm.editarUser(row)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Editar\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
                     staticClass: "btn btn-primary",
                     attrs: { disabled: _vm.items.length <= 1 },
                     on: {
@@ -105291,8 +105345,9 @@ var render = function() {
                         "div",
                         { staticClass: "row" },
                         [
-                          _c("asesor-selector", {
+                          _c("user-form", {
                             staticClass: "col-12",
+                            attrs: { source: _vm.userEditInfo.original },
                             model: {
                               value: _vm.userEditInfo.changed,
                               callback: function($$v) {
@@ -105319,7 +105374,7 @@ var render = function() {
                           attrs: { disabled: _vm.userEditInfoDiferent },
                           on: {
                             click: function($event) {
-                              return _vm.updateAsesor()
+                              return _vm.updateUser()
                             }
                           }
                         },
@@ -105332,7 +105387,7 @@ var render = function() {
               ],
               null,
               false,
-              2314363819
+              1433992299
             )
           })
         : _vm._e()

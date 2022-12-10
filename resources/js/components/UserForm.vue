@@ -52,6 +52,10 @@ export default {
             type: Object,
             default:null
         },
+        source:{
+            type: Object,
+            default:null
+        }
     },
     data() {
         return {
@@ -73,6 +77,11 @@ export default {
                 password: this.password
             }
         }
+    },
+    mounted () {
+        if(this.source == null)return
+        this.nombre = this.source.name;
+        this.correo = this.source.email;
     },
     watch: {
         nombre(newValue, oldValue) {
