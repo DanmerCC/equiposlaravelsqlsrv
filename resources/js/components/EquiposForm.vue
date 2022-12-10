@@ -54,6 +54,8 @@
                 </select>
             </div>
         </div>
+
+
         <div class="form-group row">
             <label :for="randomId + 'size_hd'" class="col-sm-2 col-form-label"
                 >Tamaño HD</label
@@ -65,6 +67,22 @@
                     class="form-control"
                     :id="randomId + 'size_hd'"
                     placeholder="Fecha compra"
+                    @change="emitChanges()"
+                />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label :for="randomId + 'size_hd'" class="col-sm-2 col-form-label"
+                >Precio</label
+            >
+            <div class="col-sm-10">
+                <input
+                    v-model="inputPrecio"
+                    type="number"
+                    class="form-control"
+                    :id="randomId + 'precio'"
+                    placeholder="Precio"
                     @change="emitChanges()"
                 />
             </div>
@@ -112,6 +130,7 @@ export default {
             inputTipoDisco: null,
             input_observacion: null,
             inputFechaCompra: null,
+            inputPrecio: null,
             inputsText: [
                 { name: "serie", label: "Serie", value: null },
                 { name: "color", label: "Color", value: null },
@@ -146,7 +165,8 @@ export default {
                 observacion: this.input_observacion,
                 fecha_compra: this.inputFechaCompra,
                 capacidad_disco_duro: this.inputHDSize,
-                tipo_disco: this.inputTipoDisco
+                tipo_disco: this.inputTipoDisco,
+                precio: this.inputPrecio,
             };
         }
     },

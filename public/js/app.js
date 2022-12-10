@@ -48961,6 +48961,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /**
  *  'asesor_id',
@@ -48984,6 +49002,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       inputTipoDisco: null,
       input_observacion: null,
       inputFechaCompra: null,
+      inputPrecio: null,
       inputsText: [{
         name: "serie",
         label: "Serie",
@@ -49034,7 +49053,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         observacion: this.input_observacion,
         fecha_compra: this.inputFechaCompra,
         capacidad_disco_duro: this.inputHDSize,
-        tipo_disco: this.inputTipoDisco
+        tipo_disco: this.inputTipoDisco,
+        precio: this.inputPrecio
       });
     }
   },
@@ -104075,6 +104095,48 @@ var render = function() {
                   return
                 }
                 _vm.inputHDSize = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: _vm.randomId + "size_hd" }
+          },
+          [_vm._v("Precio")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-10" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.inputPrecio,
+                expression: "inputPrecio"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "number",
+              id: _vm.randomId + "precio",
+              placeholder: "Precio"
+            },
+            domProps: { value: _vm.inputPrecio },
+            on: {
+              change: function($event) {
+                return _vm.emitChanges()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.inputPrecio = $event.target.value
               }
             }
           })
