@@ -82,6 +82,7 @@ class EquipoController extends Controller
             'memoria',
             'tipo_disco',
             'capacidad_disco_duro',
+            'generacion'
         ];
 
         $inputs = $request->only($allowed);
