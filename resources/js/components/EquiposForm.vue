@@ -138,6 +138,7 @@ export default {
                 { name: "marca", label: "Marca", value: null },
                 { name: "nombre_equipo", label: "Nom Equipo", value: null },
                 { name: "procesador", label: "Procesador", value: null },
+                { name: "generacion", label: "Generacion", value: null },
                 { name: "memoria", label: "Memoria", value: null }
             ],
             randomId: this.generateRandomInteger(100)

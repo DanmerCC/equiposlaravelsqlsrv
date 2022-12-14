@@ -337,6 +337,10 @@ export default {
                     value: "procesador"
                 },
                 {
+                    name: "Gen.",
+                    value: "generacion"
+                },
+                {
                     name: "Memoria",
                     value: "memoria"
                 },

@@ -22,6 +22,7 @@ class Equipo extends Model
         'fecha_compra',
         'observacion',
         'procesador',
+        'generacion',
         'memoria',
         'disco_duro',
         'estado',
