@@ -29,6 +29,7 @@ class Equipo extends Model
         'supervisor_id',
         'precio',
         'tipo_disco',
+        'capacidad_disco_duro'
 
     ];
 
