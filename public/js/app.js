@@ -48658,10 +48658,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/Root.js");
-/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Tooltip.js");
-/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Bullet.js");
-/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Picture.js");
-/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/util/Percent.js");
+/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/util/Percent.js");
+/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Tooltip.js");
+/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Bullet.js");
+/* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Picture.js");
 /* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/util/Color.js");
 /* harmony import */ var _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @amcharts/amcharts5 */ "./node_modules/@amcharts/amcharts5/.internal/core/render/Legend.js");
 /* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/XYChart.js");
@@ -48669,7 +48669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/axes/AxisRendererY.js");
 /* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/axes/CategoryAxis.js");
 /* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/axes/AxisRendererX.js");
-/* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/series/ColumnSeries.js");
+/* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/series/ColumnSeries.js");
 /* harmony import */ var _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @amcharts/amcharts5/xy */ "./node_modules/@amcharts/amcharts5/.internal/charts/xy/XYCursor.js");
 /* harmony import */ var _amcharts_amcharts5_themes_Animated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @amcharts/amcharts5/themes/Animated */ "./node_modules/@amcharts/amcharts5/themes/Animated.js");
 //
@@ -48716,29 +48716,39 @@ __webpack_require__.r(__webpack_exports__);
       renderer: _amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_6__.AxisRendererX.new(root, {}),
       categoryField: "category"
     }));
+    xAxis.get("renderer").labels.template.setAll({
+      fontSize: 12,
+      oversizedBehavior: "fit",
+      fontWeight: "500",
+      textAlign: "center",
+      x: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_7__.percent(50),
+      centerX: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_7__.percent(50),
+      paddingTop: 0,
+      paddingBottom: 0
+    });
     xAxis.data.setAll(data); // Create series
 
-    var series1 = chart.series.push(_amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_7__.ColumnSeries.new(root, {
+    var series1 = chart.series.push(_amcharts_amcharts5_xy__WEBPACK_IMPORTED_MODULE_8__.ColumnSeries.new(root, {
       name: "Series",
       xAxis: xAxis,
       yAxis: yAxis,
       valueYField: "value1",
       categoryXField: "category",
-      tooltip: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_8__.Tooltip.new(root, {
+      tooltip: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_9__.Tooltip.new(root, {
         dy: -25,
-        labelText: "{valueY}"
+        labelText: "{category} {valueY}"
       })
     }));
     series1.data.setAll(data);
     series1.bullets.push(function () {
-      return _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_9__.Bullet.new(root, {
+      return _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_10__.Bullet.new(root, {
         locationY: 1,
-        sprite: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_10__.Picture.new(root, {
+        sprite: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_11__.Picture.new(root, {
           templateField: "bulletSettings",
           width: 50,
           height: 50,
-          centerX: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_11__.p50,
-          centerY: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_11__.p50,
+          centerX: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_7__.p50,
+          centerY: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_7__.p50,
           shadowColor: _amcharts_amcharts5__WEBPACK_IMPORTED_MODULE_12__.color(0x000000),
           shadowBlur: 4,
           shadowOffsetX: 4,

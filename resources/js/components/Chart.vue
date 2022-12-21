@@ -45,9 +45,20 @@ export default {
         let xAxis = chart.xAxes.push(
             am5xy.CategoryAxis.new(root, {
                 renderer: am5xy.AxisRendererX.new(root, {}),
-                categoryField: "category"
+                categoryField: "category",
             })
         );
+
+        xAxis.get("renderer").labels.template.setAll({
+            fontSize: 12,
+            oversizedBehavior: "fit",
+            fontWeight: "500",
+            textAlign: "center",
+            x: am5.percent(50),
+            centerX: am5.percent(50),
+            paddingTop: 0,
+            paddingBottom: 0
+        });
         xAxis.data.setAll(data);
 
         // Create series
@@ -58,7 +69,7 @@ export default {
                 yAxis: yAxis,
                 valueYField: "value1",
                 categoryXField: "category",
-                tooltip: am5.Tooltip.new(root, { dy: -25, labelText: "{valueY}" })
+                tooltip: am5.Tooltip.new(root, { dy: -25, labelText: "{category} {valueY}" })
             })
         );
         series1.data.setAll(data);
