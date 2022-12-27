@@ -37,7 +37,7 @@ class CreateMovilsTable extends Migration
             $table->foreign('supervisor_id')->references('id')->on('asesors');
         });
 
-        Movil::factory()->count(100)->create();
+        //Movil::factory()->count(100)->create();
     }
 
     /**
