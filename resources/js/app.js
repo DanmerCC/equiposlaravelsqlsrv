@@ -10,6 +10,9 @@ import PasswordUpdate from "./components/auth/PasswordUpdate";
 import EquiposTable from "./components/EquiposTable";
 import UsuariosTable from "./components/UsuariosTable";
 import AsesoresTable from "./components/AsesoresTable";
+import MovilesTable from "./components/MovilesTable";
+import ActasCrear from "./components/ActasCrear";
+import MovilesForm from "./components/MovilesForm";
 
 import {
     DataTable,
@@ -51,6 +54,9 @@ const app = new Vue({
         EquiposTable,
         UsuariosTable,
         Paginate,
-        AsesoresTable
+        AsesoresTable,
+        MovilesTable,
+        ActasCrear,
+        MovilesForm
     }
 });

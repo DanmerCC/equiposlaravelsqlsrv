@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ListEquiposRequest;
+use App\Http\Requests\ListHardwareRequest;
 use App\Models\Equipo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
 {
-    function list(ListEquiposRequest $request)
+    function list(ListHardwareRequest $request)
     {
         $queryBase = Equipo::with(['asesor','supervisor']);
 

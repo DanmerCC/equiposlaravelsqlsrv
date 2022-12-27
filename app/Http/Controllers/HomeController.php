@@ -7,6 +7,7 @@ use App\Models\Equipo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class HomeController extends Controller
 {
@@ -62,6 +63,10 @@ class HomeController extends Controller
     {
         return view('asesores');
     }
+    public function actas()
+    {
+        return view('actas');
+    }
     public function graficos()
     {
         DB::enableQueryLog();
@@ -98,8 +103,20 @@ class HomeController extends Controller
             "resumentAntiguedad" => $resumentAntiguedad,
         ]);
     }
+
+    public function actasnew(Request $request)
+    {
+        $pdf = Pdf::loadView('pdf.acta', $request->all());
+        return $pdf->stream('invoice.pdf');
+    }
     public function about()
     {
         return view('without');
     }
+
+    public function moviles()
+    {
+        return view('moviles');
+    }
+
 }

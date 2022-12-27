@@ -43,6 +43,12 @@
                         </Alink>
                     </li>
                     <li class="nav-item">
+                    <Alink url="/moviles">
+                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                        <p>Moviles</p>
+                    </Alink>
+                    </li>
+                    <li class="nav-item">
 
                         <Alink url="/asesores">
 
