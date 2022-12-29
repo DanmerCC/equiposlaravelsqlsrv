@@ -130,6 +130,7 @@
             </template>
             <template #opciones="{item,row}">
                 <button class="btn btn-info" @click="equipoEdit(row)">editar</button>
+                <button class="btn btn-info" @click="openModalActa(row)">generar acta</button>
                 <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
             </template>
             <template #estado="{item,row}">
@@ -216,12 +217,21 @@
                 <button class="btn btn-secondary" @click="updateEquipo()">Guardar</button>
             </template>
         </modal-component>
+        <modal-component v-if="actaGeneration!=null" @close="actaGeneration=null">
+            <template #body>
+                <actas-form v-model="actaGeneration" :source="actaGeneration"></actas-form>
+            </template>
+            <template #footer>
+                <button class="btn btn-secondary" @click="openActa()">Guardar</button>
+            </template>
+        </modal-component>
     </span>
 </template>
 
 <script>
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import EquiposForm from "./EquiposForm.vue";
+import ActasForm from "./ActasForm.vue";
 import UserForm from "./UserForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
 import Chip from "./Chip";
@@ -229,6 +239,7 @@ import axios from 'axios';
 
 export default {
     components: {
+        ActasForm,
         DataTable,
         ModalComponent,
         EquiposForm,
@@ -272,6 +283,7 @@ export default {
     },
     data() {
         return {
+            actaGeneration:null,
             total:null,
             disponibleFilter:false,
             malogradosFilter:false,
@@ -370,6 +382,21 @@ export default {
         };
     },
     methods: {
+        serialize(obj) {
+            var str = [];
+            for (var p in obj)
+                if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                }
+            return str.join("&");
+        },
+        openModalActa(row){
+            this.actaGeneration = {id:row.id}
+        },
+        openActa(){
+
+            window.open('/acta/equipo/'+this.actaGeneration.id+'?'+this.serialize(this.actaGeneration))
+        },
         cambioEstado(equipo,state){
             console.log(equipo)
             if(state=='MALOGRADO' && !confirm("Esta seguro de cambiar a 'Malogrado'?"))return

@@ -11,7 +11,7 @@ import EquiposTable from "./components/EquiposTable";
 import UsuariosTable from "./components/UsuariosTable";
 import AsesoresTable from "./components/AsesoresTable";
 import MovilesTable from "./components/MovilesTable";
-import ActasCrear from "./components/ActasCrear";
+import ActasForm from "./components/ActasForm";
 import MovilesForm from "./components/MovilesForm";
 
 import {
@@ -56,7 +56,7 @@ const app = new Vue({
         Paginate,
         AsesoresTable,
         MovilesTable,
-        ActasCrear,
+        ActasForm,
         MovilesForm
     }
 });

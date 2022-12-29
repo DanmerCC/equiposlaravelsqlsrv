@@ -67,6 +67,20 @@ class HomeController extends Controller
     {
         return view('actas');
     }
+
+    public function actaequipo($id,Request $request){
+        $equipo = Equipo::find($id);
+
+        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion']);
+        $inputs["equipo"] = $equipo;
+        $inputs["apellidos"] = $equipo->asesor==null?"":$equipo->asesor->apellido_paterno." ".$equipo->asesor->apellido_materno;
+        $inputs["nombres"] = $equipo->asesor==null?"":$equipo->asesor->nombres;
+        $inputs["dni"] = $equipo->asesor==null?"":$equipo->asesor->dni;
+
+        $pdf = Pdf::loadView('pdf.actaequipo', $inputs);
+        return $pdf->stream('invoice.pdf');
+    }
+
     public function graficos()
     {
         DB::enableQueryLog();

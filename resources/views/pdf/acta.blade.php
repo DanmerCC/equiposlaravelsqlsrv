@@ -177,7 +177,7 @@
                     <tr>
                         <td></td>
                         <td>Tipo de Asignación</td>
-                        <td>{{ $tipoasignacion??"" }}</td>
+                        <td>{{ $tipo_asignacion??"" }}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -197,6 +197,7 @@
                     <td></td>
                 </tr>
             </table>
+            @yield('hardware')
             <div>
                 <p>
                     ACUERDO : El equipo descrito en el presente documento se entrega al usuario, cuyos datos y firmas se consignan a continuación, para los fines de cumplir con sus labores de acuerdo con el contrato laboral suscrito con EXPERTIS MASTER SERVICER AND COLLECTIONS S.A.C, Al ser solicitado por el empleador, el usuario deberá devolver el equipo a EXPERTIS MASTER SERVICER AND COLLECTIONS S.A.C., con todos los accesorios y equipamiento con la que fue entregado y en buen estado de funcionamiento, considerando el desgaste natural del uso realizado. Es responsabilidad del Usuario otorgar el debido cuidado , y en caso de uso indebido o negligente (ya sea por mal manejo, manipulación o por utilizar el equipo fuera de las instalaciones de la compañia o domicilo) que genere una avería o pérdidad del equipo, será el Usuario el único responsable del costo de la reparación o reposicion del equipo al 100%.
