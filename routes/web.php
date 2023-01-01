@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/moviles', [App\Http\Controllers\HomeController::class, 'moviles'])->name('view.moviles');
     Route::get('/actas/new', [App\Http\Controllers\HomeController::class, 'actasnew'])->name('view.actas');
     Route::get('/acta/equipo/{id}', [App\Http\Controllers\HomeController::class, 'actaequipo'])->name('view.actasequipo');
+    Route::get('/acta/celular/{id}', [App\Http\Controllers\HomeController::class, 'actaMovil'])->name('view.actamovil');
     Route::get('/without/breadcrumbs', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 });
 Route::group(['middleware' => ['auth'], 'prefix' => 'api'], function () {

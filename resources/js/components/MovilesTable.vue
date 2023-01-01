@@ -130,6 +130,7 @@
             </template>
             <template #opciones="{item,row}">
                 <button class="btn btn-info" @click="equipoEdit(row)">editar</button>
+                <button class="btn btn-info" @click="modalActa(row)">acta</button>
                 <button class="btn btn-danger" @click="eliminarEquipo(row)">eliminar</button>
             </template>
             <template #estado="{item,row}">
@@ -216,12 +217,21 @@
                 <button class="btn btn-secondary" @click="updateEquipo()">Guardar</button>
             </template>
         </modal-component>
+        <modal-component v-if="actaGeneration!=null" @close="actaGeneration=null">
+            <template #body>
+                <actas-form v-model="actaGeneration" :source="actaGeneration"></actas-form>
+            </template>
+            <template #footer>
+                <button class="btn btn-secondary" @click="openActa()">Guardar</button>
+            </template>
+        </modal-component>
     </span>
 </template>
 
 <script>
 import { DataTable, ModalComponent, Paginate } from "@danmerccoscco/personal";
 import MovilesForm from "./MovilesForm.vue";
+import ActasForm from "./ActasForm.vue";
 import UserForm from "./UserForm.vue";
 import AsesorSelector from "./AsesorSelector.vue";
 import Chip from "./Chip";
@@ -232,6 +242,7 @@ export default {
         DataTable,
         ModalComponent,
         MovilesForm,
+        ActasForm,
         AsesorSelector,
         UserForm,
         Paginate,
@@ -272,6 +283,7 @@ export default {
     },
     data() {
         return {
+            actaGeneration:null,
             total:null,
             disponibleFilter:false,
             malogradosFilter:false,
@@ -337,10 +349,6 @@ export default {
                     value: "procesador"
                 },
                 {
-                    name: "Gen.",
-                    value: "generacion"
-                },
-                {
                     name: "Memoria",
                     value: "memoria"
                 },
@@ -366,6 +374,12 @@ export default {
         };
     },
     methods: {
+        openActa(){
+            window.open('/acta/celular/'+this.actaGeneration.id+'?'+this.$serialize(this.actaGeneration))
+        },
+        modalActa(movil){
+            this.actaGeneration = {id:movil.id}
+        },
         cambioEstado(equipo,state){
             console.log(equipo)
             if(state=='MALOGRADO' && !confirm("Esta seguro de cambiar a 'Malogrado'?"))return

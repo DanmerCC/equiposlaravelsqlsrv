@@ -31,12 +31,20 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import Chart from "./components/Chart";
+import Vue from "vue";
 require("./bootstrap");
 
 window.Vue = require("vue").default;
 
 window.am4core = am5;
-
+Vue.prototype.$serialize = (obj)=> {
+    var str = [];
+    for (var p in obj)
+        if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+}
 const app = new Vue({
     el: "#app",
     components: {

@@ -382,20 +382,13 @@ export default {
         };
     },
     methods: {
-        serialize(obj) {
-            var str = [];
-            for (var p in obj)
-                if (obj.hasOwnProperty(p)) {
-                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                }
-            return str.join("&");
-        },
+
         openModalActa(row){
             this.actaGeneration = {id:row.id}
         },
         openActa(){
 
-            window.open('/acta/equipo/'+this.actaGeneration.id+'?'+this.serialize(this.actaGeneration))
+            window.open('/acta/equipo/'+this.actaGeneration.id+'?'+this.$serialize(this.actaGeneration))
         },
         cambioEstado(equipo,state){
             console.log(equipo)

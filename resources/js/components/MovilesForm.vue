@@ -39,24 +39,6 @@
         </div>
 
         <div class="form-group row">
-            <label :for="randomId + 'tipo_hd'" class="col-sm-2 col-form-label"
-                >Tipo HD</label
-            >
-            <div class="col-sm-10">
-                <select
-                    :id="randomId + 'tipo_hd'"
-                    class="form-control"
-                    v-model="inputTipoDisco"
-                >
-                    <option :value="null">Selecciona</option>
-                    <option value="SSD">SOLIDO</option>
-                    <option value="HDD">MECANICO</option>
-                </select>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
             <label :for="randomId + 'size_hd'" class="col-sm-2 col-form-label"
                 >Tamaño HD</label
             >
@@ -138,7 +120,6 @@ export default {
                 { name: "marca", label: "Marca", value: null },
                 { name: "nombre_equipo", label: "Nom Equipo", value: null },
                 { name: "procesador", label: "Procesador", value: null },
-                { name: "generacion", label: "Generacion", value: null },
                 { name: "memoria", label: "Memoria", value: null }
             ],
             randomId: this.generateRandomInteger(100)

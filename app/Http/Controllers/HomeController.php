@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asesor;
 use App\Models\Equipo;
+use App\Models\Movil;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +79,18 @@ class HomeController extends Controller
         $inputs["dni"] = $equipo->asesor==null?"":$equipo->asesor->dni;
 
         $pdf = Pdf::loadView('pdf.actaequipo', $inputs);
+        return $pdf->stream('invoice.pdf');
+    }
+    public function actaMovil($id,Request $request){
+        $equipo = Movil::find($id);
+
+        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion']);
+        $inputs["movil"] = $equipo;
+        $inputs["apellidos"] = $equipo->asesor==null?"":$equipo->asesor->apellido_paterno." ".$equipo->asesor->apellido_materno;
+        $inputs["nombres"] = $equipo->asesor==null?"":$equipo->asesor->nombres;
+        $inputs["dni"] = $equipo->asesor==null?"":$equipo->asesor->dni;
+
+        $pdf = Pdf::loadView('pdf.actamovil', $inputs);
         return $pdf->stream('invoice.pdf');
     }
 
