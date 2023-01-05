@@ -33,6 +33,18 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Condicion</label>
+                        <select v-model="int_value.condicion">
+                            <option :value="null" selected>No aplica</option>
+                            <option :value="'PROPIO'">PROPIO</option>
+                            <option :value="'ARRENDADO'">ARRENDADO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -51,13 +63,14 @@ export default {
                 fecha: '',
                 local: '',
                 fecha_entrega: '',
-                tipo_asignacion: ''
+                tipo_asignacion: '',
+                condicion:null
             }
         }
     },
     data() {
         return {
-            int_value: Object.assign({}, this.source)
+            int_value: Object.assign({condicion:null,fecha:new Date().toISOString().split('T')[0]}, this.source)
         }
     },
     watch: {

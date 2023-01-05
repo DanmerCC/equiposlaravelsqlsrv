@@ -72,7 +72,7 @@ class HomeController extends Controller
     public function actaequipo($id,Request $request){
         $equipo = Equipo::find($id);
 
-        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion']);
+        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion','condicion']);
         $inputs["equipo"] = $equipo;
         $inputs["apellidos"] = $equipo->asesor==null?"":$equipo->asesor->apellido_paterno." ".$equipo->asesor->apellido_materno;
         $inputs["nombres"] = $equipo->asesor==null?"":$equipo->asesor->nombres;
@@ -84,7 +84,7 @@ class HomeController extends Controller
     public function actaMovil($id,Request $request){
         $equipo = Movil::find($id);
 
-        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion']);
+        $inputs = $request->only(['fecha','local','fecha_entrega','tipo_asignacion','condicion']);
         $inputs["movil"] = $equipo;
         $inputs["apellidos"] = $equipo->asesor==null?"":$equipo->asesor->apellido_paterno." ".$equipo->asesor->apellido_materno;
         $inputs["nombres"] = $equipo->asesor==null?"":$equipo->asesor->nombres;

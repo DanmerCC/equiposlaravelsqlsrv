@@ -28,7 +28,7 @@
                 height: 50px;
 
                 /** Extra personal styles **/
-                background-color: #03a9f4;
+                background-color: #c3c1c1;
                 color: white;
                 text-align: center;
                 line-height: 35px;
@@ -44,6 +44,7 @@
             .cell{
                 border: 2px solid rgb(0, 0, 0);
                 min-height: 5cm
+                size: 10pt;
             }
         </style>
     </head>
@@ -56,7 +57,7 @@
         </header>
 
         <footer>
-            Copyright &copy; <?php echo date("Y");?>
+            &copy; <?php echo date("Y");?>
         </footer>
 
         <!-- Wrap the content of your PDF inside a main tag -->
@@ -93,8 +94,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="cell"></td>
-                        <td class="cell"></td>
+                        <td  colspan="2" class="cell">
+                            {{$condicion??""}}
+                        </td>
                         <td></td>
                     </tr>
                     <tr style="height: 30pt">
@@ -106,8 +108,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="cell"></td>
-                        <td class="cell"></td>
+                        <td ></td>
+                        <td ></td>
                         <td></td>
                     </tr>
                     <tr style="height: 30pt">
@@ -117,8 +119,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="cell"></td>
-                        <td class="cell"></td>
+                        <td ></td>
+                        <td ></td>
                         <td></td>
                     </tr>
                     <tr style="height: 30pt">
@@ -130,8 +132,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="cell"></td>
-                        <td class="cell"></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr style="height: 30pt">
@@ -143,8 +145,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="cell"></td>
-                        <td class="cell"></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -218,25 +220,17 @@
             <br>
             <br>
             <br>
-            <br>
-            <br>
             <table>
                 <tr>
-                    <td></td>
                     <td  style="border-top:solid 1px black"></td>
-                    <td></td>
                     <td  style="border-top:solid 1px black"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td  style="align-content: center">NOMBRE</td>
-                    <td></td>
+                    <td  style="align-content: center;width: 50%;"> {{ $nombres }} <br> {{$apellidos}}</td>
                     <td  style="align-content: center">NOMBRE</td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td  style="align-content: center">FECHA</td>
-                    <td></td>
                     <td  style="align-content: center">FECHA</td>
                 </tr>
             </table>

@@ -58,8 +58,8 @@
             </div>
 
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div @click="$refs.equipostable.malogrados(false)"  class="card-body"> Malogrados</div>
+                <div @click="$refs.equipostable.malogrados(true)" class="card bg-danger text-white mb-4">
+                    <div  class="card-body"> Malogrados</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <h3>{{ $malogrados }} Laptops<sup style="font-size: 20px"></sup></h3>
                         <!--<a class="small text-white stretched-link" href="Tabla_CallCenter.php">></a>
